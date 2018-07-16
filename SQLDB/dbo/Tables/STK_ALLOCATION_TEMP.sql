@@ -1,0 +1,33 @@
+﻿CREATE TABLE [dbo].[STK_ALLOCATION_TEMP] (
+    [STKAL_ID]                      INT          NOT NULL,
+    [STKAL_LINE_NO]                 INT          NOT NULL,
+    [STKAL_SUB_LINE_NO]             INT          DEFAULT ((0)) NOT NULL,
+    [STKAL_STATUS]                  TINYINT      NULL,
+    [STKAL_ORDER_DETAIL_LINK]       INT          NULL,
+    [STKAL_QUANTITY]                FLOAT (53)   NULL,
+    [STKAL_USER_ID]                 VARCHAR (4)  NULL,
+    [STKAL_SUBANALYSIS]             VARCHAR (25) NULL,
+    [STKAL_MULTI_SUBANALYSIS_LINK]  INT          NULL,
+    [STKAL_SERIAL_NUMBER]           VARCHAR (40) NULL,
+    [STKAL_CUSTOMER_CODE]           VARCHAR (10) NULL,
+    [STKAL_ORDER_NUMBER]            INT          NULL,
+    [STKAL_REQUIRED_DATE]           DATETIME     NULL,
+    [STKAL_QUANTITY_TO_DELIVER]     FLOAT (53)   NULL,
+    [STKAL_QUANTITY_ALLOCATED]      FLOAT (53)   NULL,
+    [STKAL_QUANTITY_OS_TO_ALLOCATE] FLOAT (53)   NULL,
+    [STKAL_ORDER_TYPE]              VARCHAR (1)  NULL,
+    CONSTRAINT [STK_ALLOCATION_TEMP_PK] PRIMARY KEY CLUSTERED ([STKAL_ID] ASC, [STKAL_LINE_NO] ASC, [STKAL_SUB_LINE_NO] ASC)
+);
+
+
+GO
+CREATE TRIGGER [dbo].[AA_STK_ALLOCATION_TEMP_DEL_T]
+    ON [dbo].[STK_ALLOCATION_TEMP]
+    WITH ENCRYPTION
+    AFTER DELETE
+    AS 
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+

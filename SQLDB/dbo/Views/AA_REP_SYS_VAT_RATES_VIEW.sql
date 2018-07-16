@@ -1,0 +1,29 @@
+﻿create view AA_REP_SYS_VAT_RATES_VIEW
+/*
+**
+** Written     :  23/11/2005 RV
+** Last Amended:
+*/
+as
+
+select
+   VAT_CODE
+,  VAT_RATE
+,  VAT_NAME
+,  UPDATED_DATE
+,  UPDTE_FROM_PER
+,  UPDTE_TO_PER
+,  VAT_DATE_PUTIN
+,  VAT_USER_PUTIN
+,  VAT_DATE_EDITED
+,  VAT_USER_EDITED
+,  EC_TYPE
+,  ESL_YEAR_FROM
+,  ESL_PERD_FROM
+,  ESL_YEAR_TO
+,  ESL_PERD_TO
+,  UPDTE_FROM_YEAR
+,  UPDTE_TO_YEAR
+,  VAT_PRIMARY
+   from
+      SYS_VATCONTROL

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Steven.Chapman]
+    AUTHORIZATION [CORPORATE\Steven.Chapman];
+

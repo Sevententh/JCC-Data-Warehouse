@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Sue.Hibbert]
+    AUTHORIZATION [CORPORATE\Sue.Hibbert];
+

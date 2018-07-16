@@ -1,0 +1,106 @@
+﻿create view AA_PL_AGED_CREDIT_DETAIL_ADVANCED_VIEW
+/*
+** Written:      
+** Last Amended: 23/02/2005 SR, 03/05/2005 SH, 23/08/2005 SH, 01/12/2005 JC, 06/12/2005 JC, 18/04/06 NC
+*/
+as
+
+select
+ DET_PRIMARY as [PRIMARY]
+,PT_PRIMARY as HEADER_PRIMARY
+--Analysis
+,isnull(DET_ANALYSIS,'') as DET_ANALYSIS
+,isnull(pa1.PANAME,'') as PANAME
+,isnull(pa1.PATYPE_P_B_D,'') as PATYPE_P_B_D
+,isnull(pa1.PANOMINALDR,'') as PANOMINALDR
+,isnull(dr.NNAME,'') as PANOMINALDR_NAME
+,isnull(pa1.PANOMINALCR,'') as PANOMINALCR
+,isnull(cr.NNAME,'') as PANOMINALCR_NAME
+,isnull(pa1.PANOMINALVAT,'') as PANOMINALVAT
+,isnull(vt.NNAME,'') as PANOMINALVAT_NAME
+,isnull(DET_COSTHEADER,'') as DET_COSTHEADER
+,isnull(CH_NAME,'') as CH_NAME
+,isnull(DET_COSTCENTRE,'') as DET_COSTCENTRE 
+,isnull(CC_NAME,'') as CC_NAME
+,isnull(POD_STOCK_ANALYSIS,'') as STOCK_ANALYSIS
+,isnull(pa2.PANOMINALDR,'') as STK_NOMINALDR
+,isnull(pa2.PANOMINALCR,'') as STK_NOMINALCR
+--Product
+,isnull(DET_STOCK_CODE, '') as DET_STOCK_CODE
+,isnull(DET_PRICE_CODE, '') as DET_PRICE_CODE
+,isnull(DET_STOCK_CODE,'') + isnull(DET_PRICE_CODE,'') as DET_STOCK_PRICE_CODE
+,isnull(STKNAME,'') + isnull(PRNAME,'') as STKNAME_PRNAME
+,dbo.AA_PRICE_DPS_F(DET_UNIT_PRICE) as DET_UNIT_PRICE
+,dbo.AA_QUANTITY_DPS_F(DET_QUANTITY) as DET_QUANTITY
+,dbo.AA_PRICE_DPS_F(DET_COSTPRICE) as DET_COSTPRICE
+,isnull(DET_STKSORTKEY,'') as DET_STKSORTKEY
+,isnull(DET_STKSORTKEY1,'') as DET_STKSORTKEY1
+,isnull(DET_STKSORTKEY2,'') as DET_STKSORTKEY2
+,isnull(DET_STKSORTKEY3,'') as DET_STKSORTKEY3
+,isnull(POD_LOCATN,'') as POD_LOCATN
+,isnull(DET_SERIALNO,'') as DET_SERIALNO
+--Currency
+,dbo.AA_VALUE_DPS_F(DET_GROSS) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as DET_GROSS 
+,dbo.AA_VALUE_DPS_F(DET_NETT * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end) as DET_NETT 
+,dbo.AA_VALUE_DPS_F(DET_CURR_GROSS) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as DET_CURR_GROSS 
+,dbo.AA_VALUE_DPS_F(DET_CURR_NETT) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as DET_CURR_NETT
+,dbo.AA_VALUE_DPS_F(DET_GROSS_BASE2) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as DET_GROSS_BASE2
+,dbo.AA_VALUE_DPS_F(DET_NETT_BASE2) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as DET_NETT_BASE2
+,dbo.AA_VALUE_DPS_F(DET_L_DISCOUNT) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as DET_L_DISCOUNT
+,dbo.AA_VALUE_DPS_F(DET_L_DISC_BASE2) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as DET_L_DISC_BASE2
+,dbo.AA_VALUE_DPS_F(DET_CURR_L_DISC) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as DET_CURR_L_DISC
+--VAT
+,isnull(DET_VATCODE,'') as DET_VATCODE
+,dbo.AA_VALUE_DPS_F(DET_VAT) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as DET_VAT 
+,dbo.AA_VALUE_DPS_F(DET_CURR_TAX) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as DET_CURR_TAX
+,dbo.AA_VALUE_DPS_F(DET_VAT_BASE2) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as DET_VAT_BASE2
+,isnull(VAT_RATE,0) as VAT_RATE  
+,isnull(DET_IMPEXP_CODE,'') as DET_IMPEXP_CODE
+,isnull(STK_EC_COM_CODE,'') as STK_EC_COM_CODE
+,isnull(PT_EC_DEL_TERMS,'') as PT_EC_DEL_TERMS
+,isnull(PT_EC_T_MODE,'') as PT_EC_T_MODE
+,isnull(STK_EC_ORIGIN,'') as STK_EC_ORIGIN
+,isnull(PT_EC_T_NATURE,'') as PT_EC_T_NATURE
+,isnull(DET_ECVAT_TYPE,'') as DET_ECVAT_TYPE
+--Custom
+,isnull(DET_USRCHAR1,'') as DET_USRCHAR1
+,isnull(DET_USRCHAR2,'') as DET_USRCHAR2
+,isnull(DET_USRCHAR3,'') as DET_USRCHAR3
+,isnull(DET_USRCHAR4,'') as DET_USRCHAR4
+,cast(DET_USRFLAG1 as bit) as DET_USRFLAG1
+,cast(DET_USRFLAG2 as bit) as DET_USRFLAG2
+,DET_USRDATE1
+,DET_USRDATE2
+,dbo.AA_VALUE_DPS_F(DET_USRNUM1) as DET_USRNUM1
+,dbo.AA_VALUE_DPS_F(DET_USRNUM2) as DET_USRNUM2
+--General
+,case DET_RECONCILED when 1 then 'R' else '' end RECONCILED
+,DET_DATE_PUTIN
+,isnull(DET_DESCRIPTION,'') as DET_DESCRIPTION
+,POD_ORDER_NO
+,isnull(DET_DIMENSION1,'') as DET_DIMENSION1
+,isnull(DET_DIMENSION2,'') as DET_DIMENSION2
+,isnull(DET_DIMENSION3,'') as DET_DIMENSION3
+,dbo.AA_VALUE_DPS_F(POD_LINEDISC) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as POD_LINEDISC
+,dbo.AA_VALUE_DPS_F(POH_DISC_TOT_P) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as POH_DISC_TOT_P
+,DET_SUB_AUDIT_NO
+,isnull(DET_RECON_REF,'') as DET_RECON_REF
+,PT_CURRENCYCODE
+
+from PL_TRANSACTIONS
+join SL_PL_NL_DETAIL with (index(DET_HEADER_KEY)) on DET_HEADER_KEY='P'+convert(varchar,convert(int,PT_PRIMARY))
+left outer join POP_DETAIL on POD_PRIMARY = DET_ORDER_LINK  
+left outer join POP_HEADER on POH_ORDER_NUMBR = POD_ORDER_NO
+left outer join CST_COSTHEADER on CH_CODE = DET_COSTHEADER
+left outer join CST_COSTCENTRE on CC_CONCAT_CODES = DET_COSTHEADER + space(10 - len(DET_COSTHEADER)) + DET_COSTCENTRE 
+left outer join STK_STOCK on STKCODE = DET_STOCK_CODE
+left outer join PRC_PRICE_RECS on PRCODE = DET_PRICE_CODE
+left outer join PL_ANALYSIS pa1 on pa1.PACODE = DET_ANALYSIS 
+left outer join NL_ACCOUNTS dr on dr.NCODE = PANOMINALDR
+left outer join NL_ACCOUNTS cr on cr.NCODE = PANOMINALCR
+left outer join NL_ACCOUNTS vt on vt.NCODE = PANOMINALVAT
+left outer join PL_ANALYSIS pa2 on pa2.PACODE = POD_STOCK_ANALYSIS
+left outer join SYS_VATCONTROL on VAT_CODE = DET_VATCODE
+left outer join SL_PL_NL_DETAIL2 on DET_PRIMARY_2 = DET_PRIMARY
+where PT_BATCH_FLAG = 0 and PT_ALOC_POINTER like '0%'
+and isnull(DET_ANALYSIS,'')<>''

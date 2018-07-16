@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_CHECK_PRICE_RECORD_S]
+@PS_Price_Code VARCHAR (16) NULL, @PS_Ledger VARCHAR (3) NULL, @PS_DefaultString VARCHAR (14) NULL, @PS_Price DECIMAL (24, 8) NULL OUTPUT, @PS_Analysis_Code VARCHAR (25) NULL OUTPUT, @PS_Text VARCHAR (240) NULL OUTPUT, @PS_Cost DECIMAL (24, 8) NULL OUTPUT, @PS_RTP_Flag TINYINT NULL OUTPUT, @PS_ReverseChargeVatItem BIT NULL OUTPUT, @PS_Service BIT NULL OUTPUT, @PS_CurrencyPrice DECIMAL (24, 8) NULL OUTPUT, @PS_TranCurrencySymbol VARCHAR (4) NULL, @PS_Currency_Mode TINYINT NULL OUTPUT, @PS_Price_Line TINYINT NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

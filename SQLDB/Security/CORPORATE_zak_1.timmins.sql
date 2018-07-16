@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\zak.timmins]
+    AUTHORIZATION [CORPORATE\zak.timmins];
+

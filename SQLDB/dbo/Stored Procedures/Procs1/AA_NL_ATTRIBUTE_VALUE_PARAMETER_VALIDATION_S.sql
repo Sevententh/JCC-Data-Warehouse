@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_NL_ATTRIBUTE_VALUE_PARAMETER_VALIDATION_S]
+@PS_ValueID INT NULL OUTPUT, @PS_TypeCode VARCHAR (15) NULL OUTPUT, @PS_ValueCode VARCHAR (10) NULL OUTPUT, @PS_DerivedTypeID INT NULL OUTPUT, @PS_TypeCategoryNumber TINYINT NULL OUTPUT, @PS_ErrorDescription VARCHAR (50) NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

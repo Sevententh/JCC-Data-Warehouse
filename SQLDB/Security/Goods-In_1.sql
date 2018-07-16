@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [Goods-In]
+    AUTHORIZATION [Goods-In];
+

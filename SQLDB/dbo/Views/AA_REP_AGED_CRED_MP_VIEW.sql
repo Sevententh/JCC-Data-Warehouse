@@ -1,0 +1,77 @@
+﻿create view AA_REP_AGED_CRED_MP_VIEW
+/*
+** Written:       11/5/2005 RL
+** Last Amended:  14/6/2005 RL, 22/7/2005 RL; 17/09/08 NC
+** Comments: returns selected purchase transactions for Multiple Period Aged Creditors crystal reports
+*/
+as
+
+select
+PT_PRIMARY,
+PT_TRANTYPE,
+CAST (PT_BATCH_FLAG AS BIT) AS PT_BATCH_FLAG,
+PT_CURRENCYCODE,
+PT_YEAR,
+PT_PERIODNUMBER,
+PT_PERIODNUMBER + NO_OF_PERIODS * charindex(PT_YEAR,'LCN') as PERIOD_SORT,
+PT_DATE,
+PT_HEADER_REF,
+PT_SUB_LEDGER,
+PT_TRI_RATE1,
+PT_TRI_RATE2,
+PT_DESCRIPTION,
+PT_GROSS,
+PT_DUEDATE,
+PT_INTERNAL_REF,
+SUCODE,
+SUNAME,
+SUBALANCE,
+SUSORT,
+SUUSER1,
+SUUSER2,
+SUUSER3,
+SUTURNOVERYTD,
+SUCURRENCYCODE,
+CAST (SU_ON_STOP AS BIT) AS SU_ON_STOP,
+SU_CREDIT_LIMIT,
+SU_DATE_INV,
+P_AL_PRIMARY,
+P_AL_DATE,
+P_AL_PERIOD,
+P_AL_YEAR,
+P_AL_VALUE_HOME,
+P_AL_VALUE_CURR,
+P_AL_REFERENCE,
+case when PT_GROSS<>0 then P_AL_VALUE_HOME * PT_GROSS_BASE2/PT_GROSS else 0 end as P_AL_VALUE_BASE2,
+P_AL_USER_ID,
+P_AL_FULLALLOC_PD,
+P_AL_FULLALLOC_DATE,
+case
+   when PT_TRANTYPE in ('INV','ACR') then P_AL_VALUE_HOME
+   else 0
+end as HOME_DEBIT_VALUE,
+case
+   when PT_TRANTYPE in ('INV','ACR') then P_AL_VALUE_CURR
+   else 0
+end as CURR_DEBIT_VALUE,
+case
+   when PT_TRANTYPE in ('INV','ACR') and PT_GROSS<>0 then P_AL_VALUE_HOME * PT_GROSS_BASE2/PT_GROSS
+   else 0
+end as BASE2_DEBIT_VALUE,
+case
+   when PT_TRANTYPE in ('CRN','PAY','ADR') then -P_AL_VALUE_HOME
+   else 0
+end as HOME_CREDIT_VALUE,
+case
+   when PT_TRANTYPE in ('CRN','PAY','ADR') then -P_AL_VALUE_CURR
+   else 0
+end as CURR_CREDIT_VALUE,
+case
+   when PT_TRANTYPE in ('CRN','PAY','ADR') and PT_GROSS<>0 then -(P_AL_VALUE_HOME * PT_GROSS_BASE2/PT_GROSS)
+   else 0
+end as BASE2_CREDIT_VALUE
+from
+  PL_ALLOC_HISTORY with (nolock)
+  inner join PL_TRANSACTIONS on PT_HEADER_KEY = P_AL_HEADER_KEY
+  inner join PL_ACCOUNTS with (nolock)     on SUCODE        = P_AL_ACCOUNT_CODE,
+  SYS_DATAINFO2 with (nolock)

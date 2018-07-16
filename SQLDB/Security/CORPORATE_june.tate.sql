@@ -1,0 +1,3 @@
+﻿CREATE USER [CORPORATE\june.tate] FOR LOGIN [CORPORATE\june.tate]
+    WITH DEFAULT_SCHEMA = [CORPORATE\june.tate];
+

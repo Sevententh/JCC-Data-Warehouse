@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_PYEND_PROGRESS_S]
+@PS_Update TINYINT NULL, @PS_UserId VARCHAR (4) NULL, @PS_ProgressCurrent INT NULL OUTPUT, @PS_ProgressNew INT NULL OUTPUT, @PS_YearEnd TINYINT NULL OUTPUT, @PS_DeleteTrans TINYINT NULL OUTPUT, @PS_DeleteDate DATETIME NULL OUTPUT, @PS_LoopValue INT NULL OUTPUT, @PS_PeriodEndOption NVARCHAR (2) NULL OUTPUT, @PS_ErrorHandlingMethod TINYINT NULL, @PS_InstanceId BIGINT NULL OUTPUT
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

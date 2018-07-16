@@ -1,0 +1,51 @@
+﻿create view AA_ERROR_LOG_TREE_VIEW
+/*
+** Last Amended: 13/08/04 NC
+*/
+as
+select
+   isnull(L4.ELL_PRIMARY,L3.ELL_PRIMARY) Sequence
+,  L1.ELL_HEADER_LINK H0
+,  L1.ELL_SUB_HEADER_LINK H1
+,  L2.ELL_SUB_HEADER_LINK H2
+,  L3.ELL_SUB_HEADER_LINK H3
+,  L4.ELL_SUB_HEADER_LINK H4
+,  case
+      when L4.ELL_HEADER_LINK is NULL then L3.ELL_DETAIL_LINK
+      else
+         L4.ELL_DETAIL_LINK
+   end DetailLink
+,  L0.ELL_TAG_LINK as TagLink
+
+   from
+      ERR_LOG_LINK L0
+         inner join ERR_LOG_LINK L1 on L1.ELL_HEADER_LINK = L0.ELL_HEADER_LINK     and L1.ELL_HEADER_LINK>0
+         inner join ERR_LOG_LINK L2 on L2.ELL_HEADER_LINK = L1.ELL_SUB_HEADER_LINK and L2.ELL_HEADER_LINK>0
+         inner join ERR_LOG_LINK L3 on L3.ELL_HEADER_LINK = L2.ELL_SUB_HEADER_LINK and L3.ELL_HEADER_LINK>0
+         left  join ERR_LOG_LINK L4 on L4.ELL_HEADER_LINK = L3.ELL_SUB_HEADER_LINK and L4.ELL_HEADER_LINK>0
+   where
+      L0.ELL_TAG_LINK > 0
+
+union
+
+select
+   isnull(L2.ELL_PRIMARY,L1.ELL_PRIMARY) Sequence
+,  L1.ELL_HEADER_LINK H0
+,  L1.ELL_SUB_HEADER_LINK H1
+,  L2.ELL_SUB_HEADER_LINK H2
+,  NULL H3
+,  NULL H4
+,  case
+      when L2.ELL_HEADER_LINK is NULL then L1.ELL_DETAIL_LINK
+      else
+         L2.ELL_DETAIL_LINK
+   end DetailLink
+,  L0.ELL_TAG_LINK as TagLink
+
+   from
+      ERR_LOG_LINK L0
+         inner join ERR_LOG_LINK L1 on L1.ELL_HEADER_LINK = L0.ELL_HEADER_LINK     and L1.ELL_HEADER_LINK>0
+         left  join ERR_LOG_LINK L2 on L2.ELL_HEADER_LINK = L1.ELL_SUB_HEADER_LINK and L2.ELL_HEADER_LINK>0
+   where
+            L0.ELL_TAG_LINK > 0
+      and   isnull(L2.ELL_SUB_HEADER_LINK,0) = 0

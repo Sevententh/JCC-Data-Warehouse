@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Claire.Maull]
+    AUTHORIZATION [CORPORATE\Claire.Maull];
+

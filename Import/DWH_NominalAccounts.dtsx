@@ -1,0 +1,1199 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/3/2018 3:43:42 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="BRMXL74120SF"
+  DTS:CreatorName="CORPORATE\alex.darling"
+  DTS:DTSID="{97A5CE02-1A57-411D-9CEA-AB36DFBA11CC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.101"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="DWH_NominalAccounts"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{B57E2F2E-821F-42F0-817F-21CD01AE471B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Error Log]"
+      DTS:CreationName="ExcelConnectionTF"
+      DTS:DTSID="{D1B0E766-8CDE-4018-841A-1FF66F091DA0}"
+      DTS:ObjectName="Excel Error Log">
+      <DTS:PropertyExpression
+        DTS:Name="FilePath">@[User::ErrorLog]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExcelConnectionManager
+          ConnectionString="FilePath=\\w2brsrv1\Data\DATA WAREHOUSE\MAPPING TABLES\ErrorLog\ErrorLog.xlsx;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EA4E3E4C-C60D-4238-B552-785E22AF9674}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorLog">
+      <DTS:VariableValue
+        DTS:DataType="8">\\w2brsrv1\Data\DATA WAREHOUSE\MAPPING TABLES\ErrorLog\ErrorLog.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Import data from Live to DWH"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Import data from PROD_Live directly to DWH mapping"
+      DTS:DTSID="{B5FE7C92-0871-40EA-A2D0-FC3DD266C19B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import data from Live to DWH"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import data from Live to DWH\ADO NET Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="ADO NET Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC [sp_DWH_ImportAccountstoNominalAccount]</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import data from Live to DWH\ADO NET Source.Connections[IDbConnection]"
+                  connectionManagerID="{33CC1FB3-144B-4210-A8A5-A7CDB65E4268}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Management]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[RowID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[RowID]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[RowID]"
+                      name="RowID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountCode]"
+                      length="25"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountCode]"
+                      name="NominalAccountCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountName]"
+                      length="40"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountName]"
+                      name="NominalAccountName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountCurrencyCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountCurrencyCode]"
+                      length="4"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountCurrencyCode]"
+                      name="NominalAccountCurrencyCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountDepartment]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountDepartment]"
+                      length="20"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountDepartment]"
+                      name="NominalAccountDepartment"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountTypeCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountTypeCode]"
+                      length="1"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountTypeCode]"
+                      name="NominalAccountTypeCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountTypeName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountTypeName]"
+                      length="8"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountTypeName]"
+                      name="NominalAccountTypeName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountRollup]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountRollup]"
+                      length="30"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountRollup]"
+                      name="NominalAccountRollup"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountSubGrouping]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountSubGrouping]"
+                      length="30"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountSubGrouping]"
+                      name="NominalAccountSubGrouping"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[StatementName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[StatementName]"
+                      length="30"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[StatementName]"
+                      name="StatementName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[ExclusionFlag]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ExclusionFlag]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[ExclusionFlag]"
+                      name="ExclusionFlag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[QtyToZeroFlag]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[QtyToZeroFlag]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[QtyToZeroFlag]"
+                      name="QtyToZeroFlag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[CostToZeroFlag]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CostToZeroFlag]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[CostToZeroFlag]"
+                      name="CostToZeroFlag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountParentCurrencyRollupCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountParentCurrencyRollupCode]"
+                      length="25"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountParentCurrencyRollupCode]"
+                      name="NominalAccountParentCurrencyRollupCode"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[RowID]"
+                      dataType="i8"
+                      name="RowID" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountCode]"
+                      dataType="wstr"
+                      length="25"
+                      name="NominalAccountCode" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountName]"
+                      dataType="wstr"
+                      length="40"
+                      name="NominalAccountName" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountCurrencyCode]"
+                      dataType="wstr"
+                      length="4"
+                      name="NominalAccountCurrencyCode" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountDepartment]"
+                      dataType="wstr"
+                      length="20"
+                      name="NominalAccountDepartment" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountTypeCode]"
+                      dataType="wstr"
+                      length="1"
+                      name="NominalAccountTypeCode" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountTypeName]"
+                      dataType="wstr"
+                      length="8"
+                      name="NominalAccountTypeName" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountRollup]"
+                      dataType="wstr"
+                      length="30"
+                      name="NominalAccountRollup" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountSubGrouping]"
+                      dataType="wstr"
+                      length="30"
+                      name="NominalAccountSubGrouping" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[StatementName]"
+                      dataType="wstr"
+                      length="30"
+                      name="StatementName" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[ExclusionFlag]"
+                      dataType="ui1"
+                      name="ExclusionFlag" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[QtyToZeroFlag]"
+                      dataType="ui1"
+                      name="QtyToZeroFlag" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[CostToZeroFlag]"
+                      dataType="ui1"
+                      name="CostToZeroFlag" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].ExternalColumns[NominalAccountParentCurrencyRollupCode]"
+                      dataType="wstr"
+                      length="25"
+                      name="NominalAccountParentCurrencyRollupCode" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[RowID]"
+                      dataType="i8"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[RowID]"
+                      name="RowID" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountCode]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountCode]"
+                      name="NominalAccountCode" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountName]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountName]"
+                      name="NominalAccountName" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountCurrencyCode]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountCurrencyCode]"
+                      name="NominalAccountCurrencyCode" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountDepartment]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountDepartment]"
+                      name="NominalAccountDepartment" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountTypeCode]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountTypeCode]"
+                      name="NominalAccountTypeCode" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountTypeName]"
+                      dataType="wstr"
+                      length="8"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountTypeName]"
+                      name="NominalAccountTypeName" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountRollup]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountRollup]"
+                      name="NominalAccountRollup" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountSubGrouping]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountSubGrouping]"
+                      name="NominalAccountSubGrouping" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[StatementName]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[StatementName]"
+                      name="StatementName" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ExclusionFlag]"
+                      dataType="ui1"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ExclusionFlag]"
+                      name="ExclusionFlag" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[QtyToZeroFlag]"
+                      dataType="ui1"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[QtyToZeroFlag]"
+                      name="QtyToZeroFlag" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CostToZeroFlag]"
+                      dataType="ui1"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[CostToZeroFlag]"
+                      name="CostToZeroFlag" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountParentCurrencyRollupCode]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[NominalAccountParentCurrencyRollupCode]"
+                      name="NominalAccountParentCurrencyRollupCode" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import data from Live to DWH\Error Log"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Error Log"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."ErrorLog"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import data from Live to DWH\Error Log.Connections[IDbConnection]"
+                  connectionManagerID="{33CC1FB3-144B-4210-A8A5-A7CDB65E4268}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Management]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\Import data from Live to DWH\TF Upsert Destination.Outputs[Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\Import data from Live to DWH\TF Upsert Destination.Outputs[Error Output].Columns[ErrorColumn]" />
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input].Columns[ErrorDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="1024"
+                      cachedName="ErrorDescription"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\Import data from Live to DWH\TF Upsert Destination.Outputs[Error Output].Columns[ErrorDescription]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input].ExternalColumns[ErrorLogID]"
+                      dataType="i4"
+                      name="ErrorLogID" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="wstr"
+                      length="50"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="wstr"
+                      length="250"
+                      name="ErrorColumn" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input].ExternalColumns[ErrorDescription]"
+                      dataType="wstr"
+                      length="1024"
+                      name="ErrorDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input].ExternalColumns[OtherDetails]"
+                      dataType="wstr"
+                      length="2147483647"
+                      name="OtherDetails" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input].ExternalColumns[ErrorDate]"
+                      dataType="dbTimeStamp"
+                      name="ErrorDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import data from Live to DWH\Error Log.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\Error Log.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import data from Live to DWH\Error Log.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\Error Log.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import data from Live to DWH\Error Log.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import data from Live to DWH\TF Upsert Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Upsert Destinaton; Pragmatic Works, Inc; Task Factory (c) 2009 - 2016 Pragmatic Works, Inc; http://www.pragmaticworks.com;support@pragmaticworks.com"
+              description="The Upsert Destination takes input data coming from the pipeline and then conditionally inserts, updates or deletes data from the destination."
+              name="TF Upsert Destination"
+              usesDispositions="true"
+              version="13">
+              <properties>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="DESTINATION_TABLE_NAME">[dbo].[DimNominalAccount]</property>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="ENABLE_IDENTITY_INSERT">true</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="INSERT_ROWS_COUNT_VARIABLE">&lt;Select Variable&gt;</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="UPDATE_ROWS_COUNT_VARIABLE">&lt;Select Variable&gt;</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="COMMAND_TIMEOUT">0</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="UPDATE_METHOD"
+                  typeConverter="PW.TaskFactory.Enums+UpsertUpdateMethod">1</property>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="ACTION_UPDATE">true</property>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="ACTION_INSERT">true</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="POST_UPDATE_COLUMN">ETLLastUpdatedDate</property>
+                <property
+                  dataType="System.Boolean"
+                  expressionType="Notify"
+                  name="TURN_OFF_INTERNAL_TRANSACTION">false</property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="ROW_FLAG_COLUMN"></property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="ROW_FLAG_COLUMN_INSERT_VALUE"></property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="ROW_FLAG_COLUMN_DELETE_VALUE"></property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="ROW_FLAG_COLUMN_REJECT_VALUE"></property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="ROW_FLAG_COLUMN_UPDATE_VALUE"></property>
+                <property
+                  dataType="System.String"
+                  expressionType="Notify"
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="PW.TaskFactory.Enums+UpsertAccessModeEnum">0</property>
+                <property
+                  dataType="System.Int32"
+                  expressionType="Notify"
+                  name="UPSERT_METHOD"
+                  typeConverter="PW.TaskFactory.Enums+UpsertMethod">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates the Upsert destination will use a custom definition for it's temp table creation"
+                  expressionType="Notify"
+                  name="Use Custom Temp Table">false</property>
+                <property
+                  dataType="System.String"
+                  description="Definition of the custom temp table script"
+                  expressionType="Notify"
+                  name="Custom Temp Table Definition"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Use a merge statement for the insert and updates instead of two seperate insert and update statements"
+                  expressionType="Notify"
+                  name="Use Merge Statement">false</property>
+                <property
+                  dataType="System.String"
+                  description="The script to run before each buffer is sent to the destination"
+                  expressionType="Notify"
+                  name="Before Script"></property>
+                <property
+                  dataType="System.String"
+                  description="The script to run after each buffer is sent to the destination"
+                  expressionType="Notify"
+                  name="After Script"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set to true if you want the component to fail if the before script throws an exception."
+                  expressionType="Notify"
+                  name="Fail Component If Before Script Throws Exception">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set to true if you want the component to fail if the after script throws an exception."
+                  expressionType="Notify"
+                  name="Fail Component If After Script Throws Exception">false</property>
+                <property
+                  dataType="System.String"
+                  description="Allows you to set a table hint for the destination table (e.g. NOLOCK - SNAPSHOT)."
+                  expressionType="Notify"
+                  name="Table Hint"></property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">PW.TaskFactory.UpsertDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import data from Live to DWH\TF Upsert Destination.Connections[DestinationConnection]"
+                  connectionManagerID="{79D4C6B0-FA7C-445C-9C85-8B4167C1887B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Presentation]"
+                  description="Connection for the destination"
+                  name="DestinationConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input]"
+                  errorOrTruncationOperation="Error or Truncation"
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[RowID]"
+                      cachedDataType="i8"
+                      cachedName="RowID"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[RowID]" />
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[NominalAccountCode]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="NominalAccountCode"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountCode]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">NominalAccountCode</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">true</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[NominalAccountName]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="NominalAccountName"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountName]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountName]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">NominalAccountName</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[NominalAccountParentCurrencyRollupCode]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="NominalAccountParentCurrencyRollupCode"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountParentCurrencyRollupCode]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountParentCurrencyRollupCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">NominalAccountParentCurrencyRollupCode</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[NominalAccountCurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="NominalAccountCurrencyCode"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountCurrencyCode]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountCurrencyCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">NominalAccountCurrencyCode</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[NominalAccountDepartment]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="NominalAccountDepartment"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountDepartment]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountDepartment]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">NominalAccountDepartment</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[NominalAccountTypeCode]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="NominalAccountTypeCode"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountTypeCode]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountTypeCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">NominalAccountTypeCode</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[NominalAccountTypeName]"
+                      cachedDataType="wstr"
+                      cachedLength="8"
+                      cachedName="NominalAccountTypeName"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountTypeName]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountTypeName]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">NominalAccountTypeName</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[NominalAccountRollup]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="NominalAccountRollup"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountRollup]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountRollup]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">NominalAccountRollup</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[NominalAccountSubGrouping]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="NominalAccountSubGrouping"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountSubGrouping]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[NominalAccountSubGrouping]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">NominalAccountSubGrouping</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[StatementName]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="StatementName"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[StatementName]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[StatementName]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">StatementName</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[ExclusionFlag]"
+                      cachedDataType="ui1"
+                      cachedName="ExclusionFlag"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[ExclusionFlag]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[ExclusionFlag]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">ExclusionFlag</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[QtyToZeroFlag]"
+                      cachedDataType="ui1"
+                      cachedName="QtyToZeroFlag"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[QtyToZeroFlag]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[QtyToZeroFlag]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">QtyToZeroFlag</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].Columns[CostToZeroFlag]"
+                      cachedDataType="ui1"
+                      cachedName="CostToZeroFlag"
+                      externalMetadataColumnId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[CostToZeroFlag]"
+                      lineageId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output].Columns[CostToZeroFlag]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Mapped Column for Destination"
+                          name="DestinationColumn">CostToZeroFlag</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column A Key Column"
+                          name="IsKeyColumn">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Is Column An Identity Column"
+                          name="IsIdentityColumn">false</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountKey]"
+                      dataType="i4"
+                      name="NominalAccountKey" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountCode]"
+                      dataType="wstr"
+                      length="25"
+                      name="NominalAccountCode" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountName]"
+                      dataType="wstr"
+                      length="40"
+                      name="NominalAccountName" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountParentCurrencyRollupCode]"
+                      dataType="wstr"
+                      length="25"
+                      name="NominalAccountParentCurrencyRollupCode" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountCurrencyCode]"
+                      dataType="wstr"
+                      length="4"
+                      name="NominalAccountCurrencyCode" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountDepartment]"
+                      dataType="wstr"
+                      length="20"
+                      name="NominalAccountDepartment" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountTypeCode]"
+                      dataType="wstr"
+                      length="1"
+                      name="NominalAccountTypeCode" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountTypeName]"
+                      dataType="wstr"
+                      length="100"
+                      name="NominalAccountTypeName" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountRollup]"
+                      dataType="wstr"
+                      length="25"
+                      name="NominalAccountRollup" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[NominalAccountSubGrouping]"
+                      dataType="wstr"
+                      length="30"
+                      name="NominalAccountSubGrouping" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[StatementName]"
+                      dataType="wstr"
+                      length="30"
+                      name="StatementName" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[ExclusionFlag]"
+                      dataType="bool"
+                      name="ExclusionFlag" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[QtyToZeroFlag]"
+                      dataType="bool"
+                      name="QtyToZeroFlag" />
+                    <externalMetadataColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input].ExternalColumns[CostToZeroFlag]"
+                      dataType="bool"
+                      name="CostToZeroFlag" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import data from Live to DWH\TF Upsert Destination.Outputs[Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Error Output"
+                  synchronousInputId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Outputs[Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import data from Live to DWH\TF Upsert Destination.Outputs[Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Outputs[Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import data from Live to DWH\TF Upsert Destination.Outputs[Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Import data from Live to DWH\TF Upsert Destination.Outputs[Error Output].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Import data from Live to DWH\TF Upsert Destination.Outputs[Error Output].Columns[ErrorDescription]"
+                      name="ErrorDescription" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import data from Live to DWH.Paths[ADO NET Source Output]"
+              endId="Package\Import data from Live to DWH\TF Upsert Destination.Inputs[Input]"
+              name="ADO NET Source Output"
+              startId="Package\Import data from Live to DWH\ADO NET Source.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\Import data from Live to DWH.Paths[Error Output]"
+              endId="Package\Import data from Live to DWH\Error Log.Inputs[ADO NET Destination Input]"
+              name="Error Output"
+              startId="Package\Import data from Live to DWH\TF Upsert Destination.Outputs[Error Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="222,42"
+          Id="Package\Import data from Live to DWH"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Import data from Live to DWH">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Import data from Live to DWH\TF Upsert Destination"
+          TopLeft="5.50000000000003,107.5" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Import data from Live to DWH\ADO NET Source"
+          TopLeft="17,5.5" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\Import data from Live to DWH\Error Log"
+          TopLeft="34.5,209.5" />
+        <EdgeLayout
+          Id="Package\Import data from Live to DWH.Paths[Error Output]"
+          TopLeft="96,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.33638671875,20.533203125,56.6727734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import data from Live to DWH.Paths[ADO NET Source Output]"
+          TopLeft="96,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data from Live to DWH\ADO NET Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data from Live to DWH\Error Log">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

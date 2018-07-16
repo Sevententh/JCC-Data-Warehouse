@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[dhc_JCC_HistoricalPODates] (
+    [ID]                INT          IDENTITY (1, 1) NOT FOR REPLICATION NOT NULL,
+    [DHD_DATE_REQUIRED] DATETIME     NULL,
+    [DHD_ITEM_CODE]     VARCHAR (25) NULL,
+    [DHH_DATE_UPDATED]  DATETIME     NULL,
+    [POH_DATE]          DATETIME     NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

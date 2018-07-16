@@ -1,0 +1,3 @@
+﻿CREATE USER [CORPORATE\Barney.Reed] FOR LOGIN [CORPORATE\barney.reed]
+    WITH DEFAULT_SCHEMA = [CORPORATE\Barney.Reed];
+

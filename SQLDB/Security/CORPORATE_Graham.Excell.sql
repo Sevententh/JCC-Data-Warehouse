@@ -1,0 +1,3 @@
+﻿CREATE USER [CORPORATE\Graham.Excell] FOR LOGIN [CORPORATE\graham.excell]
+    WITH DEFAULT_SCHEMA = [CORPORATE\Graham.Excell];
+

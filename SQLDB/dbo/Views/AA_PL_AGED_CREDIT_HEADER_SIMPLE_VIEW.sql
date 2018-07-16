@@ -1,0 +1,56 @@
+﻿create view AA_PL_AGED_CREDIT_HEADER_SIMPLE_VIEW
+/*
+** Written:      
+** Last Amended: 23/02/2005 SR, 11/07/2005 SH, 23/08/2005 SH
+*/
+as
+
+select
+ PT_PRIMARY as [PRIMARY]
+,PT_COPYSUPP
+,isnull(SUNAME,'') as SUNAME
+,isnull(SU_PRIMARY,0) as SU_PRIMARY
+,PT_DATE
+,PT_YEAR + convert(nvarchar,PT_PERIODNUMBER) YEAR_PERIOD
+,PT_YEAR
+,PT_PERIODNUMBER
+,PT_TRANTYPE
+,isnull(PT_HEADER_REF,'') as PT_HEADER_REF
+,PT_ORDER_NUMBER
+,cast(PT_QUERY_FLAG as bit) as PT_QUERY_FLAG
+,PT_INTERNAL_REF
+,dbo.AA_VALUE_DPS_F(PT_NETT) as PT_NETT
+,dbo.AA_VALUE_DPS_F(PT_NETT) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as SIGN_PT_NETT
+,dbo.AA_VALUE_DPS_F(PT_CURR_NETT) as PT_CURR_NETT
+,dbo.AA_VALUE_DPS_F(PT_CURR_NETT) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as SIGN_PT_CURR_NETT
+,dbo.AA_VALUE_DPS_F(PT_VAT) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as PT_VAT
+,dbo.AA_VALUE_DPS_F(PT_GROSS) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as PT_GROSS
+,dbo.AA_VALUE_DPS_F(PT_UNALLOCATED) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as PT_UNALLOCATED
+,dbo.AA_VALUE_DPS_F(PT_CURR_VALU) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as PT_CURR_VALU
+,dbo.AA_VALUE_DPS_F(PT_CURR_UNAL) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as PT_CURR_UNAL
+,case PT_RECONCILED when 1 then 'R' else '' end RECONCILED 
+,PT_PRIMARY
+,PT_DUEDATE
+,PT_DATE_PUTIN
+,isnull(PT_DESCRIPTION,'') as PT_DESCRIPTION
+,dbo.AA_VALUE_DPS_F(PT_REVALUED) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as PT_REVALUED
+,dbo.AA_VALUE_DPS_F(SUBALANCE) as SUBALANCE
+,dbo.AA_VALUE_DPS_F(SU_CREDIT_LIMIT) as SU_CREDIT_LIMIT
+,SU_DATE_PAY
+,SU_DATE_INV
+,dbo.AA_VALUE_DPS_F(PT_PAYLIST_VALUE) * case when PT_TRANTYPE in ('INV','ACR','JCR') then 1 else -1 end as PT_PAYLIST_VALUE
+,PT_PAY_STAGE_STATUS
+,isnull(PT_USER1,'') as PT_USER1
+,isnull(PT_USER2,'') as PT_USER2
+,isnull(PT_USER3,'') as PT_USER3
+,isnull(SUSORT,'') as SUSORT
+,isnull(SUUSER1,'') as SUUSER1
+,isnull(SUUSER2,'') as SUUSER2
+,isnull(SUUSER3,'') as SUUSER3
+,PT_CURRENCYCODE
+,isnull(POH_ACCOUNT,'') as POH_ACCOUNT
+
+from PL_TRANSACTIONS 
+join PL_ACCOUNTS on PT_COPYSUPP = SUCODE 
+left outer join POP_HEADER on POH_ORDER_NUMBR = PT_ORDER_NUMBER 
+where PT_BATCH_FLAG = 0 and PT_ALOC_POINTER like '0%'

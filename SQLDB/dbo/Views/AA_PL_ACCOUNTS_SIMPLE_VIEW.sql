@@ -1,0 +1,46 @@
+﻿create view AA_PL_ACCOUNTS_SIMPLE_VIEW
+/*
+** Returns a table to be used specifically with AA_PL_ACCOUNT_LIST_S
+** Written:      28/04/03 SRB; 17/06/03 SRB
+** Last Amended: 09/07/03 SRB; 12/02/04 DG; 17/05/04 DG; 11/08/04 DG; 07/12/04 PT; 23/03/2005 SH, 13/12/05 NC, 09/03/2006 JC, 16/10/07 SR
+**
+*/
+as
+
+select
+
+ SU_PRIMARY as [PRIMARY]
+,SUCODE
+,coalesce(SUNAME, '') as SUNAME
+,cast(SU_ON_STOP as bit) as SU_ON_STOP
+,cast((case when (dbo.AA_VALUE_DPS_F(SU_CREDIT_LIMIT) > 0) 
+       and (dbo.AA_VALUE_DPS_F(SUBALANCE) > dbo.AA_VALUE_DPS_F(SU_CREDIT_LIMIT)) then 1 
+      else 0 end) as bit) as OVERCREDITLIMIT
+,dbo.AA_VALUE_DPS_F(SUBALANCE) as SUBALANCE
+,dbo.AA_VALUE_DPS_F(SU_CREDIT_LIMIT) as SU_CREDIT_LIMIT 
+,coalesce(SUPHONE, '') as SUPHONE
+,coalesce(SU_ADDRESS_USER1, '') as SU_ADDRESS_USER1
+,coalesce(SUPOSTCODE, '') as SUPOSTCODE
+,coalesce(SU_ADDRESS_USER2, '') as SU_ADDRESS_USER2
+,coalesce(SU_COUNTRY,'') as SU_COUNTRY
+,coalesce(SU_CONTACT_SURNAME, '') as SU_CONTACT_SURNAME
+,coalesce(SUSORT, '') as SUSORT
+,coalesce(SUUSER1, '') as SUUSER1
+,coalesce(SUUSER2, '') as SUUSER2
+,coalesce(SUUSER3, '') as SUUSER3
+,coalesce(SUCURRENCYCODE, '') as SUCURRENCYCODE
+,coalesce(CURR_SYMBOL, '') as CURR_SYMBOL
+,SU_DATE_PUTIN
+,SU_DATE_EDITED
+,SU_LEVEL as PROFILELEVEL
+,isnull( SU_ANALYSIS, '' ) as SU_ANALYSIS
+,isnull( SU_BANK_ANALYS, '' ) as SU_BANK_ANALYS
+,SU_DO_NOT_USE as EXCLUDED
+,isnull(SUCONTACT, '') as SUCONTACT
+,isnull(SUADDRESS, '') + SUBSTRING(',', 1, len(SUADDRESS))
+   + isnull(SU_ADDRESS_USER1, '') + SUBSTRING(',', 1, len(SU_ADDRESS_USER1))
+    + isnull(SU_ADDRESS_USER2, '') + SUBSTRING(',', 1, len(SU_ADDRESS_USER2)) 
+      + isnull(SUPOSTCODE, '') as SU_FULL_ADDRESS
+from PL_ACCOUNTS
+left join PL_ACCOUNTS2 on SU_PRIMARY = SU_PRIMARY_2
+left join SYS_CURRENCY on SUCURRENCYCODE = CURR_CODE

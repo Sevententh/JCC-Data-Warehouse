@@ -1,0 +1,3 @@
+﻿CREATE APPLICATION ROLE [AA_CONFIGURABLE_AR]
+    WITH PASSWORD = N'bq~yxcfyocw9c&ircigbZtehmsFT7_&#$!~<|mqf`qhwd9< ', DEFAULT_SCHEMA = [AA_CONFIGURABLE_AR];
+

@@ -1,0 +1,2 @@
+﻿CREATE USER [CORPORATE\lok.bains] FOR LOGIN [CORPORATE\lok.bains];
+

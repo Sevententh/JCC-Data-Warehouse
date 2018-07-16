@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Anneka.Jensen]
+    AUTHORIZATION [CORPORATE\Anneka.Jensen];
+

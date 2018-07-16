@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_PROCESS_RTP_TRN_TEMP_S]
+@PS_TRN_TEMP_ID INT NULL, @PS_USER_ID VARCHAR (4) NULL, @PS_Process_Status TINYINT NULL, @PS_RTP_RTP_NUMBER VARCHAR (10) NULL OUTPUT, @PS_Header_Primary INT NULL OUTPUT
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

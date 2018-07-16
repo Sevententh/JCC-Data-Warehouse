@@ -1,0 +1,13 @@
+﻿CREATE FUNCTION [dbo].[AA_AOI_INXL2_CALC_YYPP_FROM_START_YEAR_PERIOD_FOR_BUDGET_NBR]
+(@PROJECT_BUDGET_START_YEAR INT NULL, @PROJECT_BUDGET_START_PERIOD INT NULL, @NBR_OF_NL_PERIODS TINYINT NULL, @BUDGET_PERIOD INT NULL)
+RETURNS 
+    @GeneratedTableName TABLE (
+        [calculated_year]   INT NULL,
+        [calculated_period] INT NULL)
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+

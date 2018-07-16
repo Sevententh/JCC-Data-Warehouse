@@ -1,0 +1,10 @@
+﻿CREATE FUNCTION [dbo].[AA_SQLBUILDER_F]
+(@PS_ColumnName VARCHAR (50) NULL, @PS_DataType VARCHAR (15) NULL, @PS_SearchType TINYINT NULL, @PS_From VARCHAR (100) NULL, @PS_To VARCHAR (100) NULL, @PS_WhereClause VARCHAR (4000) NULL, @PreFixOr TINYINT NULL)
+RETURNS VARCHAR (4000)
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN NULL
+END
+

@@ -1,0 +1,3 @@
+﻿CREATE USER [CORPORATE\Pat.Charman] FOR LOGIN [CORPORATE\pat.charman]
+    WITH DEFAULT_SCHEMA = [CORPORATE\Pat.Charman];
+

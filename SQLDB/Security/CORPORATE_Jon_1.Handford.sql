@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Jon.Handford]
+    AUTHORIZATION [CORPORATE\Jon.Handford];
+

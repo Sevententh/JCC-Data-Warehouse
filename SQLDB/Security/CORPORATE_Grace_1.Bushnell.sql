@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Grace.Bushnell]
+    AUTHORIZATION [CORPORATE\Grace.Bushnell];
+

@@ -1,0 +1,165 @@
+﻿CREATE VIEW AA_REP_WORKS_ORDER_LANG_VIEW
+
+/*
+** Written     :  01/03/2006 RV
+** Last Amended:  02/03/2006 RV, 24/10/11 NC
+**
+** Updated by  :  Kit Action List Report.rpt
+**                Not Yet Printed Report.rpt
+**                Overdue Works Orders Report.rpt
+**                Product by Route Report.rpt
+**                Route List Report.rpt
+**                Used in Works Orders Report.rpt
+**                Work In Progress Report Using Average Valuation.rpt
+**                Work In Progress Report Using Latest Valuation.rpt
+**                Work In Progress Report Using Standard Valuation.rpt
+**                Work In Progress Report Using Weighted Valuation.rpt
+**                Work To List Report.rpt
+**                Works Order Requirement Report.rpt
+**                Works Order Variance Report.rpt
+**                Write Off Analysis Report.rpt
+*/
+AS
+
+SELECT
+
+LANG_WO.STAGES,         --Stages
+LANG_WO.STAGE,          --Stage
+LANG_WO.ROUTE,             --Route
+LANG_WO.ROUTE_CODE,        --Route code
+LANG_WO.MIN_BUILD,         --Minimum Build
+LANG_WO.WO_BATCH,       --Batch
+LANG_WO.ISSUED,            --Issued
+LANG_WO.WORKS_ORDER,       --Works Order
+LANG_WO.PARENT,            --Parent
+LANG_WO.TOP_LEVEL,         --Top Level
+LANG_WO.START_DATE_WO,        --Start Date
+LANG_WO.END_DATE,       --End Date
+LANG_WO.TARGET_QTY,        --Target Qty
+LANG_WO.MATERIALS,         --Materials
+LANG_WO.LABOUR,            --Labour
+LANG_WO.ESTIMATED_COST,       --Estimate Cost
+LANG_WO.ACTUAL_COST,       --Actual Cost
+
+LANG_REPORTS_R.DIFF_REP,      --Diff
+
+LANG_REPORTS_R2.ASSEMBLY_CODE_TEXT, --Assembly Code
+LANG_REPORTS_R2.REQUIRED,     --Required
+LANG_REPORTS_R2.NUMBER_TEXT,     --Number
+LANG_REPORTS_R2.UNIT_COST,    --Unit Cost
+
+LANG_REPORTS_R4.DESCRIPTION_REP, --Description
+LANG_REPORTS_R4.NOTES_REP,    --Notes
+LANG_REPORTS_R4.PRIORITY_REP,    --Priority
+LANG_REPORTS_R4.LANGCODE_REP4,      --ENGLISH - used to link to report views
+LANG_REPORTS_R4.SORT_KEY_REP,    --Sort Key
+LANG_REPORTS_R4.CUSTOMER_REP,    --Customer
+LANG_REPORTS_R4.REQUIRED_BY_DATE_REP,  --Required By Date
+LANG_REPORTS_R4.OUTSTANDING_REP, --Outstanding
+LANG_REPORTS_R4.ACTUAL_REP,      --Actual
+LANG_REPORTS_R4.COST_REP,     --Cost
+LANG_REPORTS_R4.SERIAL_NUMBER_REP,  --Serial Number
+LANG_REPORTS_R4.CST_MEM_RECORD_REP, --Project
+LANG_REPORTS_R4.CST_MEM_CENTRE_REP, --Cost Centre
+
+LANG_REPORTS_R5.TOTAL_REP,    --Total
+LANG_REPORTS_R5.ESTIMATE_REP,    --Estimate
+LANG_REPORTS_R5.M_CST_DIFF_LBL_REP, --Difference
+LANG_REPORTS_R5.ITEM_REP,     --Item
+LANG_REPORTS_R5.VALUE_REP,    --Value
+
+LANG_REPORTS_R6.ORDERDATE_REP,      --Order Date
+
+LANG_REPORTS_R7.FREE_REP,     --Free
+
+LANG_REPORTS_R9.DEFAULT_REP,     --Default
+LANG_REPORTS_R9.STOCK_CODE_TEXT_REP,   --Stock Code
+LANG_REPORTS_R9.SHORTFALL_REP,      --Shortfall
+LANG_REPORTS_R9.OVERDUE_DAYS_REP,   --Overdue Days
+LANG_REPORTS_R9.BUILT_REP,    --Built
+LANG_REPORTS_R9.MATERIAL_REP,    --Material
+LANG_REPORTS_R9.WRITTEN_OFF_REP, --Written Off
+LANG_REPORTS_R9.SUB_ANALYSIS_REP,   --Sub Analysis
+
+LANG_DEF1.QUANTITY,        --Quantity
+LANG_DEF1.QTY,          --Qty.
+
+LANG_DEF2.TYPE,            --Type
+LANG_DEF2.ANALYSIS_CODE,      --Analysis Code
+
+LANG_DEF5.ORDERED,         --Ordered
+
+LANG_DEF6.ORDER_NO,        --Order No.
+
+LANG_DEF7.DURATION,        --Duration
+LANG_DEF7.BY_TEXT,         --By
+
+LANG_DEF8.BUILD,        --Build
+
+LANG_DEF16.WIP_TEXT,       --WIP
+
+LANG_DEF18.NOMINAL_DEBIT_ACCOUNT_TXT,  --Nominal Debit Account
+
+LANG_DEF19.ON_ORDER,       --On Order
+
+LANG_DEF20.ALLOCATED,         --Allocated
+
+SYS_DATAINFO.COMPANY_NAME     --Actual Company Name
+
+FROM LANG_REPORTS_R4
+
+   INNER JOIN LANG_WO
+   ON LANG_REPORTS_R4.LANGCODE_REP4 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_REPORTS_R
+   ON LANG_REPORTS_R.LANGCODE_REP_1 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_REPORTS_R2
+   ON LANG_REPORTS_R2.LANGCODE_REP2 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_REPORTS_R5
+   ON LANG_REPORTS_R5.LANGCODE_REP5 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_REPORTS_R6
+   ON LANG_REPORTS_R6.LANGCODE_REP6 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_REPORTS_R7
+   ON LANG_REPORTS_R7.LANGCODE_REP7 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_REPORTS_R9
+   ON LANG_REPORTS_R9.LANGCODE_REP9 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_DEF1
+   ON LANG_DEF1.LANGCODE_DEF1 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_DEF2
+   ON LANG_DEF2.LANGCODE_DEF2 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_DEF5
+   ON LANG_DEF5.LANGCODE_DEF5 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_DEF6
+   ON LANG_DEF6.LANGCODE_DEF6 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_DEF7
+   ON LANG_DEF7.LANGCODE_DEF7 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_DEF8
+   ON LANG_DEF8.LANGCODE_DEF8 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_DEF16
+   ON LANG_DEF16.LANGCODE_DEF16 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_DEF18
+   ON LANG_DEF18.LANGCODE_DEF18 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_DEF19
+   ON LANG_DEF19.LANGCODE_DEF19 = LANG_WO.LANGCODE_WO
+
+   INNER JOIN LANG_DEF20
+   ON LANG_DEF20.LANGCODE_DEF20 = LANG_WO.LANGCODE_WO
+
+   JOIN SYS_DATAINFO
+   On SYS_PRIMARY = 1
+
+

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Tom.Randall]
+    AUTHORIZATION [CORPORATE\Tom.Randall];
+

@@ -1,0 +1,2 @@
+﻿CREATE USER [Paul.King] FOR LOGIN [CORPORATE\Paul.King];
+

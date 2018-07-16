@@ -1,0 +1,25 @@
+﻿create view AA_SYS_COUNTRY_ADVANCED_VIEW
+/*
+** Returns a table to be used specifically with AA_SYS_COUNTRY_LIST_S
+** Written:      10/05/2004 DG
+** Last Amended: 11/11/2004 SRB, 13/12/05 NC
+**
+*/
+as
+
+select
+
+ CO_PRIMARY as [PRIMARY]
+,CO_CODE
+,coalesce(CO_NAME,'') as CO_NAME
+,CO_SYMBOL
+,CO_DEL_TERMS
+,CO_TRN_NATURE
+,CO_TRNSPRT_MODE
+,CO_DATE_EDITED
+,CO_DATE_PUTIN
+,CO_USER_EDITED
+,CO_USER_PUTIN
+,CO_EC_FLAG
+,CO_DO_NOT_USE as EXCLUDED
+from SYS_COUNTRY

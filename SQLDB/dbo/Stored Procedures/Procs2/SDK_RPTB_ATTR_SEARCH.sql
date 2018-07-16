@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[SDK_RPTB_ATTR_SEARCH]
+@First TINYINT NULL, @UserID VARCHAR (5) NULL, @ID INT NULL, @Type VARCHAR (1) NULL, @Operator VARCHAR (20) NULL, @Char1 VARCHAR (50) NULL, @Char2 VARCHAR (50) NULL, @Date1 DATETIME NULL, @Date2 DATETIME NULL, @Value1 FLOAT (53) NULL, @Value2 FLOAT (53) NULL, @ItemID INT NULL, @PluginCode VARCHAR (3) NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

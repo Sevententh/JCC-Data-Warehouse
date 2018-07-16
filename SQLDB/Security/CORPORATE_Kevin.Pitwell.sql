@@ -1,0 +1,3 @@
+﻿CREATE USER [CORPORATE\Kevin.Pitwell] FOR LOGIN [CORPORATE\Kevin.Pitwell]
+    WITH DEFAULT_SCHEMA = [CORPORATE\Kevin.Pitwell];
+

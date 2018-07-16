@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\John.Wickens]
+    AUTHORIZATION [CORPORATE\John.Wickens];
+

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [Despatch2A]
+    AUTHORIZATION [Despatch2A];
+

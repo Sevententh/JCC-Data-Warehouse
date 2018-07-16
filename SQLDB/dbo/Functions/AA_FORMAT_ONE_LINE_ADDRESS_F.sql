@@ -1,0 +1,10 @@
+﻿CREATE FUNCTION [dbo].[AA_FORMAT_ONE_LINE_ADDRESS_F]
+(@PF_Address VARCHAR (160) NULL, @PF_Town VARCHAR (30) NULL, @PF_County VARCHAR (30) NULL, @PF_PostCode VARCHAR (12) NULL, @PF_Country VARCHAR (35) NULL)
+RETURNS VARCHAR (512)
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN NULL
+END
+

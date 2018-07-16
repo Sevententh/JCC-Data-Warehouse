@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_SOP_UPDATE_STK_S]
+@PS_Order_Number INT NULL, @PS_Quantity_Ratio DECIMAL (24, 8) NULL, @PS_Stock_Move_Quantity DECIMAL (24, 8) NULL, @PS_Stock_Move_Unit DECIMAL (24, 8) NULL, @PS_Stock_Move_Value DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Move_Year CHAR (1) NULL, @PS_Stock_Move_Location VARCHAR (25) NULL, @PS_Stock_Move_Code VARCHAR (25) NULL, @PS_Stock_Move_Period TINYINT NULL, @PS_Stock_Move_Costprice DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Qty_Printed DECIMAL (24, 8) NULL, @PS_Stock_Physical DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Avg_Value DECIMAL (24, 8) NULL OUTPUT, @PS_Qty_Printed DECIMAL (24, 8) NULL OUTPUT, @PS_Qty_Unit DECIMAL (24, 8) NULL, @PS_Qty_Reserved DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Loc_Physical DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Loc_Qty_Printed DECIMAL (24, 8) NULL, @PS_Stock_Loc_Avg_Value DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Loc_Primary INT NULL, @PS_Order_Net_Value DECIMAL (24, 8) NULL, @PS_Order_Total_Discount DECIMAL (24, 8) NULL, @PS_Order_Type CHAR (1) NULL, @PS_Stock_Move_Primary INT NULL, @PS_Stock_Wapu_Value DECIMAL (24, 8) NULL, @PS_Stock_Loc_Wapu_Quantity DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Loc_Wapu_Value DECIMAL (24, 8) NULL, @PS_Actual_Landed_Cost DECIMAL (24, 8) NULL OUTPUT, @PS_Transaction_Date DATETIME NULL, @PS_Update_Fixed BIT NULL, @PS_Landed_Cost_Out_Value DECIMAL (24, 8) NULL OUTPUT, @PS_Landed_Cost_Out_Base2 DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_CostPrice DECIMAL (24, 8) NULL, @PS_Stock_Loc_CostPrice DECIMAL (24, 8) NULL, @PS_Order_Detail_Link INT NULL, @PS_User_ID VARCHAR (4) NULL, @PS_Allocation_Date DATETIME NULL, @PS_Customer VARCHAR (10) NULL, @PS_Order_Serial_Number VARCHAR (40) NULL, @PS_Order_Base2_Costprice DECIMAL (24, 8) NULL OUTPUT, @PS_Order_Base2_Rate DECIMAL (24, 8) NULL, @PS_Commited_Costprice DECIMAL (24, 8) NULL, @PS_Update_Landed_Costs BIT NULL, @PS_FifoValue DECIMAL (24, 8) NULL OUTPUT, @PS_StockBuyUnit1 DECIMAL (24, 8) NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

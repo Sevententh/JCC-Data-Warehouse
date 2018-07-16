@@ -1,0 +1,10 @@
+﻿CREATE FUNCTION [dbo].[AA_SYS_COUNTRY_EDITABLE_F]
+(@PF_CO_CODE VARCHAR (4) NULL, @PF_CO_EC_FLAG TINYINT NULL, @PF_CheckOption TINYINT NULL)
+RETURNS TINYINT
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN NULL
+END
+

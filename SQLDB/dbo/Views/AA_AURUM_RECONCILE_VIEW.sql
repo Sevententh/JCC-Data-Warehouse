@@ -1,0 +1,37 @@
+﻿create VIEW AA_AURUM_RECONCILE_VIEW
+AS
+
+SELECT
+      curr.NCODE,
+      nom.N_PRIMARY,
+      curr.DET_PRIMARY,
+      curr.DET_CURR_cODE,
+      CASE WHEN HOME_CURR_SYMBL=curr.DET_CURR_cODE THEN 
+         CASE WHEN HOME_DEBIT<>0 THEN HOME_DEBIT ELSE HOME_CREDIT * - 1 END
+         ELSE
+         CASE WHEN CURRENCY_DEBIT<>0 THEN CURRENCY_DEBIT ELSE CURRENCY_CREDIT * - 1 END
+      END AS AMOUNT  
+      ,curr.DET_DATE,
+      curr.DET_BATCH_FLAG,
+      curr.DET_HEADER_REF,
+      curr.DET_JNL_LINEREF,
+      curr.DET_TYPE,
+      curr.DET_ORIGIN,
+      curr.DET_BATCH_REF,
+      curr.DET_PL_INTERNAL,
+      curr.DET_CHEQUE_PAYEE,
+      curr.DET_ACCOUNT,
+      curr.DET_RECONCILED,
+      curr.DET_RECON_REF,
+      DET_USRCHAR1,
+      DET_USRCHAR2,
+      DET_USRCHAR3,
+      DET_USRCHAR4,
+      DET_USRDATE1,
+      DET_USRDATE2,
+      orig.DT_RECON_ORDER
+   from 
+      SYS_DATAINFO,AA_NOMINAL_TRAN_VIEW curr join SL_PL_NL_DETAIL orig on curr.DET_PRIMARY=orig.DET_PRIMARY
+      join NL_ACCOUNTS nom on curr.NCODE=nom.NCODE
+      left join SL_PL_NL_DETAIL2 ON orig.DET_PRIMARY=DET_PRIMARY_2
+   where isnull(curr.DET_BATCH_FLAG,0)<>1

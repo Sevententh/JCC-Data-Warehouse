@@ -1,0 +1,3 @@
+﻿CREATE USER [CORPORATE\Emma.Boniface] FOR LOGIN [CORPORATE\Emma.Boniface]
+    WITH DEFAULT_SCHEMA = [CORPORATE\Emma.Boniface];
+

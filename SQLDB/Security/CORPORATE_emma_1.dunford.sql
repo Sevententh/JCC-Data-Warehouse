@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\emma.dunford]
+    AUTHORIZATION [CORPORATE\emma.dunford];
+

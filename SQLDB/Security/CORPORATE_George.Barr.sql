@@ -1,0 +1,3 @@
+﻿CREATE USER [CORPORATE\George.Barr] FOR LOGIN [CORPORATE\George.Barr]
+    WITH DEFAULT_SCHEMA = [CORPORATE\George.Barr];
+

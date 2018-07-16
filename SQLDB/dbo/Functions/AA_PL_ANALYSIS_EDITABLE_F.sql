@@ -1,0 +1,10 @@
+﻿CREATE FUNCTION [dbo].[AA_PL_ANALYSIS_EDITABLE_F]
+(@PF_PACODE VARCHAR (25) NULL, @PF_CheckOption TINYINT NULL)
+RETURNS TINYINT
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN NULL
+END
+

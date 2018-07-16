@@ -1,0 +1,1266 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/19/2018 9:24:15 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="BRMXL74120SF"
+  DTS:CreatorName="CORPORATE\alex.darling"
+  DTS:DTSID="{C0DE4998-6DB3-4115-81BB-A1C6B37EE5C6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3002.101"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Process_SalesTeamMapping"
+  DTS:PackageType="5"
+  DTS:VersionBuild="86"
+  DTS:VersionGUID="{B56C302F-1202-4297-9448-4244D8211344}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Error Log]"
+      DTS:CreationName="ExcelConnectionTF"
+      DTS:DTSID="{33E07C26-8CF6-4FE8-9848-7758C6F8EB49}"
+      DTS:ObjectName="Excel Error Log">
+      <DTS:PropertyExpression
+        DTS:Name="FilePath">@[User::ErrorLog]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExcelConnectionManager
+          ConnectionString="FilePath=\\w2brsrv1\Data\DATA WAREHOUSE\MAPPING TABLES\ErrorLog\ErrorLog - SalesTeamMapping.xlsx;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Source]"
+      DTS:CreationName="ExcelConnectionTF"
+      DTS:DTSID="{9E322B08-5658-424E-9942-907A7EC4CBA0}"
+      DTS:ObjectName="Excel Source">
+      <DTS:PropertyExpression
+        DTS:Name="FilePath">@[User::OriginalFile]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExcelConnectionManager
+          ConnectionString="FilePath=\\w2brsrv1\Data\DATA WAREHOUSE\MAPPING TABLES\Accounts\SalesTeamMapping.xlsx;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP]"
+      DTS:CreationName="SMTP"
+      DTS:Description="JCC SMTP Server"
+      DTS:DTSID="{AAC2E3C4-7B40-4E5A-80EB-19B4FAD702DC}"
+      DTS:ObjectName="SMTP">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=ESERVER.jcc.local;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F11816B2-EA4C-4B24-AA14-C24C047A1065}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::ProcessedFolder]  +   @[User::CopyName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CopyFile">
+      <DTS:VariableValue
+        DTS:DataType="8">\\w2brsrv1\Data\DATA WAREHOUSE\MAPPING TABLES\Accounts\xlsx Processed\SalesTeamMapping_20180502.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{66E8DE8B-8ED4-4304-89C6-3056AFB732E3}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SalesTeamMapping_&quot;+ (DT_STR, 4, 1252) DATEPART(&quot;yyyy&quot; , GETDATE())&#xA;+ RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;mm&quot; , GETDATE()), 2)&#xA;+ RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;dd&quot; , GETDATE()), 2) + &quot;.xlsx&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CopyName">
+      <DTS:VariableValue
+        DTS:DataType="8">SalesTeamMapping_20180502.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1EB92530-6A36-4560-BA52-31393D5B0758}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorLog">
+      <DTS:VariableValue
+        DTS:DataType="8">\\w2brsrv1\Data\DATA WAREHOUSE\MAPPING TABLES\ErrorLog\ErrorLog - SalesTeamMapping.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F8644067-372E-4F4A-BD68-97C4CFC2B38C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LastWriteTime">
+      <DTS:VariableValue
+        DTS:DataType="7">4/30/2018 3:55:00 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AF07EE8B-D9C5-40F1-9308-8B7DDB1AC4D9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OriginalFile">
+      <DTS:VariableValue
+        DTS:DataType="8">\\w2brsrv1\Data\DATA WAREHOUSE\MAPPING TABLES\Accounts\SalesTeamMapping.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BCDA1E35-DDEE-44D8-A1BE-D0CBF490B1BA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ProcessedFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">\\w2brsrv1\Data\DATA WAREHOUSE\MAPPING TABLES\Accounts\xlsx Processed\</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Get file properties"
+      DTS:CreationName="PW.TaskFactory.FilePropertiesTask"
+      DTS:Description="TF File Properties Task"
+      DTS:DTSID="{43036DDF-26D2-4A11-9A9E-F071ED55CBA4}"
+      DTS:ExecutableType="PW.TaskFactory.FilePropertiesTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get file properties"
+      DTS:TaskContact="File Properties Task;Pragmatic Works, Inc; Task Factory (c) 2009 - 2016 Pragmatic Works, Inc; http://www.pragmaticworks.com;support@pragmaticworks.com"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileProperties
+          File_FileName=""
+          File_Extension=""
+          File_CreationTime=""
+          File_CreationTimeUtc=""
+          File_LastAccessTimeUtc=""
+          File_LastAccessTime=""
+          File_LastWriteTime="LastWriteTime"
+          File_LastWriteTimeUtc=""
+          File_FileInUse=""
+          File_Hidden=""
+          File_Readonly=""
+          File_Encrypted=""
+          File_Compressed=""
+          File_Archived=""
+          File_Exists=""
+          File_Content=""
+          File_Size=""
+          StopExecutionOnError="False"
+          SelectedSourceType="Variable"
+          SelectedVariableOrConnectionManager="OriginalFile" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sales Team Mapping"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{F2594CEC-476E-4CBA-BE1E-499E8CFDCD99}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sales Team Mapping">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sales Team Mapping\Copy Excel to processed folder"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{9915FA64-2038-4B8D-8933-863806063E04}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Copy Excel to processed folder"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskSourcePath="User::OriginalFile"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="User::CopyFile"
+              TaskIsDestinationVariable="True" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sales Team Mapping\Export to CSV"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{FF5844F5-CEE1-4BCF-96B3-94ADF51657BF}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Export to CSV"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:EventHandlers>
+            <DTS:EventHandler
+              DTS:refId="Package\Sales Team Mapping\Export to CSV.EventHandlers[OnError]"
+              DTS:CreationName="OnError"
+              DTS:DTSID="{9D110CA8-7C05-4930-842E-50D17FA11578}"
+              DTS:EventID="0"
+              DTS:EventName="OnError"
+              DTS:LocaleID="-1">
+              <DTS:Variables>
+                <DTS:Variable
+                  DTS:CreationName=""
+                  DTS:Description="The propagate property of the event"
+                  DTS:DTSID="{BAD291AC-61A4-4AF4-9797-81A4589BCBDF}"
+                  DTS:IncludeInDebugDump="6789"
+                  DTS:Namespace="System"
+                  DTS:ObjectName="Propagate">
+                  <DTS:VariableValue
+                    DTS:DataType="11">-1</DTS:VariableValue>
+                </DTS:Variable>
+              </DTS:Variables>
+              <DTS:Executables />
+            </DTS:EventHandler>
+          </DTS:EventHandlers>
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sales Team Mapping\Export to CSV\Excel Source"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="TF Excel Source;Pragmatic Works, Inc; Task Factory (c) 2009 - 2017 Pragmatic Works, Inc; http://www.pragmaticworks.com;support@pragmaticworks.com"
+                  description="TF Excel Source"
+                  name="Excel Source"
+                  usesDispositions="true"
+                  validateExternalMetadata="False">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="DebugMode">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The first column to read data from"
+                      expressionType="Notify"
+                      name="Column Start">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The last column to read data from"
+                      expressionType="Notify"
+                      name="Column End">-1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The first row to read data from"
+                      expressionType="Notify"
+                      name="Row Start">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The last row to read data from"
+                      expressionType="Notify"
+                      name="Row End">-1</property>
+                    <property
+                      dataType="System.String"
+                      description="The name of the worksheet to read data from"
+                      expressionType="Notify"
+                      name="Worksheet Name">SalesTeamMapping</property>
+                    <property
+                      dataType="System.String"
+                      description="Named range to use when reading data"
+                      expressionType="Notify"
+                      name="Named Range"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="The mode of which to read the region from the excel spreadsheet"
+                      expressionType="Notify"
+                      name="Region Mode"
+                      typeConverter="PragmaticWorks.TaskFactory.Components.Sources.Excel+RegionMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicated if the first row of data contains the column names"
+                      expressionType="Notify"
+                      name="First Row Contains Column Name">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The format to read the rows out of the spreadsheet"
+                      expressionType="Notify"
+                      name="Output Format"
+                      typeConverter="PragmaticWorks.TaskFactory.Components.Sources.Excel+OutputFormatStyle">1</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">PragmaticWorks.TaskFactory.ExcelSource</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Connections[EXCELCONNECTION]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Source]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Source]"
+                      description="Excel Connection"
+                      name="EXCELCONNECTION" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output]"
+                      errorRowDisposition="FailComponent"
+                      name="Excel Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Manager]"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sales Manager]"
+                          length="250"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Manager]"
+                          name="Sales Manager" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Manager Code]"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sales Manager Code]"
+                          length="250"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Manager Code]"
+                          name="Sales Manager Code" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Manager Name]"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sales Manager Name]"
+                          length="250"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Manager Name]"
+                          name="Sales Manager Name" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Channel]"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sales Channel]"
+                          length="250"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Channel]"
+                          name="Sales Channel" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[SalesTeam]"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].ExternalColumns[SalesTeam]"
+                          length="250"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[SalesTeam]"
+                          name="SalesTeam" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sales Manager]"
+                          dataType="wstr"
+                          length="250"
+                          name="Sales Manager">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              expressionType="Notify"
+                              name="Index">1</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sales Manager Code]"
+                          dataType="wstr"
+                          length="250"
+                          name="Sales Manager Code">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              expressionType="Notify"
+                              name="Index">2</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sales Manager Name]"
+                          dataType="wstr"
+                          length="250"
+                          name="Sales Manager Name">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              expressionType="Notify"
+                              name="Index">3</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sales Channel]"
+                          dataType="wstr"
+                          length="250"
+                          name="Sales Channel">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              expressionType="Notify"
+                              name="Index">4</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].ExternalColumns[SalesTeam]"
+                          dataType="wstr"
+                          length="250"
+                          name="SalesTeam">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              expressionType="Notify"
+                              name="Index">5</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output]"
+                      isErrorOut="true"
+                      name="Excel Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorDescription]"
+                          dataType="wstr"
+                          length="1024"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorDescription]"
+                          name="ErrorDescription" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[Sales Manager]"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].ExternalColumns[Sales Manager]"
+                          length="250"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[Sales Manager]"
+                          name="Sales Manager" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[Sales Manager Code]"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].ExternalColumns[Sales Manager Code]"
+                          length="250"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[Sales Manager Code]"
+                          name="Sales Manager Code" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[Sales Manager Name]"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].ExternalColumns[Sales Manager Name]"
+                          length="250"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[Sales Manager Name]"
+                          name="Sales Manager Name" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[Sales Channel]"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].ExternalColumns[Sales Channel]"
+                          length="250"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[Sales Channel]"
+                          name="Sales Channel" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[SalesTeam]"
+                          dataType="wstr"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].ExternalColumns[SalesTeam]"
+                          length="250"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].Columns[SalesTeam]"
+                          name="SalesTeam" />
+                      </outputColumns>
+                      <externalMetadataColumns>
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].ExternalColumns[Sales Manager]"
+                          dataType="wstr"
+                          length="250"
+                          name="Sales Manager" />
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].ExternalColumns[Sales Manager Code]"
+                          dataType="wstr"
+                          length="250"
+                          name="Sales Manager Code" />
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].ExternalColumns[Sales Manager Name]"
+                          dataType="wstr"
+                          length="250"
+                          name="Sales Manager Name" />
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].ExternalColumns[Sales Channel]"
+                          dataType="wstr"
+                          length="250"
+                          name="Sales Channel" />
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Error Output].ExternalColumns[SalesTeam]"
+                          dataType="wstr"
+                          length="250"
+                          name="SalesTeam" />
+                      </externalMetadataColumns>
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="TF Excel Destination;Pragmatic Works, Inc; Task Factory (c) 2009 - 2017 Pragmatic Works, Inc; http://www.pragmaticworks.com;support@pragmaticworks.com"
+                  description="TF Excel Destination"
+                  name="Export Row to Error Log"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="DebugMode">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The first column to read data from"
+                      expressionType="Notify"
+                      name="Column Start">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="The first row to read data from"
+                      expressionType="Notify"
+                      name="Row Start">1</property>
+                    <property
+                      dataType="System.String"
+                      description="The name of the worksheet to read data from"
+                      expressionType="Notify"
+                      name="Worksheet Name">Sheet1</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicated if the first row of data contains the column names"
+                      expressionType="Notify"
+                      name="First Row Contains Column Name">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Indicates which option to use to write the sheet data when existing data is in the destination sheet"
+                      expressionType="Notify"
+                      name="Existing Data Option"
+                      typeConverter="PragmaticWorks.TaskFactory.Components.Destination.Excel+ExistingDataOption">2</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Use this option to create a table based on the data written to the spreadsheet"
+                      expressionType="Notify"
+                      name="Create Table">false</property>
+                    <property
+                      dataType="System.String"
+                      description="The name of the table being created"
+                      expressionType="Notify"
+                      name="Table Name"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether to create the table with auto filters"
+                      expressionType="Notify"
+                      name="Create Table Auto Filters">false</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">PragmaticWorks.TaskFactory.ExcelDestination</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Connections[EXCELCONNECTION]"
+                      connectionManagerID="Package.ConnectionManagers[Excel Error Log]"
+                      connectionManagerRefId="Package.ConnectionManagers[Excel Error Log]"
+                      description="Excel Connection"
+                      name="EXCELCONNECTION" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Inputs[Excel Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Excel Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Inputs[Excel Destination Input].Columns[ErrorCode]"
+                          cachedDataType="i4"
+                          cachedName="ErrorCode"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Outputs[Error Output].Columns[ErrorCode]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Header">ErrorCode</property>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Mapping">A</property>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Style"></property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Inputs[Excel Destination Input].Columns[ErrorColumn]"
+                          cachedDataType="i4"
+                          cachedName="ErrorColumn"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Outputs[Error Output].Columns[ErrorColumn]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Header">ErrorColumn</property>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Mapping">B</property>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Style"></property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Inputs[Excel Destination Input].Columns[ErrorDescription]"
+                          cachedDataType="wstr"
+                          cachedLength="1024"
+                          cachedName="ErrorDescription"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Outputs[Error Output].Columns[ErrorDescription]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Header">ErrorDescription</property>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Mapping">C</property>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Style"></property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Inputs[Excel Destination Input].Columns[Sales Manager]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Sales Manager"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Manager]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Header">Sales Manager</property>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Mapping">D</property>
+                            <property
+                              dataType="System.Null"
+                              expressionType="Notify"
+                              name="Style" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Inputs[Excel Destination Input].Columns[Sales Manager Code]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Sales Manager Code"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Manager Code]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Header">Sales Manager Code</property>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Mapping">E</property>
+                            <property
+                              dataType="System.Null"
+                              expressionType="Notify"
+                              name="Style" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Inputs[Excel Destination Input].Columns[Sales Manager Name]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Sales Manager Name"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Manager Name]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Header">Sales Manager Name</property>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Mapping">F</property>
+                            <property
+                              dataType="System.Null"
+                              expressionType="Notify"
+                              name="Style" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Inputs[Excel Destination Input].Columns[Sales Channel]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Sales Channel"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Channel]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Header">Sales Channel</property>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Mapping">G</property>
+                            <property
+                              dataType="System.Null"
+                              expressionType="Notify"
+                              name="Style" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Inputs[Excel Destination Input].Columns[SalesTeam]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="SalesTeam"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[SalesTeam]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Header">SalesTeam</property>
+                            <property
+                              dataType="System.String"
+                              expressionType="Notify"
+                              name="Excel Column Mapping">H</property>
+                            <property
+                              dataType="System.Null"
+                              expressionType="Notify"
+                              name="Style" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Outputs[Excel Destination Error Output]"
+                      isErrorOut="true"
+                      name="Excel Destination Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Outputs[Excel Destination Error Output].Columns[ErrorDescription]"
+                          dataType="wstr"
+                          length="1024"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Outputs[Excel Destination Error Output].Columns[ErrorDescription]"
+                          name="ErrorDescription" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Upsert Destinaton; Pragmatic Works, Inc; Task Factory (c) 2009 - 2016 Pragmatic Works, Inc; http://www.pragmaticworks.com;support@pragmaticworks.com"
+                  description="The Upsert Destination takes input data coming from the pipeline and then conditionally inserts, updates or deletes data from the destination."
+                  name="TF Upsert Destination"
+                  usesDispositions="true"
+                  version="13">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="DESTINATION_TABLE_NAME">[dbo].[DimSalesManager]</property>
+                    <property
+                      dataType="System.Boolean"
+                      expressionType="Notify"
+                      name="ENABLE_IDENTITY_INSERT">true</property>
+                    <property
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="INSERT_ROWS_COUNT_VARIABLE">&lt;Select Variable&gt;</property>
+                    <property
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="UPDATE_ROWS_COUNT_VARIABLE">&lt;Select Variable&gt;</property>
+                    <property
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="COMMAND_TIMEOUT">0</property>
+                    <property
+                      dataType="System.Int32"
+                      expressionType="Notify"
+                      name="UPDATE_METHOD"
+                      typeConverter="PW.TaskFactory.Enums+UpsertUpdateMethod">1</property>
+                    <property
+                      dataType="System.Boolean"
+                      expressionType="Notify"
+                      name="ACTION_UPDATE">true</property>
+                    <property
+                      dataType="System.Boolean"
+                      expressionType="Notify"
+                      name="ACTION_INSERT">false</property>
+                    <property
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="POST_UPDATE_COLUMN">ETLLastUpdatedDate</property>
+                    <property
+                      dataType="System.Boolean"
+                      expressionType="Notify"
+                      name="TURN_OFF_INTERNAL_TRANSACTION">false</property>
+                    <property
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="ROW_FLAG_COLUMN"></property>
+                    <property
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="ROW_FLAG_COLUMN_INSERT_VALUE"></property>
+                    <property
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="ROW_FLAG_COLUMN_DELETE_VALUE"></property>
+                    <property
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="ROW_FLAG_COLUMN_REJECT_VALUE"></property>
+                    <property
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="ROW_FLAG_COLUMN_UPDATE_VALUE"></property>
+                    <property
+                      dataType="System.String"
+                      expressionType="Notify"
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      expressionType="Notify"
+                      name="AccessMode"
+                      typeConverter="PW.TaskFactory.Enums+UpsertAccessModeEnum">0</property>
+                    <property
+                      dataType="System.Int32"
+                      expressionType="Notify"
+                      name="UPSERT_METHOD"
+                      typeConverter="PW.TaskFactory.Enums+UpsertMethod">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates the Upsert destination will use a custom definition for it's temp table creation"
+                      expressionType="Notify"
+                      name="Use Custom Temp Table">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Definition of the custom temp table script"
+                      expressionType="Notify"
+                      name="Custom Temp Table Definition"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Use a merge statement for the insert and updates instead of two seperate insert and update statements"
+                      expressionType="Notify"
+                      name="Use Merge Statement">false</property>
+                    <property
+                      dataType="System.String"
+                      description="The script to run before each buffer is sent to the destination"
+                      expressionType="Notify"
+                      name="Before Script"></property>
+                    <property
+                      dataType="System.String"
+                      description="The script to run after each buffer is sent to the destination"
+                      expressionType="Notify"
+                      name="After Script"></property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Set to true if you want the component to fail if the before script throws an exception."
+                      expressionType="Notify"
+                      name="Fail Component If Before Script Throws Exception">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Set to true if you want the component to fail if the after script throws an exception."
+                      expressionType="Notify"
+                      name="Fail Component If After Script Throws Exception">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Allows you to set a table hint for the destination table (e.g. NOLOCK - SNAPSHOT)."
+                      expressionType="Notify"
+                      name="Table Hint"></property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">PW.TaskFactory.UpsertDestination</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Connections[DestinationConnection]"
+                      connectionManagerID="{79D4C6B0-FA7C-445C-9C85-8B4167C1887B}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[JCC_DW_PRD_Presentation]"
+                      description="Connection for the destination"
+                      name="DestinationConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input]"
+                      errorOrTruncationOperation="Error or Truncation"
+                      errorRowDisposition="RedirectRow"
+                      hasSideEffects="true"
+                      name="Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].Columns[SalesTeam]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="SalesTeam"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].ExternalColumns[SalesTeam]"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[SalesTeam]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Mapped Column for Destination"
+                              name="DestinationColumn">SalesTeam</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Is Column A Key Column"
+                              name="IsKeyColumn">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Is Column An Identity Column"
+                              name="IsIdentityColumn">false</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].Columns[Sales Manager]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Sales Manager"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Manager]" />
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].Columns[Sales Manager Code]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Sales Manager Code"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].ExternalColumns[SalesManagerCode]"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Manager Code]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Mapped Column for Destination"
+                              name="DestinationColumn">SalesManagerCode</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Is Column A Key Column"
+                              name="IsKeyColumn">true</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Is Column An Identity Column"
+                              name="IsIdentityColumn">false</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].Columns[Sales Manager Name]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Sales Manager Name"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].ExternalColumns[SalesManagerName]"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Manager Name]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Mapped Column for Destination"
+                              name="DestinationColumn">SalesManagerName</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Is Column A Key Column"
+                              name="IsKeyColumn">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Is Column An Identity Column"
+                              name="IsIdentityColumn">false</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].Columns[Sales Channel]"
+                          cachedDataType="wstr"
+                          cachedLength="250"
+                          cachedName="Sales Channel"
+                          externalMetadataColumnId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].ExternalColumns[SalesChannel]"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output].Columns[Sales Channel]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Mapped Column for Destination"
+                              name="DestinationColumn">SalesChannel</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Is Column A Key Column"
+                              name="IsKeyColumn">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Is Column An Identity Column"
+                              name="IsIdentityColumn">false</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].ExternalColumns[SalesManagerKey]"
+                          dataType="i4"
+                          name="SalesManagerKey" />
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].ExternalColumns[SalesManagerCode]"
+                          dataType="wstr"
+                          length="4"
+                          name="SalesManagerCode" />
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].ExternalColumns[SalesManagerName]"
+                          dataType="wstr"
+                          length="100"
+                          name="SalesManagerName" />
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].ExternalColumns[SalesChannel]"
+                          dataType="wstr"
+                          length="100"
+                          name="SalesChannel" />
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].ExternalColumns[SalesTeam]"
+                          dataType="wstr"
+                          length="100"
+                          name="SalesTeam" />
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].ExternalColumns[ETLCreatedDate]"
+                          dataType="dbTimeStamp"
+                          name="ETLCreatedDate" />
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].ExternalColumns[ETLLastUpdatedDate]"
+                          dataType="dbTimeStamp"
+                          name="ETLLastUpdatedDate" />
+                        <externalMetadataColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input].ExternalColumns[ETLChecksum]"
+                          dataType="i4"
+                          name="ETLChecksum" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Outputs[Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Error Output"
+                      synchronousInputId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Outputs[Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Outputs[Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Outputs[Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Outputs[Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                        <outputColumn
+                          refId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Outputs[Error Output].Columns[ErrorDescription]"
+                          dataType="wstr"
+                          length="1024"
+                          lineageId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Outputs[Error Output].Columns[ErrorDescription]"
+                          name="ErrorDescription" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sales Team Mapping\Export to CSV.Paths[Error Output]"
+                  endId="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log.Inputs[Excel Destination Input]"
+                  name="Error Output"
+                  startId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Outputs[Error Output]" />
+                <path
+                  refId="Package\Sales Team Mapping\Export to CSV.Paths[Excel Source Output]"
+                  endId="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination.Inputs[Input]"
+                  name="Excel Source Output"
+                  startId="Package\Sales Team Mapping\Export to CSV\Excel Source.Outputs[Excel Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sales Team Mapping.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{473B4515-82A4-4A0C-AC0D-60CA20FF2562}"
+          DTS:From="Package\Sales Team Mapping\Export to CSV"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Sales Team Mapping\Copy Excel to processed folder" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{9516CB3C-52BC-463C-8674-2B5673BE9643}"
+      DTS:EvalOp="1"
+      DTS:Expression="DATEDIFF( &quot;hour&quot;, @[User::LastWriteTime] , GETDATE()  ) &lt;= 24 ? TRUE : FALSE"
+      DTS:From="Package\Get file properties"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Sales Team Mapping" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Get file properties"
+          TopLeft="20,5.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Sales Team Mapping\Copy Excel to processed folder"
+          TopLeft="5.50000000000001,107.5" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Sales Team Mapping\Export to CSV"
+          TopLeft="24,5.5" />
+        <EdgeLayout
+          Id="Package\Sales Team Mapping.PrecedenceConstraints[Constraint]"
+          TopLeft="96,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="192,204"
+          Size="192,248"
+          Id="Package\Sales Team Mapping"
+          TopLeft="5.50000000000004,107.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="101.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,18.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sales Team Mapping\Export to CSV">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Sales Team Mapping\Export to CSV\Export Row to Error Log"
+          TopLeft="5.50000000000003,209.5" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Sales Team Mapping\Export to CSV\Excel Source"
+          TopLeft="32.5,5.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Sales Team Mapping\Export to CSV\TF Upsert Destination"
+          TopLeft="11.5,107.5" />
+        <EdgeLayout
+          Id="Package\Sales Team Mapping\Export to CSV.Paths[Error Output]"
+          TopLeft="102,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.33638671875,20.533203125,56.6727734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sales Team Mapping\Export to CSV.Paths[Excel Source Output]"
+          TopLeft="102,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\Sales Team Mapping\Export to CSV.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="{E8A3C6C2-186E-4879-A247-C709C7A5FA3F}"
+          TopLeft="604,213" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

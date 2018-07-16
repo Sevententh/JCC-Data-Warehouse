@@ -1,0 +1,3 @@
+﻿CREATE USER [Goods-InA]
+    WITH DEFAULT_SCHEMA = [Goods-InA];
+

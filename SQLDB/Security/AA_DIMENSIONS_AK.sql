@@ -1,0 +1,5 @@
+﻿CREATE ASYMMETRIC KEY [AA_DIMENSIONS_AK]
+    AUTHORIZATION [dbo]
+    WITH ALGORITHM = RSA_2048
+    ENCRYPTION BY PASSWORD = N'mgq1lws9rVw{j{xtswqapbhvmsFT7_&#$!~<W |pZ,>aq{_1';
+

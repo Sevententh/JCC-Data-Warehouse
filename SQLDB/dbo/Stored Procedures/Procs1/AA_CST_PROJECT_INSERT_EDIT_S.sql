@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_CST_PROJECT_INSERT_EDIT_S]
+@PS_Default_String VARCHAR (100) NULL, @PS_User_ID VARCHAR (4) NULL, @PS_Insert_Flag BIT NULL, @PS_Validate_Only BIT NULL, @PS_Update_CostCentres BIT NULL, @PS_Project_Code VARCHAR (10) NULL OUTPUT, @PS_Project_Name VARCHAR (40) NULL, @PS_Description VARCHAR (80) NULL, @PS_Project_Status CHAR (1) NULL, @PS_Customer_Account VARCHAR (10) NULL, @PS_Duration DECIMAL (24, 8) NULL, @PS_Duration_Type CHAR (1) NULL, @PS_Sort_Key VARCHAR (20) NULL, @PS_User_Sort_Key1 VARCHAR (20) NULL, @PS_User_Sort_Key2 VARCHAR (20) NULL, @PS_User_Sort_Key3 VARCHAR (20) NULL, @PS_User_Sort_Key4 VARCHAR (20) NULL, @PS_User_Sort_Key5 VARCHAR (20) NULL, @PS_User_Sort_Key6 VARCHAR (20) NULL, @PS_Notes TEXT NULL, @PS_Date_Required DATETIME NULL, @PS_User_Date1 DATETIME NULL, @PS_User_Date2 DATETIME NULL, @PS_User_Date3 DATETIME NULL, @PS_User_Definable_Char1 VARCHAR (20) NULL, @PS_User_Definable_Char2 VARCHAR (20) NULL, @PS_User_Definable_Char3 VARCHAR (20) NULL, @PS_User_Definable_Char4 VARCHAR (30) NULL, @PS_User_Definable_Char5 VARCHAR (30) NULL, @PS_User_Definable_Char6 VARCHAR (30) NULL, @PS_User_Definable_Date1 DATETIME NULL, @PS_User_Definable_Date2 DATETIME NULL, @PS_User_Definable_Date3 DATETIME NULL, @PS_User_Definable_Flag1 TINYINT NULL, @PS_User_Definable_Flag2 TINYINT NULL, @PS_User_Definable_Flag3 TINYINT NULL, @PS_User_Definable_Number1 DECIMAL (24, 8) NULL, @PS_User_Definable_Number2 DECIMAL (24, 8) NULL, @PS_User_Definable_Number3 DECIMAL (24, 8) NULL, @PS_User_Security_Level INT NULL, @PS_Charge_Rate_Type CHAR (1) NULL, @PS_Resource_Rate_Line INT NULL, @PS_Fixed_Rate DECIMAL (24, 8) NULL, @PS_Source VARCHAR (1) NULL, @PS_Append_Notes TEXT NULL, @PS_Project_Template VARCHAR (10) NULL, @PS_Centre_Template VARCHAR (10) NULL, @PS_Primary INT NULL OUTPUT, @PS_Warn_Message VARCHAR (128) NULL OUTPUT, @PS_ErrorHandlingMethod TINYINT NULL, @PS_InstanceID BIGINT NULL OUTPUT, @PS_ObjectGuid UNIQUEIDENTIFIER NULL, @PS_IsContract BIT NULL OUTPUT, @PS_Contract_Number VARCHAR (20) NULL OUTPUT
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

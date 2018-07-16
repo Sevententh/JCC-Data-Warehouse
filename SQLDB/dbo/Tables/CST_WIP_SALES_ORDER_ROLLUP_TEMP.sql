@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[CST_WIP_SALES_ORDER_ROLLUP_TEMP] (
+    [SRT_GUID]                  UNIQUEIDENTIFIER NOT NULL,
+    [SRT_SEQUENCE]              BIGINT           IDENTITY (1, 1) NOT FOR REPLICATION NOT NULL,
+    [SRT_STATUS]                TINYINT          NULL,
+    [SRT_RESOURCE]              VARCHAR (16)     NULL,
+    [SRT_ORDER_REF]             VARCHAR (20)     NULL,
+    [SRT_DATE]                  DATETIME         NULL,
+    [SRT_DETAIL]                VARCHAR (240)    NULL,
+    [SRT_QUANTITY]              FLOAT (53)       NULL,
+    [SRT_VALUE]                 FLOAT (53)       DEFAULT ((0)) NULL,
+    [SRT_ACCOUNT]               VARCHAR (10)     NULL,
+    [SRT_ANALYSIS]              VARCHAR (25)     NULL,
+    [SRT_COSTHEADER]            VARCHAR (10)     NULL,
+    [SRT_COSTCENTRE]            VARCHAR (10)     NULL,
+    [SRT_TRANSACTION_USER_KEY1] VARCHAR (20)     NULL,
+    [SRT_TRANSACTION_USER_KEY2] VARCHAR (20)     NULL,
+    [SRT_TRANSACTION_USER_KEY3] VARCHAR (20)     NULL,
+    [SRT_LINE_NUMBER]           BIGINT           NULL,
+    [SRT_ENTRY_TYPE]            VARCHAR (1)      NULL,
+    [SRT_HEADER_LINK]           BIGINT           NULL,
+    [SRT_ORIGINAL_ID]           BIGINT           NULL,
+    [SRT_DEFAULT_STRING]        VARCHAR (20)     NULL,
+    CONSTRAINT [SRT_RESOURCE_RATE_PK] PRIMARY KEY CLUSTERED ([SRT_SEQUENCE] ASC, [SRT_GUID] ASC)
+);
+

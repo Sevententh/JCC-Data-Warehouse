@@ -1,0 +1,94 @@
+﻿create view AA_REP_PURCHASE_TRAN_DETAIL_VAT_VIEW
+
+/*
+** Written     :  12/04/2005 RV, 06/05/2005 SH
+** Last Amended:  03/06/2005 LM, 13/10/2005 RV, 14/08/2009 CC
+** Comments    :  Returns selected purchase transaction details for VAT exception reporting in crystal reports
+**
+** Used by     :  Disproportionate VAT Values - Purchase Transactions.rpt
+*/
+
+as
+
+select
+PL_TRANSACTIONS.PT_COPYSUPP,
+PL_TRANSACTIONS.PT_YEAR,
+PL_TRANSACTIONS.PT_PERIODNUMBER,
+PL_TRANSACTIONS.PT_NETT,
+PL_TRANSACTIONS.PT_VAT,
+PL_TRANSACTIONS.PT_GROSS,
+PL_TRANSACTIONS.PT_SETT_DISC1,
+PL_TRANSACTIONS.PT_SETT_DISC2,
+PL_TRANSACTIONS.PT_SETT_DAYS1,
+PL_TRANSACTIONS.PT_SETT_DAYS2,
+cast (PL_TRANSACTIONS.PT_BATCH_FLAG as bit) as PT_BATCH_FLAG,
+PL_TRANSACTIONS.PT_HEADER_REF,
+PL_TRANSACTIONS.PT_DATE,
+cast (PL_TRANSACTIONS.PT_QUERY_FLAG as bit) as PT_QUERY_FLAG,
+cast (PL_TRANSACTIONS.PT_CENTRALISED as bit) as PT_CENTRALISED,
+PL_TRANSACTIONS.PT_HEADER_KEY,
+PL_TRANSACTIONS.PT_SUB_LEDGER,
+PL_TRANSACTIONS.PT_T_DISCVAL,
+PL_TRANSACTIONS.PT_L_DISCVAL,
+
+SL_PL_NL_DETAIL.DET_NETT,
+SL_PL_NL_DETAIL.DET_VAT,
+SL_PL_NL_DETAIL.DET_VATCODE,
+SL_PL_NL_DETAIL.DET_GROSS,
+SL_PL_NL_DETAIL.DET_TYPE,
+SL_PL_NL_DETAIL.DET_L_DISCOUNT,
+SL_PL_NL_DETAIL.DET_T_DISCOUNT,
+SL_PL_NL_DETAIL.DET_PRIMARY,
+SL_PL_NL_DETAIL.DET_PL_ACQ_TAX,
+
+SYS_VATCONTROL.VAT_RATE,
+
+PL_ACCOUNTS.SU_VAT_REG_NO,
+
+case when dbo.AA_VALUE_DPS_F( DET_GROSS - DET_NETT ) <> dbo.AA_VALUE_DPS_F( isnull( nullif( DET_PL_ACQ_TAX, 0 ), DET_VAT ) )
+      then dbo.AA_VALUE_DPS_F( DET_GROSS - DET_NETT )
+    when dbo.AA_VALUE_DPS_F( ( DET_NETT - ( ( isnull( PT_SETT_DISC1, 0 ) / 100 ) * DET_NETT ) ) * ( VAT_RATE / 100 ) ) <> dbo.AA_VALUE_DPS_F( isnull( nullif( DET_PL_ACQ_TAX, 0 ), DET_VAT ) )
+      then dbo.AA_VALUE_DPS_F( ( DET_NETT - ( ( isnull( PT_SETT_DISC1, 0 ) / 100 ) * DET_NETT ) ) * ( VAT_RATE / 100 ) )
+    else DET_VAT
+end as HOME_VAT_RECALC,
+
+case when dbo.AA_VALUE_DPS_F( DET_GROSS - DET_NETT ) <> dbo.AA_VALUE_DPS_F( isnull( nullif( DET_PL_ACQ_TAX, 0 ), DET_VAT ) )
+      then dbo.AA_VALUE_DPS_F( DET_GROSS - DET_NETT )
+    when dbo.AA_VALUE_DPS_F( DET_NETT * ( VAT_RATE / 100 ) ) <> dbo.AA_VALUE_DPS_F( isnull( nullif( DET_PL_ACQ_TAX, 0 ), DET_VAT ) )
+      then dbo.AA_VALUE_DPS_F( DET_NETT * ( VAT_RATE / 100 ) )
+    else DET_VAT
+end as ROI_VAT_RECALC,
+'ENGLISH   ' As LANGUAGE_LINK,
+SL_PL_NL_DETAIL.DET_VAT_RATE
+
+from SL_PL_NL_DETAIL
+
+  inner join PL_TRANSACTIONS
+  on SL_PL_NL_DETAIL.DET_HEADER_KEY = PL_TRANSACTIONS.PT_HEADER_KEY
+
+  inner join PL_ACCOUNTS
+  on PL_TRANSACTIONS.PT_COPYSUPP = PL_ACCOUNTS.SUCODE
+
+  inner join SYS_VATCONTROL
+  on SL_PL_NL_DETAIL.DET_VATCODE = SYS_VATCONTROL.VAT_CODE
+
+where DET_HEADER_KEY like 'P%'
+  and (SL_PL_NL_DETAIL.DET_TYPE not in ('MIN', 'MPA', 'MAD', 'MAC', 'MCR'))
+  and isnull( SYS_VATCONTROL.VAT_CODE, '' ) <> ''
+  and (
+      abs( DET_VAT - case when dbo.AA_VALUE_DPS_F( DET_GROSS - DET_NETT ) <> dbo.AA_VALUE_DPS_F( isnull( nullif( DET_PL_ACQ_TAX, 0 ), DET_VAT ) )
+            then dbo.AA_VALUE_DPS_F( DET_GROSS - DET_NETT )
+          when dbo.AA_VALUE_DPS_F( ( DET_NETT - ( ( isnull( PT_SETT_DISC1, 0 ) / 100 ) * DET_NETT ) ) * ( VAT_RATE / 100 ) ) <> dbo.AA_VALUE_DPS_F( isnull( nullif( DET_PL_ACQ_TAX, 0 ), DET_VAT ) )
+            then dbo.AA_VALUE_DPS_F( ( DET_NETT - ( ( isnull( PT_SETT_DISC1, 0 ) / 100 ) * DET_NETT ) ) * ( VAT_RATE / 100 ) )
+          else DET_VAT
+      end ) > 0.005
+
+      or -- ROI
+
+      abs( DET_VAT - case when dbo.AA_VALUE_DPS_F( DET_GROSS - DET_NETT ) <> dbo.AA_VALUE_DPS_F( isnull( nullif( DET_PL_ACQ_TAX, 0 ), DET_VAT ) )
+            then dbo.AA_VALUE_DPS_F( DET_GROSS - DET_NETT )
+          when dbo.AA_VALUE_DPS_F( DET_NETT * ( VAT_RATE / 100 ) ) <> dbo.AA_VALUE_DPS_F( isnull( nullif( DET_PL_ACQ_TAX, 0 ), DET_VAT ) )
+            then dbo.AA_VALUE_DPS_F( DET_NETT * ( VAT_RATE / 100 ) )
+          else DET_VAT
+      end ) > 0.005
+     )

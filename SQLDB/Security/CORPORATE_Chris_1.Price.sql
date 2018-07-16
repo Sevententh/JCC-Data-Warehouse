@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Chris.Price]
+    AUTHORIZATION [CORPORATE\Chris.Price];
+

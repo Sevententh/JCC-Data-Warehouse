@@ -1,0 +1,76 @@
+﻿create view AA_REP_AGED_DEBT_MP_VIEW
+/*
+** Written:       10/5/2005 RL
+** Last Amended:  27/5/2005 RL, 22/7/2005 RL, 03/10/07 NC, 17/09/08 NC
+** Comments: returns selected sales transactions for Multiple Period Aged Debtors crystal reports
+*/
+as
+
+select
+ST_PRIMARY,
+ST_TRANTYPE,
+CAST (ST_BATCH_FLAG AS BIT) AS ST_BATCH_FLAG,
+ST_CURRENCYCODE,
+ST_YEAR,
+ST_PERIODNUMBER,
+ST_PERIODNUMBER + NO_OF_PERIODS * charindex(ST_YEAR,'LCN') as PERIOD_SORT,
+ST_DATE,
+ST_HEADER_REF,
+ST_SUB_LEDGER,
+ST_TRI_RATE1,
+ST_TRI_RATE2,
+ST_DESCRIPTION,
+ST_GROSS,
+ST_DUEDATE,
+CUCODE,
+CUNAME,
+CUBALANCE,
+CUSORT,
+CUUSER1,
+CUUSER2,
+CUUSER3,
+CUTURNOVERYTD,
+CUCURRENCYCODE,
+CAST (CU_ON_STOP AS BIT) AS CU_ON_STOP,
+CU_CREDIT_LIMIT,
+CU_DATE_INV,
+S_AL_PRIMARY,
+S_AL_DATE,
+S_AL_PERIOD,
+S_AL_YEAR,
+S_AL_VALUE_HOME,
+S_AL_VALUE_CURR,
+case when ST_GROSS <> 0 then S_AL_VALUE_HOME * ST_GROSS_BASE2/ST_GROSS else 0 end as S_AL_VALUE_BASE2,
+S_AL_REFERENCE,
+S_AL_USER_ID,
+S_AL_FULLALLOC_PD,
+S_AL_FULLALLOC_DATE,
+case
+   when ST_TRANTYPE in ('INV','ADR') then S_AL_VALUE_HOME
+   else 0
+end as HOME_DEBIT_VALUE,
+case
+   when ST_TRANTYPE in ('INV','ADR') then S_AL_VALUE_CURR
+   else 0
+end as CURR_DEBIT_VALUE,
+case
+   when ST_TRANTYPE in ('INV','ADR') and ST_GROSS <> 0 then S_AL_VALUE_HOME * ST_GROSS_BASE2/ST_GROSS
+   else 0
+end as BASE2_DEBIT_VALUE,
+case
+   when ST_TRANTYPE in ('CRN','PAY','ACR') then -S_AL_VALUE_HOME
+   else 0
+end as HOME_CREDIT_VALUE,
+case
+   when ST_TRANTYPE in ('CRN','PAY','ACR') then -S_AL_VALUE_CURR
+   else 0
+end as CURR_CREDIT_VALUE,
+case
+   when ST_TRANTYPE in ('CRN','PAY','ACR') and ST_GROSS <> 0 then -(S_AL_VALUE_HOME * ST_GROSS_BASE2/ST_GROSS)
+   else 0
+end as BASE2_CREDIT_VALUE
+from
+  SL_ALLOC_HISTORY with (nolock)
+  inner join SL_TRANSACTIONS on ST_HEADER_KEY = S_AL_HEADER_KEY
+  inner join SL_ACCOUNTS with (nolock) on CUCODE        = S_AL_ACCOUNT_CODE,
+  SYS_DATAINFO2 with (nolock)

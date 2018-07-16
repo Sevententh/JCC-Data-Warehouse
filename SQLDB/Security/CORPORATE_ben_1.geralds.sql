@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\ben.geralds]
+    AUTHORIZATION [CORPORATE\ben.geralds];
+

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\sarah.gannon]
+    AUTHORIZATION [CORPORATE\sarah.gannon];
+

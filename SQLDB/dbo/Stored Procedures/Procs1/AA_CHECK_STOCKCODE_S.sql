@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_CHECK_STOCKCODE_S]
+@PS_Def_String VARCHAR (50) NULL, @PS_Ledger VARCHAR (3) NULL, @PS_Stock_Code VARCHAR (25) NULL OUTPUT, @PS_Price_Key INT NULL OUTPUT, @PS_Trn_Currency_Symbol VARCHAR (4) NULL, @PS_Analysis_Code VARCHAR (25) NULL OUTPUT, @PS_Price DECIMAL (24, 8) NULL OUTPUT, @PS_Price_Curr DECIMAL (24, 8) NULL OUTPUT, @PS_Cost_Price DECIMAL (24, 8) NULL OUTPUT, @PS_BuySell_Units DECIMAL (24, 8) NULL OUTPUT, @PS_RTP TINYINT NULL OUTPUT, @PS_Serial_Track TINYINT NULL OUTPUT, @PS_Serial_Number VARCHAR (40) NULL OUTPUT, @PS_Linked_Items TINYINT NULL OUTPUT, @PS_Superseding_Code VARCHAR (25) NULL OUTPUT, @PS_Sub_Analysis_Code VARCHAR (25) NULL OUTPUT, @PS_Sort_Key VARCHAR (20) NULL OUTPUT, @PS_User_Sort1 VARCHAR (20) NULL OUTPUT, @PS_User_Sort2 VARCHAR (20) NULL OUTPUT, @PS_User_Sort3 VARCHAR (20) NULL OUTPUT, @PS_Quantity DECIMAL (24, 8) NULL, @PS_Currency_Mode TINYINT NULL OUTPUT, @PS_In_or_Out VARCHAR (3) NULL, @PS_Allow_Empty_Subanalysis TINYINT NULL, @PS_Allow_Empty_SerialNo TINYINT NULL, @PS_Supplier_Code VARCHAR (10) NULL, @PS_Editing_SOP_Order_Number INT NULL, @PS_SOP_Stock_Analysis VARCHAR (25) NULL OUTPUT, @PS_POP_Stock_Analysis VARCHAR (25) NULL OUTPUT, @PS_Out_Stock_Analysis VARCHAR (25) NULL OUTPUT, @PS_In_Stock_Analysis VARCHAR (25) NULL OUTPUT, @PS_OH_TYPE CHAR (1) NULL, @PS_Select_First_Sub_Analysis BIT NULL, @PS_Select_First_Serial_No BIT NULL, @PS_Stock_Primary INT NULL OUTPUT, @PS_ReverseChargeVatItem BIT NULL OUTPUT, @PS_StockDescription VARCHAR (80) NULL OUTPUT, @PS_ConsolidateRequests BIT NULL, @PS_SubAnalysisAnalysis VARCHAR (25) NULL OUTPUT, @PS_UserId VARCHAR (4) NULL, @PS_StockCodeUnchanged BIT NULL, @PS_OldSubAnlaysis VARCHAR (25) NULL, @PS_WarrantyTracked BIT NULL OUTPUT, @PS_WarrantyMatrix VARCHAR (15) NULL OUTPUT, @PS_SubAnalysisPrimary INT NULL OUTPUT, @PS_Service BIT NULL OUTPUT, @PS_ApplySupersededStockChecks BIT NULL, @PS_Insert_Mode BIT NULL, @PS_QuantityReserved DECIMAL (24, 8) NULL, @PS_CheckSubAnalysisSecurityLevels BIT NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

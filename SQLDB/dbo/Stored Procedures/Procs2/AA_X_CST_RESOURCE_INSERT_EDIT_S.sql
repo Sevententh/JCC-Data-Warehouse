@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_X_CST_RESOURCE_INSERT_EDIT_S]
+@PS_Default_String VARCHAR (150) NULL, @PS_User_ID VARCHAR (4) NULL, @PS_Insert_Flag BIT NULL, @PS_Validate_Only BIT NULL, @PS_Resource_Code VARCHAR (16) NULL OUTPUT, @PS_Resource_Name VARCHAR (40) NULL, @PS_Resource_Detail VARCHAR (240) NULL, @PS_Sort_Key VARCHAR (20) NULL, @PS_User_Sort_Field1 VARCHAR (20) NULL, @PS_User_Sort_Field2 VARCHAR (20) NULL, @PS_User_Sort_Field3 VARCHAR (20) NULL, @PS_User_Sort_Field4 VARCHAR (20) NULL, @PS_User_Sort_Field5 VARCHAR (20) NULL, @PS_User_Sort_Field6 VARCHAR (20) NULL, @PS_User_Date1 DATETIME NULL, @PS_User_Date2 DATETIME NULL, @PS_User_Date3 DATETIME NULL, @PS_Notes TEXT NULL, @PS_Append_Notes TEXT NULL, @PS_Employee_Code VARCHAR (10) NULL, @PS_Pay_Type_Code VARCHAR (20) NULL, @PS_Source VARCHAR (1) NULL, @PS_User_Security_Level INT NULL, @PS_User_Definable_Char1 VARCHAR (20) NULL, @PS_User_Definable_Char2 VARCHAR (20) NULL, @PS_User_Definable_Char3 VARCHAR (20) NULL, @PS_User_Definable_Char4 VARCHAR (30) NULL, @PS_User_Definable_Char5 VARCHAR (30) NULL, @PS_User_Definable_Char6 VARCHAR (30) NULL, @PS_User_Definable_Date1 DATETIME NULL, @PS_User_Definable_Date2 DATETIME NULL, @PS_User_Definable_Date3 DATETIME NULL, @PS_User_Definable_Flag1 TINYINT NULL, @PS_User_Definable_Flag2 TINYINT NULL, @PS_User_Definable_Flag3 TINYINT NULL, @PS_User_Definable_Number1 DECIMAL (24, 8) NULL, @PS_User_Definable_Number2 DECIMAL (24, 8) NULL, @PS_User_Definable_Number3 DECIMAL (24, 8) NULL, @PS_Primary INT NULL OUTPUT, @PS_ErrorHandlingMethod TINYINT NULL, @PS_InstanceId BIGINT NULL OUTPUT, @PS_ObjectGuid UNIQUEIDENTIFIER NULL, @PS_Person_Link INT NULL, @PS_Do_Not_Use BIT NULL, @PS_Target_Hours DECIMAL (24, 8) NULL, @PS_Target_Value DECIMAL (24, 8) NULL, @PS_Timesheet_Units DECIMAL (24, 8) NULL, @PS_Timesheet_Unit_Type VARCHAR (1) NULL, @PS_Batch_GUID UNIQUEIDENTIFIER NULL, @PS_DuplicatePrimary INT NULL, @PS_User_Definable_Char7 VARCHAR (100) NULL, @PS_User_Definable_Char8 VARCHAR (100) NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

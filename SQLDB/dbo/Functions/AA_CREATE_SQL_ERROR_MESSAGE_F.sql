@@ -1,0 +1,10 @@
+﻿CREATE FUNCTION [dbo].[AA_CREATE_SQL_ERROR_MESSAGE_F]
+(@PS_Message NVARCHAR (1000) NULL, @PS_ParamValue0 NVARCHAR (100) NULL, @PS_ParamValue1 NVARCHAR (100) NULL, @PS_ParamValue2 NVARCHAR (100) NULL, @PS_ParamValue3 NVARCHAR (100) NULL, @PS_ParamValue4 NVARCHAR (100) NULL, @PS_ParamDataType0 VARCHAR (10) NULL, @PS_ParamDataType1 VARCHAR (10) NULL, @PS_ParamDataType2 VARCHAR (10) NULL, @PS_ParamDataType3 VARCHAR (10) NULL, @PS_ParamDataType4 VARCHAR (10) NULL)
+RETURNS NVARCHAR (1000)
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN NULL
+END
+

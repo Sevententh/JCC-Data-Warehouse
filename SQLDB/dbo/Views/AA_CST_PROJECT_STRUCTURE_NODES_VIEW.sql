@@ -1,0 +1,22 @@
+﻿create view AA_CST_PROJECT_STRUCTURE_NODES_VIEW
+/*
+** Returns a table to be used specifically with AA_CST_PROJECT_STRUCTURE_NODES_RETRIEVE_S
+**
+** Written     :  03/01/2006 DB
+** Last Amended:
+**
+*/
+as
+
+select
+   CPN_PRIMARY
+,  CPN_STRUCTURE_LINK
+,  CPN_PARENT_NODE_LINK
+,  CPN_CC_MASTER_LINK
+,  CPN_NODE_INDEX
+,  CPN_NODE_LEVEL
+,  CCM_CODE
+,  CCM_NAME
+   from
+      CST_PROJECT_STRUCTURE_NODES
+         left join CST_MASTER_RECORD on CCM_PRIMARY = CPN_CC_MASTER_LINK

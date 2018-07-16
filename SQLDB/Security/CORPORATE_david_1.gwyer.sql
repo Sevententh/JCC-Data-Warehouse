@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\david.gwyer]
+    AUTHORIZATION [CORPORATE\david.gwyer];
+

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Stephen.Truman]
+    AUTHORIZATION [CORPORATE\Stephen.Truman];
+

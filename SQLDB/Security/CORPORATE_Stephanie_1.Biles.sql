@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Stephanie.Biles]
+    AUTHORIZATION [CORPORATE\Stephanie.Biles];
+

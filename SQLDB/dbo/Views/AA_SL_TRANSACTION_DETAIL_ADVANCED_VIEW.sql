@@ -1,0 +1,114 @@
+﻿create view AA_SL_TRANSACTION_DETAIL_ADVANCED_VIEW
+/*
+**
+** Written:      
+** Last Amended: 25/05/05 NC, 23/08/2005 SH, 01/12/2005 JC, 06/12/2005 JC, 18/04/06 NC
+**
+*/
+as
+
+select
+ DET_PRIMARY as [PRIMARY]
+,ST_PRIMARY as HEADER_PRIMARY
+,isnull(DET_ANALYSIS,'') as DET_ANALYSIS
+,isnull(sa1.SANAME,'') as SANAME
+,isnull(DET_STOCK_CODE, '') as DET_STOCK_CODE
+,isnull(DET_PRICE_CODE, '') as DET_PRICE_CODE
+,isnull(DET_STOCK_CODE, '') + isnull(DET_PRICE_CODE, '') as DET_STOCK_PRICE_CODE
+,isnull(STKNAME,'') + isnull(PRNAME,'') as STKNAME_PRNAME
+,isnull(DET_COSTHEADER,'') as DET_COSTHEADER
+,isnull(CH_NAME,'') as CH_NAME
+,isnull(DET_COSTCENTRE,'') as DET_COSTCENTRE 
+,isnull(CC_NAME,'') as CC_NAME
+,dbo.AA_VALUE_DPS_F(DET_NETT) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_NETT    
+,dbo.AA_VALUE_DPS_F(DET_NETT_BASE2) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_NETT_BASE2
+,dbo.AA_VALUE_DPS_F(DET_CURR_NETT) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_CURR_NETT
+,dbo.AA_VALUE_DPS_F(DET_VAT) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_VAT 
+,dbo.AA_VALUE_DPS_F(DET_VAT_BASE2) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_VAT_BASE2
+,dbo.AA_VALUE_DPS_F(DET_CURR_TAX) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_CURR_TAX 
+,dbo.AA_VALUE_DPS_F(DET_GROSS) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_GROSS 
+,dbo.AA_VALUE_DPS_F(DET_GROSS_BASE2) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_GROSS_BASE2
+,dbo.AA_VALUE_DPS_F(DET_CURR_GROSS) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_CURR_GROSS 
+,dbo.AA_VALUE_DPS_F(DET_UNALLOCATED) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_UNALLOCATED 
+,case DET_RECONCILED when 1 then 'R' else '' end RECONCILED
+,DET_PRIMARY 
+,DET_DATE_PUTIN
+,isnull(DET_BATCH_REF,'') as DET_BATCH_REF
+,isnull(DET_DESCRIPTION,'') as DET_DESCRIPTION
+,DET_DATE 
+,DET_YEAR
+,DET_PERIODNUMBR
+,OD_ORDER_NUMBER
+,dbo.AA_VALUE_DPS_F(ST_REVALUED) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as ST_REVALUED
+,isnull(OH_ACCOUNT_ORDER,'') as OH_ACCOUNT_ORDER
+,isnull(s2.CUNAME,'') as ORDER_ACCOUNT_NAME
+,isnull(OH_ACCOUNT_DELIVERY,'') as OH_ACCOUNT_DELIVERY
+,isnull(s3.CUNAME,'') as DELIVERY_ACCOUNT_NAME
+,dbo.AA_PRICE_DPS_F(DET_UNIT_PRICE) as DET_UNIT_PRICE
+,dbo.AA_QUANTITY_DPS_F(DET_QUANTITY) as DET_QUANTITY
+,dbo.AA_PRICE_DPS_F(DET_COSTPRICE) as DET_COSTPRICE
+,isnull(sa1.SATYPE_S_B_D,'') as SATYPE_S_B_D
+,isnull(sa1.SANOMINALDR,'') as SANOMINALDR
+,isnull(dr.NNAME,'') as SANOMINALDR_NAME
+,isnull(sa1.SANOMINALCR,'') as SANOMINALCR
+,isnull(cr.NNAME,'') as SANOMINALCR_NAME
+,isnull(sa1.SANOMINALVAT,'') as SANOMINALVAT
+,isnull(vt.NNAME,'') as SANOMINALVAT_NAME
+,isnull(OD_STOCK_ANALYSIS,'') as STOCK_ANALYSIS
+,isnull(sa2.SANOMINALDR,'') as STK_NOMINALDR
+,isnull(sa2.SANOMINALCR,'') as STK_NOMINALCR
+,isnull(DET_STKSORTKEY,'') as DET_STKSORTKEY
+,isnull(DET_STKSORTKEY1,'') as DET_STKSORTKEY1
+,isnull(DET_STKSORTKEY2,'') as DET_STKSORTKEY2
+,isnull(DET_STKSORTKEY3,'') as DET_STKSORTKEY3
+,isnull(OD_LOCATN,'') as OD_LOCATN
+,isnull(DET_SERIALNO,'') as DET_SERIALNO
+,isnull(DET_DIMENSION1,'') as DET_DIMENSION1
+,isnull(DET_DIMENSION2,'') as DET_DIMENSION2
+,isnull(DET_DIMENSION3,'') as DET_DIMENSION3
+,dbo.AA_VALUE_DPS_F(OD_LINEDISC) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as OD_LINEDISC
+,dbo.AA_VALUE_DPS_F(OH_DISC_TOTAL_P) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as OH_DISC_TOTAL_P
+,DET_SUB_AUDIT_NO
+,isnull(DET_RECON_REF,'') as DET_RECON_REF
+,dbo.AA_VALUE_DPS_F(DET_L_DISCOUNT) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_L_DISCOUNT
+,dbo.AA_VALUE_DPS_F(DET_L_DISC_BASE2) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_L_DISC_BASE2
+,dbo.AA_VALUE_DPS_F(DET_CURR_L_DISC) * case when ST_TRANTYPE in ('INV','ADR','JDR') then 1 else -1 end as DET_CURR_L_DISC
+,isnull(DET_VATCODE,'') as DET_VATCODE
+,isnull(VAT_RATE,0) as VAT_RATE
+,isnull(DET_IMPEXP_CODE,'') as DET_IMPEXP_CODE
+,isnull(STK_EC_COM_CODE,'') as STK_EC_COM_CODE
+,isnull(ST_EC_DEL_TERMS,'') as ST_EC_DEL_TERMS
+,isnull(ST_EC_T_MODE,'') as ST_EC_T_MODE
+,isnull(STK_EC_ORIGIN,'') as STK_EC_ORIGIN
+,isnull(ST_EC_T_NATURE,'') as ST_EC_T_NATURE
+,isnull(DET_ECVAT_TYPE,'') as DET_ECVAT_TYPE
+,isnull(DET_USRCHAR1,'') as DET_USRCHAR1
+,isnull(DET_USRCHAR2,'') as DET_USRCHAR2
+,isnull(DET_USRCHAR3,'') as DET_USRCHAR3
+,isnull(DET_USRCHAR4,'') as DET_USRCHAR4
+,cast(isnull(DET_USRFLAG1,0) as bit) as DET_USRFLAG1
+,cast(isnull(DET_USRFLAG2,0) as bit) as DET_USRFLAG2
+,DET_USRDATE1
+,DET_USRDATE2
+,dbo.AA_VALUE_DPS_F(DET_USRNUM1) as DET_USRNUM1
+,dbo.AA_VALUE_DPS_F(DET_USRNUM2) as DET_USRNUM2
+,ST_CURRENCYCODE
+
+from SL_TRANSACTIONS
+   join SL_PL_NL_DETAIL with (index(DET_HEADER_KEY)) on DET_HEADER_KEY='S'+convert(varchar,convert(int,ST_PRIMARY))
+   left outer join SL_ANALYSIS sa1 on sa1.SACODE = DET_ANALYSIS 
+   left outer join CST_COSTHEADER on CH_CODE = DET_COSTHEADER
+   left outer join CST_COSTCENTRE on CC_CONCAT_CODES = DET_COSTHEADER + space(10 - len(DET_COSTHEADER)) + DET_COSTCENTRE 
+   left outer join STK_STOCK on STKCODE = DET_STOCK_CODE
+   left outer join PRC_PRICE_RECS on PRCODE = DET_PRICE_CODE
+   left outer join ORD_DETAIL on OD_PRIMARY = DET_ORDER_LINK  
+   left outer join NL_ACCOUNTS dr on dr.NCODE = SANOMINALDR
+   left outer join NL_ACCOUNTS cr on cr.NCODE = SANOMINALCR
+   left outer join NL_ACCOUNTS vt on vt.NCODE = SANOMINALVAT
+   left outer join ORD_HEADER on OH_ORDER_NUMBER = OD_ORDER_NUMBER 
+   left outer join SYS_VATCONTROL on VAT_CODE = DET_VATCODE
+   left outer join SL_PL_NL_DETAIL2 on DET_PRIMARY_2 = DET_PRIMARY
+   left outer join SL_ACCOUNTS s2 on s2.CUCODE = OH_ACCOUNT_ORDER
+   left outer join SL_ACCOUNTS s3 on s3.CUCODE = OH_ACCOUNT_DELIVERY
+   left outer join SL_ANALYSIS sa2 on sa2.SACODE = OD_STOCK_ANALYSIS
+where isnull(DET_ANALYSIS,'')<>''

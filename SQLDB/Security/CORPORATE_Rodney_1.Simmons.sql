@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Rodney.Simmons]
+    AUTHORIZATION [CORPORATE\Rodney.Simmons];
+

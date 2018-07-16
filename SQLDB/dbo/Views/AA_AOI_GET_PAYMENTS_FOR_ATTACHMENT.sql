@@ -1,0 +1,30 @@
+﻿CREATE VIEW AA_AOI_GET_PAYMENTS_FOR_ATTACHMENT
+
+AS
+
+SELECT [PRIMARY] AS [Primary]
+      ,[PT_COPYSUPP] AS [Supplier]
+      ,[SUNAME] AS [Supplier Name]
+      ,[PT_DATE] As [Date]
+      ,[PT_PERIODNUMBER] AS [Period]
+      ,[PT_YEAR] AS [Year]
+      ,[PT_TRANTYPE] As [Transaction Type]
+      ,[PT_BATCH_FLAG] AS [Batch Flag]
+      ,[PT_HEADER_REF] AS [Header Reference]
+      ,[PT_ORDER_NUMBER] AS [Order Number]
+      ,[PT_INTERNAL_REF] AS [Internal Reference]
+      ,[PT_NETT] AS [Net Value]      
+      ,[PT_VAT] AS [Vat]
+      ,[PT_GROSS] AS [Gross]      
+      ,[PT_UNALLOCATED]
+      ,[RECONCILED]
+      ,[PT_PRIMARY]
+      ,[PT_DUEDATE] AS [Due Date]
+      ,[PT_DATE_PUTIN] AS [Date Entered]
+      ,[PT_BATCH_REF] AS [Batch Reference]
+      ,[PT_DESCRIPTION] AS [Description]     
+      ,[PT_USER1] AS [Transaction User Key 1]
+      ,[PT_USER2] AS [Transaction User Key 2]
+      ,[PT_USER3] AS [Transaction User Key 3]     
+  FROM [dbo].[AA_PL_TRANSACTION_HEADER_SIMPLE_VIEW]
+  WHERE PT_TRANTYPE = 'PAY'

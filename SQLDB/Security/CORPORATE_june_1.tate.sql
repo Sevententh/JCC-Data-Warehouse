@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\june.tate]
+    AUTHORIZATION [CORPORATE\june.tate];
+

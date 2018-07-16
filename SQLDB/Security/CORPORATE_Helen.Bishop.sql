@@ -1,0 +1,3 @@
+﻿CREATE USER [CORPORATE\Helen.Bishop] FOR LOGIN [CORPORATE\Helen.Bishop]
+    WITH DEFAULT_SCHEMA = [CORPORATE\Helen.Bishop];
+

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Danny.Bailey]
+    AUTHORIZATION [CORPORATE\Danny.Bailey];
+

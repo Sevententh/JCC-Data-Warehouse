@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [DBSERVER\Administrator]
+    AUTHORIZATION [DBSERVER\Administrator];
+

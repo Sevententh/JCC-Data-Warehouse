@@ -1,0 +1,2896 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1200,
+  "model": {
+    "culture": "en-GB",
+    "dataSources": [
+      {
+        "name": "DWH_Database",
+        "connectionString": "Provider=SQLNCLI11;Data Source=localhost;Persist Security Info=false;Integrated Security=SSPI;Initial Catalog=JCC_DW_PRD_Presentation",
+        "impersonationMode": "impersonateAccount",
+        "account": "CORPORATE\\Alex.Darling",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "DimBillOfMaterial",
+        "columns": [
+          {
+            "name": "BillOfMaterialKey",
+            "dataType": "int64",
+            "sourceColumn": "BillOfMaterialKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ComponentKey",
+            "dataType": "int64",
+            "sourceColumn": "ComponentKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductKey",
+            "dataType": "int64",
+            "sourceColumn": "ProductKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ComponentQty",
+            "dataType": "double",
+            "sourceColumn": "ComponentQty",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimBillOfMaterial",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimBillOfMaterial].* FROM [dbo].[DimBillOfMaterial] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimBillOfMaterial].* FROM [dbo].[DimBillOfMaterial] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimBillOfMaterial"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimCustomer",
+        "columns": [
+          {
+            "name": "CustomerKey",
+            "dataType": "int64",
+            "sourceColumn": "CustomerKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SalesManagerKey",
+            "dataType": "int64",
+            "sourceColumn": "SalesManagerKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CustomerCode",
+            "dataType": "string",
+            "sourceColumn": "CustomerCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CustomerName",
+            "dataType": "string",
+            "sourceColumn": "CustomerName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "BuyingGroup",
+            "dataType": "string",
+            "sourceColumn": "BuyingGroup",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Classification",
+            "dataType": "string",
+            "sourceColumn": "Classification",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CreditLimit",
+            "dataType": "double",
+            "sourceColumn": "CreditLimit",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "Merchandiser",
+            "dataType": "string",
+            "sourceColumn": "Merchandiser",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "OnStopFlag",
+            "dataType": "boolean",
+            "sourceColumn": "OnStopFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "PriceBook",
+            "dataType": "string",
+            "sourceColumn": "PriceBook",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Region",
+            "dataType": "string",
+            "sourceColumn": "Region",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Terms",
+            "dataType": "string",
+            "sourceColumn": "Terms",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CustomerAddress",
+            "dataType": "string",
+            "sourceColumn": "CustomerAddress",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CustomerTown",
+            "dataType": "string",
+            "sourceColumn": "CustomerTown",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CustomerCounty",
+            "dataType": "string",
+            "sourceColumn": "CustomerCounty",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CustomerPostcode",
+            "dataType": "string",
+            "sourceColumn": "CustomerPostcode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CustomerCountryCode",
+            "dataType": "string",
+            "sourceColumn": "CustomerCountryCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ContactName",
+            "dataType": "string",
+            "sourceColumn": "ContactName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Email",
+            "dataType": "string",
+            "sourceColumn": "Email",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PhoneNumber",
+            "dataType": "string",
+            "sourceColumn": "PhoneNumber",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "InvoiceAddress",
+            "dataType": "string",
+            "sourceColumn": "InvoiceAddress",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "InvoiceTown",
+            "dataType": "string",
+            "sourceColumn": "InvoiceTown",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "InvoiceCounty",
+            "dataType": "string",
+            "sourceColumn": "InvoiceCounty",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "InvoicePostcode",
+            "dataType": "string",
+            "sourceColumn": "InvoicePostcode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "InvoiceCountryCode",
+            "dataType": "string",
+            "sourceColumn": "InvoiceCountryCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLCustomerChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLCustomerChecksum",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ETLMerchandiserAccountChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLMerchandiserAccountChecksum",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ETLCustomerRegionChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLCustomerRegionChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimCustomer",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimCustomer].* FROM [dbo].[DimCustomer] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimCustomer].* FROM [dbo].[DimCustomer] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimCustomer"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimDataSource",
+        "columns": [
+          {
+            "name": "DataSourceKey",
+            "dataType": "int64",
+            "sourceColumn": "DataSourceKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DataSourceCode",
+            "dataType": "string",
+            "sourceColumn": "DataSourceCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DataSourceDesc",
+            "dataType": "string",
+            "sourceColumn": "DataSourceDesc",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimDataSource",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimDataSource].* FROM [dbo].[DimDataSource] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimDataSource].* FROM [dbo].[DimDataSource] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimDataSource"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimDate",
+        "columns": [
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "FullDate",
+            "dataType": "dateTime",
+            "sourceColumn": "FullDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "DateName",
+            "dataType": "string",
+            "sourceColumn": "DateName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DateNameEU",
+            "dataType": "string",
+            "sourceColumn": "DateNameEU",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DayOfWeek",
+            "dataType": "int64",
+            "sourceColumn": "DayOfWeek",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "DayNameOfWeek",
+            "dataType": "string",
+            "sourceColumn": "DayNameOfWeek",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DayOfMonth",
+            "dataType": "int64",
+            "sourceColumn": "DayOfMonth",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "DayOfYear",
+            "dataType": "int64",
+            "sourceColumn": "DayOfYear",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "WeekdayWeekend",
+            "dataType": "string",
+            "sourceColumn": "WeekdayWeekend",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "WeekOfYear",
+            "dataType": "int64",
+            "sourceColumn": "WeekOfYear",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "WeekOfMonth",
+            "dataType": "int64",
+            "sourceColumn": "WeekOfMonth",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "MonthName",
+            "dataType": "string",
+            "sourceColumn": "MonthName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "MonthOfYear",
+            "dataType": "int64",
+            "sourceColumn": "MonthOfYear",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "IsLastDayOfMonth",
+            "dataType": "string",
+            "sourceColumn": "IsLastDayOfMonth",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CalendarQuarter",
+            "dataType": "int64",
+            "sourceColumn": "CalendarQuarter",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "CalendarYear",
+            "dataType": "int64",
+            "sourceColumn": "CalendarYear",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "CalendarYearMonth",
+            "dataType": "string",
+            "sourceColumn": "CalendarYearMonth",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CalendarYearMonthLabel",
+            "dataType": "string",
+            "sourceColumn": "CalendarYearMonthLabel",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CalendarYearQtr",
+            "dataType": "string",
+            "sourceColumn": "CalendarYearQtr",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CalendarYearQtrLabel",
+            "dataType": "string",
+            "sourceColumn": "CalendarYearQtrLabel",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FiscalMonthOfYear",
+            "dataType": "int64",
+            "sourceColumn": "FiscalMonthOfYear",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "FiscalQuarter",
+            "dataType": "int64",
+            "sourceColumn": "FiscalQuarter",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "FiscalYear",
+            "dataType": "int64",
+            "sourceColumn": "FiscalYear",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "FiscalYearLabel",
+            "dataType": "string",
+            "sourceColumn": "FiscalYearLabel",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FiscalYearMonth",
+            "dataType": "string",
+            "sourceColumn": "FiscalYearMonth",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FiscalYearMonthLabel",
+            "dataType": "string",
+            "sourceColumn": "FiscalYearMonthLabel",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FiscalYearQtr",
+            "dataType": "string",
+            "sourceColumn": "FiscalYearQtr",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FiscalYearQtrLabel",
+            "dataType": "string",
+            "sourceColumn": "FiscalYearQtrLabel",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "WorkingDay",
+            "dataType": "boolean",
+            "sourceColumn": "WorkingDay",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimDate",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimDate].* FROM [dbo].[DimDate] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimDate].* FROM [dbo].[DimDate] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimDate"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimDebitCreditIndicator",
+        "columns": [
+          {
+            "name": "DebitCreditIndicatorKey",
+            "dataType": "int64",
+            "sourceColumn": "DebitCreditIndicatorKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DebitCreditIndicatorCode",
+            "dataType": "string",
+            "sourceColumn": "DebitCreditIndicatorCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "DebitCreditIndicatorDesc",
+            "dataType": "string",
+            "sourceColumn": "DebitCreditIndicatorDesc",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimDebitCreditIndicator",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimDebitCreditIndicator].* FROM [dbo].[DimDebitCreditIndicator] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimDebitCreditIndicator].* FROM [dbo].[DimDebitCreditIndicator] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimDebitCreditIndicator"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimERPUser",
+        "columns": [
+          {
+            "name": "ERPUserKey",
+            "dataType": "int64",
+            "sourceColumn": "ERPUserKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "UserCode",
+            "dataType": "string",
+            "sourceColumn": "UserCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "UserName",
+            "dataType": "string",
+            "sourceColumn": "UserName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimERPUser",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimERPUser].* FROM [dbo].[DimERPUser] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimERPUser].* FROM [dbo].[DimERPUser] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimERPUser"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimFinancialPlanType",
+        "columns": [
+          {
+            "name": "FinancialPlanTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "FinancialPlanTypeKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "FinancialPlanTypeCode",
+            "dataType": "string",
+            "sourceColumn": "FinancialPlanTypeCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FinancialPlanTypeDesc",
+            "dataType": "string",
+            "sourceColumn": "FinancialPlanTypeDesc",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimFinancialPlanType",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimFinancialPlanType].* FROM [dbo].[DimFinancialPlanType] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimFinancialPlanType].* FROM [dbo].[DimFinancialPlanType] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimFinancialPlanType"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimFlag",
+        "columns": [
+          {
+            "name": "FlagKey",
+            "dataType": "int64",
+            "sourceColumn": "FlagKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "FlagCode",
+            "dataType": "string",
+            "sourceColumn": "FlagCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FlagName",
+            "dataType": "string",
+            "sourceColumn": "FlagName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FlagValue",
+            "dataType": "int64",
+            "sourceColumn": "FlagValue",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "FlagBoolean",
+            "dataType": "boolean",
+            "sourceColumn": "FlagBoolean",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimFlag",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimFlag].* FROM [dbo].[DimFlag] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimFlag].* FROM [dbo].[DimFlag] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimFlag"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimNominalAccount",
+        "columns": [
+          {
+            "name": "NominalAccountKey",
+            "dataType": "int64",
+            "sourceColumn": "NominalAccountKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "NominalAccountCode",
+            "dataType": "string",
+            "sourceColumn": "NominalAccountCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "NominalAccountName",
+            "dataType": "string",
+            "sourceColumn": "NominalAccountName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "NominalAccountParentCurrencyRollupCode",
+            "dataType": "string",
+            "sourceColumn": "NominalAccountParentCurrencyRollupCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "NominalAccountCurrencyCode",
+            "dataType": "string",
+            "sourceColumn": "NominalAccountCurrencyCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "NominalAccountDepartment",
+            "dataType": "string",
+            "sourceColumn": "NominalAccountDepartment",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "NominalAccountTypeCode",
+            "dataType": "string",
+            "sourceColumn": "NominalAccountTypeCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "NominalAccountTypeName",
+            "dataType": "string",
+            "sourceColumn": "NominalAccountTypeName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "NominalAccountRollup",
+            "dataType": "string",
+            "sourceColumn": "NominalAccountRollup",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "NominalAccountSubGrouping",
+            "dataType": "string",
+            "sourceColumn": "NominalAccountSubGrouping",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StatementName",
+            "dataType": "string",
+            "sourceColumn": "StatementName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ExclusionFlag",
+            "dataType": "boolean",
+            "sourceColumn": "ExclusionFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "QtyToZeroFlag",
+            "dataType": "boolean",
+            "sourceColumn": "QtyToZeroFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "CostToZeroFlag",
+            "dataType": "boolean",
+            "sourceColumn": "CostToZeroFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLNominalAccountChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLNominalAccountChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimNominalAccount",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimNominalAccount].* FROM [dbo].[DimNominalAccount] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimNominalAccount].* FROM [dbo].[DimNominalAccount] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimNominalAccount"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimOrderDetailStatus",
+        "columns": [
+          {
+            "name": "OrderDetailStatusKey",
+            "dataType": "int64",
+            "sourceColumn": "OrderDetailStatusKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderDetailStatusCode",
+            "dataType": "int64",
+            "sourceColumn": "OrderDetailStatusCode",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderDetailStatusDesc",
+            "dataType": "string",
+            "sourceColumn": "OrderDetailStatusDesc",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimOrderDetailStatus",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimOrderDetailStatus].* FROM [dbo].[DimOrderDetailStatus] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimOrderDetailStatus].* FROM [dbo].[DimOrderDetailStatus] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimOrderDetailStatus"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimOrderHeaderStatus",
+        "columns": [
+          {
+            "name": "OrderHeaderStatusKey",
+            "dataType": "int64",
+            "sourceColumn": "OrderHeaderStatusKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderHeaderStatusCode",
+            "dataType": "int64",
+            "sourceColumn": "OrderHeaderStatusCode",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderHeaderStatusDesc",
+            "dataType": "string",
+            "sourceColumn": "OrderHeaderStatusDesc",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimOrderHeaderStatus",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimOrderHeaderStatus].* FROM [dbo].[DimOrderHeaderStatus] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimOrderHeaderStatus].* FROM [dbo].[DimOrderHeaderStatus] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimOrderHeaderStatus"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimProduct",
+        "columns": [
+          {
+            "name": "ProductKey",
+            "dataType": "int64",
+            "sourceColumn": "ProductKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CurrentManualClassificationKey",
+            "dataType": "int64",
+            "sourceColumn": "CurrentManualClassificationKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CurrentCalculatedClassificationKey",
+            "dataType": "int64",
+            "sourceColumn": "CurrentCalculatedClassificationKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CurrentSupplierKey",
+            "dataType": "int64",
+            "sourceColumn": "CurrentSupplierKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductCode",
+            "dataType": "string",
+            "sourceColumn": "ProductCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ProductName",
+            "dataType": "string",
+            "sourceColumn": "ProductName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ActiveStatus",
+            "dataType": "boolean",
+            "sourceColumn": "ActiveStatus",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AssemblyType",
+            "dataType": "string",
+            "sourceColumn": "AssemblyType",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CartonVolume",
+            "dataType": "double",
+            "sourceColumn": "CartonVolume",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "DiscontinuedFlag",
+            "dataType": "boolean",
+            "sourceColumn": "DiscontinuedFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "FirstDateSold",
+            "dataType": "dateTime",
+            "sourceColumn": "FirstDateSold",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "InCatalogue",
+            "dataType": "string",
+            "sourceColumn": "InCatalogue",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "LeadTime",
+            "dataType": "double",
+            "sourceColumn": "LeadTime",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "Lightsource",
+            "dataType": "string",
+            "sourceColumn": "Lightsource",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ProductGroup",
+            "dataType": "string",
+            "sourceColumn": "ProductGroup",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ProductPreviousCode",
+            "dataType": "string",
+            "sourceColumn": "ProductPreviousCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PurchaseWeight",
+            "dataType": "double",
+            "sourceColumn": "PurchaseWeight",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "SellWeight",
+            "dataType": "double",
+            "sourceColumn": "SellWeight",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "SpeedOfLight",
+            "dataType": "int64",
+            "sourceColumn": "SpeedOfLight",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "SupercededCode",
+            "dataType": "string",
+            "sourceColumn": "SupercededCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "VerticalMarket",
+            "dataType": "string",
+            "sourceColumn": "VerticalMarket",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CategoryCode",
+            "dataType": "string",
+            "sourceColumn": "CategoryCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CategoryName",
+            "dataType": "string",
+            "sourceColumn": "CategoryName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "AgreedResolutionProvision",
+            "dataType": "string",
+            "sourceColumn": "AgreedResolutionProvision",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "BeamAngle",
+            "dataType": "int64",
+            "sourceColumn": "BeamAngle",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "BodyMaterial",
+            "dataType": "string",
+            "sourceColumn": "BodyMaterial",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CeilingType",
+            "dataType": "int64",
+            "sourceColumn": "CeilingType",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ColourRendering",
+            "dataType": "int64",
+            "sourceColumn": "ColourRendering",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ColourTemp",
+            "dataType": "int64",
+            "sourceColumn": "ColourTemp",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CostComparison",
+            "dataType": "int64",
+            "sourceColumn": "CostComparison",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Diffuser",
+            "dataType": "string",
+            "sourceColumn": "Diffuser",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "EarthClass",
+            "dataType": "double",
+            "sourceColumn": "EarthClass",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "Finish",
+            "dataType": "string",
+            "sourceColumn": "Finish",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FireRatedFlag",
+            "dataType": "boolean",
+            "sourceColumn": "FireRatedFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GenericDescription",
+            "dataType": "string",
+            "sourceColumn": "GenericDescription",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "IPRating",
+            "dataType": "double",
+            "sourceColumn": "IPRating",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "LampCap",
+            "dataType": "string",
+            "sourceColumn": "LampCap",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "LampIncludedFlag",
+            "dataType": "boolean",
+            "sourceColumn": "LampIncludedFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "LampLife",
+            "dataType": "int64",
+            "sourceColumn": "LampLife",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "LampModel",
+            "dataType": "string",
+            "sourceColumn": "LampModel",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "LampQty",
+            "dataType": "int64",
+            "sourceColumn": "LampQty",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "LampWattage",
+            "dataType": "string",
+            "sourceColumn": "LampWattage",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "LastCatalogueAppearance",
+            "dataType": "string",
+            "sourceColumn": "LastCatalogueAppearance",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Location",
+            "dataType": "int64",
+            "sourceColumn": "Location",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Lumens",
+            "dataType": "int64",
+            "sourceColumn": "Lumens",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "PowerSupply",
+            "dataType": "double",
+            "sourceColumn": "PowerSupply",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "Range",
+            "dataType": "string",
+            "sourceColumn": "Range",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Subrange",
+            "dataType": "string",
+            "sourceColumn": "Subrange",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "UtilisationFactor",
+            "dataType": "string",
+            "sourceColumn": "UtilisationFactor",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "WebsiteLiveDate",
+            "dataType": "dateTime",
+            "sourceColumn": "WebsiteLiveDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "WebsiteRemovedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "WebsiteRemovedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "IsDaliFlag",
+            "dataType": "boolean",
+            "sourceColumn": "IsDaliFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "IsDIMFlag",
+            "dataType": "boolean",
+            "sourceColumn": "IsDIMFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "IsDISFlag",
+            "dataType": "boolean",
+            "sourceColumn": "IsDISFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "IsMicrowaveFlag",
+            "dataType": "boolean",
+            "sourceColumn": "IsMicrowaveFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "TargetFIFOMonth",
+            "dataType": "double",
+            "sourceColumn": "TargetFIFOMonth",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "ProvisionMultiplier",
+            "dataType": "double",
+            "sourceColumn": "ProvisionMultiplier",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "FamilyCode",
+            "dataType": "string",
+            "sourceColumn": "FamilyCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "FamilyDescription",
+            "dataType": "string",
+            "sourceColumn": "FamilyDescription",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "GroupFamilyAccControlSystemFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyAccControlSystemFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyAccDriverFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyAccDriverFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyAccessoryFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyAccessoryFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyAccFirehoodFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyAccFirehoodFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyAccLampFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyAccLampFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyAccTransformerFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyAccTransformerFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommercialFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommercialFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommInBulkheadFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommInBulkheadFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommInColourChangingLEDFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommInColourChangingLEDFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommInDownlightFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommInDownlightFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommInFIreRatedDownlightFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommInFIreRatedDownlightFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommInFlatPanelFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommInFlatPanelFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommInHighBayFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommInHighBayFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommInSurfaceMountedFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommInSurfaceMountedFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommInSuspendedFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommInSuspendedFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommInTrackSpotFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommInTrackSpotFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommInWallLightFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommInWallLightFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommOutBollardFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommOutBollardFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommOutColourChangingLEDFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommOutColourChangingLEDFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommOutFloodSpotLightFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommOutFloodSpotLightFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommOutLanternFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommOutLanternFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommOutRecessedWalGroundFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommOutRecessedWalGroundFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommOutWallLightFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommOutWallLightFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyCommPendantFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyCommPendantFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomesticFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomesticFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomInDownlightFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomInDownlightFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomInFireRatedDownlightFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomInFireRatedDownlightFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomInTrackSpotFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomInTrackSpotFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomInUndershelfCabinetFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomInUndershelfCabinetFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomInUplightFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomInUplightFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomInWallCeilingLightFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomInWallCeilingLightFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomOutBollardFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomOutBollardFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomOutColourChangingLEDFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomOutColourChangingLEDFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomOutFloodSpotLightFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomOutFloodSpotLightFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomOutLanternFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomOutLanternFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomOutRecessedWallGroundFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomOutRecessedWallGroundFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyDomOutWallLightFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyDomOutWallLightFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyIndoorFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyIndoorFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "GroupFamilyOutdoorFlag",
+            "dataType": "boolean",
+            "sourceColumn": "GroupFamilyOutdoorFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyCommEducationFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyCommEducationFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyCommercialFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyCommercialFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyCommExteriorFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyCommExteriorFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyCommHealthcareFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyCommHealthcareFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyCommHospitalityFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyCommHospitalityFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyCommHousingFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyCommHousingFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyCommIndustrialBuildingFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyCommIndustrialBuildingFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyCommOfficeFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyCommOfficeFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyCommRetailFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyCommRetailFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyCommSportLeisureFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyCommSportLeisureFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyCommStreetUrbanFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyCommStreetUrbanFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyDomBathroomFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyDomBathroomFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyDomBedroomFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyDomBedroomFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyDomesticFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyDomesticFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyDomGarageFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyDomGarageFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyDomHallwayStairFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyDomHallwayStairFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyDomHomeOfficeFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyDomHomeOfficeFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyDomKitchenFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyDomKitchenFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyDomLivingDiningFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyDomLivingDiningFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "AppFamilyDomOutdoorGardenFlag",
+            "dataType": "boolean",
+            "sourceColumn": "AppFamilyDomOutdoorGardenFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLProductChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLProductChecksum",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ETLProdApplicationChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLProdApplicationChecksum",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ETLProdAttributeChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLProdAttributeChecksum",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ETLProdCategorisationChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLProdCategorisationChecksum",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ETLProdLightingControlChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLProdLightingControlChecksum",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ETLProdGroupingChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLProdGroupingChecksum",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ETLProdStockProvisionChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLProdStockProvisionChecksum",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductCategoryKey",
+            "dataType": "int64",
+            "sourceColumn": "ProductCategoryKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "FinanceClassificationKey",
+            "dataType": "int64",
+            "sourceColumn": "FinanceClassificationKey",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimProduct",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimProduct].* FROM [dbo].[DimProduct] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimProduct].* FROM [dbo].[DimProduct] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimProduct"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimProductCategory",
+        "columns": [
+          {
+            "name": "ProductCategoryKey",
+            "dataType": "int64",
+            "sourceColumn": "ProductCategoryKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductCategoryCode",
+            "dataType": "string",
+            "sourceColumn": "ProductCategoryCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ProductCategoryDesc",
+            "dataType": "string",
+            "sourceColumn": "ProductCategoryDesc",
+            "sourceProviderType": "Char"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimProductCategory",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimProductCategory].* FROM [dbo].[DimProductCategory] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimProductCategory].* FROM [dbo].[DimProductCategory] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimProductCategory"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimProductClassification",
+        "columns": [
+          {
+            "name": "ProductClassificationKey",
+            "dataType": "int64",
+            "sourceColumn": "ProductClassificationKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductClassificationCode",
+            "dataType": "string",
+            "sourceColumn": "ProductClassificationCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ProductClassificationDesc",
+            "dataType": "string",
+            "sourceColumn": "ProductClassificationDesc",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimProductClassification",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimProductClassification].* FROM [dbo].[DimProductClassification] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimProductClassification].* FROM [dbo].[DimProductClassification] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimProductClassification"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimSalesManager",
+        "columns": [
+          {
+            "name": "SalesManagerKey",
+            "dataType": "int64",
+            "sourceColumn": "SalesManagerKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SalesManagerCode",
+            "dataType": "string",
+            "sourceColumn": "SalesManagerCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SalesManagerName",
+            "dataType": "string",
+            "sourceColumn": "SalesManagerName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SalesChannel",
+            "dataType": "string",
+            "sourceColumn": "SalesChannel",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SalesTeam",
+            "dataType": "string",
+            "sourceColumn": "SalesTeam",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimSalesManager",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimSalesManager].* FROM [dbo].[DimSalesManager] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimSalesManager].* FROM [dbo].[DimSalesManager] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimSalesManager"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimStockMovementStatus",
+        "columns": [
+          {
+            "name": "StockMovementStatusKey",
+            "dataType": "int64",
+            "sourceColumn": "StockMovementStatusKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "StockMovementStatusCode",
+            "dataType": "string",
+            "sourceColumn": "StockMovementStatusCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StockMovementStatusDesc",
+            "dataType": "string",
+            "sourceColumn": "StockMovementStatusDesc",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimStockMovementStatus",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimStockMovementStatus].* FROM [dbo].[DimStockMovementStatus] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimStockMovementStatus].* FROM [dbo].[DimStockMovementStatus] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimStockMovementStatus"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimStockMovementType",
+        "columns": [
+          {
+            "name": "StockMovementTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "StockMovementTypeKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "StockMovementTypeCode",
+            "dataType": "string",
+            "sourceColumn": "StockMovementTypeCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StockMovementTypeDesc",
+            "dataType": "string",
+            "sourceColumn": "StockMovementTypeDesc",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimStockMovementType",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimStockMovementType].* FROM [dbo].[DimStockMovementType] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimStockMovementType].* FROM [dbo].[DimStockMovementType] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimStockMovementType"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimStockPriceMethod",
+        "columns": [
+          {
+            "name": "StockPriceMethodKey",
+            "dataType": "int64",
+            "sourceColumn": "StockPriceMethodKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "StockPriceMethodCode",
+            "dataType": "string",
+            "sourceColumn": "StockPriceMethodCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StockPriceMethodDesc",
+            "dataType": "string",
+            "sourceColumn": "StockPriceMethodDesc",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimStockPriceMethod",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimStockPriceMethod].* FROM [dbo].[DimStockPriceMethod] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimStockPriceMethod].* FROM [dbo].[DimStockPriceMethod] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimStockPriceMethod"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimStockProvision",
+        "columns": [
+          {
+            "name": "StockProvisionKey",
+            "dataType": "int64",
+            "sourceColumn": "StockProvisionKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProductClassificationKey",
+            "dataType": "int64",
+            "sourceColumn": "ProductClassificationKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "AgreedResoultionProvision",
+            "dataType": "string",
+            "sourceColumn": "AgreedResoultionProvision",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TargetFIFOMonth",
+            "dataType": "int64",
+            "sourceColumn": "TargetFIFOMonth",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ProvisionMultiplier",
+            "dataType": "double",
+            "sourceColumn": "ProvisionMultiplier",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimStockProvision",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimStockProvision].* FROM [dbo].[DimStockProvision] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimStockProvision].* FROM [dbo].[DimStockProvision] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimStockProvision"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimStockValuationMethod",
+        "columns": [
+          {
+            "name": "StockValuationMethodKey",
+            "dataType": "int64",
+            "sourceColumn": "StockValuationMethodKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "StockValuationMethodCode",
+            "dataType": "string",
+            "sourceColumn": "StockValuationMethodCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "StockValuationMethodDesc",
+            "dataType": "string",
+            "sourceColumn": "StockValuationMethodDesc",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimStockValuationMethod",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimStockValuationMethod].* FROM [dbo].[DimStockValuationMethod] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimStockValuationMethod].* FROM [dbo].[DimStockValuationMethod] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimStockValuationMethod"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimSupplier",
+        "columns": [
+          {
+            "name": "SupplierKey",
+            "dataType": "int64",
+            "sourceColumn": "SupplierKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SupplierCode",
+            "dataType": "string",
+            "sourceColumn": "SupplierCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "SupplierName",
+            "dataType": "string",
+            "sourceColumn": "SupplierName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "AgedCreditor",
+            "dataType": "double",
+            "sourceColumn": "AgedCreditor",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "CreditLimit",
+            "dataType": "double",
+            "sourceColumn": "CreditLimit",
+            "sourceProviderType": "Double"
+          },
+          {
+            "name": "DueDays",
+            "dataType": "int64",
+            "sourceColumn": "DueDays",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ImportCode",
+            "dataType": "string",
+            "sourceColumn": "ImportCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PayDate",
+            "dataType": "dateTime",
+            "sourceColumn": "PayDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "Terms",
+            "dataType": "string",
+            "sourceColumn": "Terms",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "Address",
+            "dataType": "string",
+            "sourceColumn": "Address",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PostCode",
+            "dataType": "string",
+            "sourceColumn": "PostCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "CountryCode",
+            "dataType": "string",
+            "sourceColumn": "CountryCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ContactName",
+            "dataType": "string",
+            "sourceColumn": "ContactName",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "PhoneNumber",
+            "dataType": "string",
+            "sourceColumn": "PhoneNumber",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimSupplier",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimSupplier].* FROM [dbo].[DimSupplier] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimSupplier].* FROM [dbo].[DimSupplier] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimSupplier"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimTransactionType",
+        "columns": [
+          {
+            "name": "TransactionTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "TransactionTypeKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "TransactionTypeCode",
+            "dataType": "string",
+            "sourceColumn": "TransactionTypeCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "TransactionTypeDesc",
+            "dataType": "string",
+            "sourceColumn": "TransactionTypeDesc",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "ETLCreatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLCreatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLLastUpdatedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ETLLastUpdatedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "ETLChecksum",
+            "dataType": "int64",
+            "sourceColumn": "ETLChecksum",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimTransactionType",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [dbo].[DimTransactionType].* FROM [dbo].[DimTransactionType] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [dbo].[DimTransactionType].* FROM [dbo].[DimTransactionType] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimTransactionType"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimOrderDetailType",
+        "columns": [
+          {
+            "name": "OrderDetailTypeKey",
+            "dataType": "int64",
+            "sourceColumn": "OrderDetailTypeKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderDetailTypeCode",
+            "dataType": "string",
+            "sourceColumn": "OrderDetailTypeCode",
+            "sourceProviderType": "Char"
+          },
+          {
+            "name": "OrderDetailTypeDesc",
+            "dataType": "string",
+            "sourceColumn": "OrderDetailTypeDesc",
+            "sourceProviderType": "Char"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimOrderDetailType",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [Tableau].[DimOrderDetailType].* FROM [Tableau].[DimOrderDetailType] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [Tableau].[DimOrderDetailType].* FROM [Tableau].[DimOrderDetailType] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimOrderDetailType"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "Tableau"
+          }
+        ]
+      },
+      {
+        "name": "DimOrderHeaderPriority",
+        "columns": [
+          {
+            "name": "OrderHeaderPriorityKey",
+            "dataType": "int64",
+            "sourceColumn": "OrderHeaderPriorityKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderHeaderPriorityCode",
+            "dataType": "int64",
+            "sourceColumn": "OrderHeaderPriorityCode",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "OrderHeaderPriorityDesc",
+            "dataType": "string",
+            "sourceColumn": "OrderHeaderPriorityDesc",
+            "sourceProviderType": "Char"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimOrderHeaderPriority",
+            "dataView": "full",
+            "source": {
+              "query": " SELECT [Tableau].[DimOrderHeaderPriority].* FROM [Tableau].[DimOrderHeaderPriority] ",
+              "dataSource": "DWH_Database"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [Tableau].[DimOrderHeaderPriority].* FROM [Tableau].[DimOrderHeaderPriority] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimOrderHeaderPriority"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "Tableau"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "3c61b898-fe05-4b3b-a2da-4b6006911e3c",
+        "fromTable": "DimProduct",
+        "fromColumn": "CurrentCalculatedClassificationKey",
+        "toTable": "DimProductClassification",
+        "toColumn": "ProductClassificationKey",
+        "isActive": false
+      },
+      {
+        "name": "f0aacac7-b670-45ab-972e-e14ebb4c9b18",
+        "fromTable": "DimCustomer",
+        "fromColumn": "SalesManagerKey",
+        "toTable": "DimSalesManager",
+        "toColumn": "SalesManagerKey"
+      },
+      {
+        "name": "b9fdaeb2-8cc1-482e-8745-b4e05b57b634",
+        "fromTable": "DimProduct",
+        "fromColumn": "ProductCategoryKey",
+        "toTable": "DimProductCategory",
+        "toColumn": "ProductCategoryKey"
+      },
+      {
+        "name": "e8a6fe15-0541-4c24-b36b-f8ee71eb5b63",
+        "fromTable": "DimProduct",
+        "fromColumn": "CurrentManualClassificationKey",
+        "toTable": "DimProductClassification",
+        "toColumn": "ProductClassificationKey"
+      },
+      {
+        "name": "5fdf3033-7cee-408b-9344-271cb00c53aa",
+        "fromTable": "DimProduct",
+        "fromColumn": "CurrentSupplierKey",
+        "toTable": "DimSupplier",
+        "toColumn": "SupplierKey"
+      },
+      {
+        "name": "0cd2a7e8-9684-4ac2-b7d6-84ab2643f5a2",
+        "fromTable": "DimStockProvision",
+        "fromColumn": "ProductClassificationKey",
+        "toTable": "DimProductClassification",
+        "toColumn": "ProductClassificationKey"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "400"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
