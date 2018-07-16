@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Louise.Howson]
+    AUTHORIZATION [CORPORATE\Louise.Howson];
+

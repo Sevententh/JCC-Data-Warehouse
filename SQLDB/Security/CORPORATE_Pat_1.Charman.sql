@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Pat.Charman]
+    AUTHORIZATION [CORPORATE\Pat.Charman];
+

@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[SYS_DASHBOARD] (
+    [DSH_ID]          BIGINT      IDENTITY (1, 1) NOT NULL,
+    [DSH_USER_ID]     VARCHAR (4) NULL,
+    [DSH_USER_LINK]   BIGINT      NULL,
+    [DSH_CONFIGS_XML] TEXT        NULL
+);
+

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Connor.Mavers]
+    AUTHORIZATION [CORPORATE\Connor.Mavers];
+

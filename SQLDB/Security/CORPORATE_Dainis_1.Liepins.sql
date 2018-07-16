@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Dainis.Liepins]
+    AUTHORIZATION [CORPORATE\Dainis.Liepins];
+

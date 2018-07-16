@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Steve.Armstrong]
+    AUTHORIZATION [CORPORATE\Steve.Armstrong];
+

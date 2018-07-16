@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\sue.pinnock]
+    AUTHORIZATION [CORPORATE\sue.pinnock];
+

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\hadji.br]
+    AUTHORIZATION [CORPORATE\hadji.br];
+

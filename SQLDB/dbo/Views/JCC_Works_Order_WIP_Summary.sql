@@ -1,0 +1,48 @@
+﻿
+
+
+
+CREATE VIEW [dbo].[JCC_Works_Order_WIP_Summary]
+
+/*
+** Written     :  23/11/2012 AKT
+** Last Amended:  22/02/2013 AKT	
+**
+*/
+
+AS
+
+SELECT
+
+[AA_REP_WO_WIP_VIEW].[WC_TYPE] as WorksOrderType
+,[AA_REP_WO_WIP_VIEW].[WO_ORDER_NUMBER] as WorksOrderNumber
+,[AA_REP_WO_WIP_VIEW].[STKCODE] as StockCode
+,[AA_REP_WO_WIP_VIEW].[STKNAME] as StockName
+,[AA_REP_WO_WIP_VIEW].[COMP_LOC_CODE] as Component
+,[STK_STOCK].[STKNAME] as ComponentName
+,[AA_REP_WO_WIP_VIEW].[WO_QUANTITY] as WorksOrderQuantity
+,[AA_REP_WO_WIP_VIEW].[QTY_OUTSTANDING] as SKUQtyOutstanding
+,[AA_REP_WO_WIP_VIEW].[WC_ORIGINAL_COST_PRICE] as ComponentCostPrice
+,[AA_REP_WO_WIP_VIEW].[WO_QUANTITY_ISSUED] as QuantityIssued
+,[AA_REP_WO_WIP_VIEW].[WO_PRIORITY] as WorksOrderPriority
+,[AA_REP_WO_WIP_VIEW].[WO_START_DATE] as WorksOrderStartDate
+,[AA_REP_WO_WIP_VIEW].[WO_END_DATE] as WorksOrderEndDate
+,[AA_REP_WO_WIP_VIEW].[WO_SORT_KEY] as WorksOrderReference
+,[STK_STOCK].[STK_PHYSICAL] as PhysicalStock
+,[STK_STOCK].[STK_BACK_ORDER_QTY] as BackOrderQty
+,[STK_STOCK].[STK_WO_ALLOC_QUANTITY] as WorksOrderAllocatedQty
+,[STK_STOCK].[STK_WO_UNALLOC_QUANTITY] as WorksOrderUnallocatedQty
+,[STK_STOCK].[STK_WO_WIP_SOP_QUANTITY] as WorksOrderSOPQty
+,[STK_STOCK].[STK_WO_FREE_WIP_QUANTITY]	as WorksOrderFreeWIPQty
+,[STK_STOCK].[STK_ORDER_IN] as StockOnOrder
+,[STK_STOCK3].[STK_USRCHAR2] as ProductClassification
+,[STK_STOCK3].[STK_USRFLAG3] as NewProductFlag
+FROM [AA_REP_WO_WIP_VIEW]
+INNER JOIN [STK_STOCK]
+ON [AA_REP_WO_WIP_VIEW].[COMP_LOC_CODE] = [STK_STOCK].[STKCODE]
+INNER JOIN [STK_STOCK3]
+ON [AA_REP_WO_WIP_VIEW].[STKCODE] = [STK_STOCK3].[STKCODE3]
+
+
+
+

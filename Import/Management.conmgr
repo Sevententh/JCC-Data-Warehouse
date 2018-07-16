@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Management"
+  DTS:DTSID="{33CC1FB3-144B-4210-A8A5-A7CDB65E4268}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=JCC_DW_ETL;Integrated Security=True;Connect Timeout=0;Application Name=SSIS-Process_ProductAttribute-{33CC1FB3-144B-4210-A8A5-A7CDB65E4268}dbserver.JCC_DW_Management;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

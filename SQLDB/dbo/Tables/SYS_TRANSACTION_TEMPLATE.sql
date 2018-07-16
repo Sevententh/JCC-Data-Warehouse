@@ -1,0 +1,29 @@
+﻿CREATE TABLE [dbo].[SYS_TRANSACTION_TEMPLATE] (
+    [TEMPLATE_ID]            INT           IDENTITY (1, 1) NOT FOR REPLICATION NOT NULL,
+    [TEMPLATE_NAME]          VARCHAR (255) NULL,
+    [DISPLAY_LAYOUT]         IMAGE         NOT NULL,
+    [COPY_LINE_FIELDS]       IMAGE         NOT NULL,
+    [OPTIONS]                IMAGE         NOT NULL,
+    [TAB_CONFIGURATION]      IMAGE         NOT NULL,
+    [TRANSACTION_ID]         INT           NOT NULL,
+    [SYSTEM_DEFAULT]         BIT           NULL,
+    [ENTERED_BY]             VARCHAR (4)   NOT NULL,
+    [DATE_PUTIN]             DATETIME      NULL,
+    [DATE_EDITED]            DATETIME      NULL,
+    [SPLITTER_CONFIGURATION] IMAGE         NOT NULL,
+    [TABBING_ORDER]          INT           NOT NULL,
+    CONSTRAINT [PK_SYS_TRANSACTION_TEMPLATE] PRIMARY KEY CLUSTERED ([TEMPLATE_ID] ASC)
+);
+
+
+GO
+CREATE TRIGGER [dbo].[AA_SYS_TRANSACTION_TEMPLATE_DT]
+    ON [dbo].[SYS_TRANSACTION_TEMPLATE]
+    WITH ENCRYPTION
+    AFTER DELETE
+    AS 
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+

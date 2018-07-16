@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Pauline.Burgess]
+    AUTHORIZATION [CORPORATE\Pauline.Burgess];
+

@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_AOI_UPDATE_CUSTOM_FORM]
+@PS_UserName VARCHAR (25) NULL, @PS_CustomFormName VARCHAR (50) NULL, @PS_Active TINYINT NULL, @PS_SignOffValue FLOAT (53) NULL, @PS_New TINYINT NULL, @PS_Edit TINYINT NULL, @PS_View TINYINT NULL, @PS_Delete TINYINT NULL, @PS_Duplicate TINYINT NULL, @PS_Approve TINYINT NULL, @PS_Reopen TINYINT NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

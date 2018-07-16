@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_SYS_PERSON_INSERT_EDIT_S]
+@PS_Default_String VARCHAR (100) NULL, @PS_User_ID VARCHAR (4) NULL, @PS_Insert_Flag BIT NULL, @PS_Validate_Only BIT NULL, @PS_Primary INT NULL OUTPUT, @PS_Person_Code VARCHAR (10) NULL OUTPUT, @PS_Person_Known_As VARCHAR (30) NULL, @PS_Title VARCHAR (5) NULL, @PS_Initials VARCHAR (5) NULL, @PS_First_Name VARCHAR (20) NULL, @PS_Surname VARCHAR (20) NULL, @PS_Salute VARCHAR (20) NULL, @PS_Job_Title VARCHAR (35) NULL, @PS_Department VARCHAR (20) NULL, @PS_Email VARCHAR (64) NULL, @PS_Mobile VARCHAR (20) NULL, @PS_Extension VARCHAR (20) NULL, @PS_Person_User_ID VARCHAR (4) NULL, @PS_Resource_Code VARCHAR (16) NULL, @PS_Resp_To_Link VARCHAR (20) NULL, @PS_Notes TEXT NULL, @PS_Do_Not_Use BIT NULL, @PS_Project_Leader BIT NULL, @PS_Created_Date DATETIME NULL, @PS_User_Created VARCHAR (4) NULL, @PS_Modified_Date DATETIME NULL, @PS_User_Modified VARCHAR (4) NULL, @PS_User_Definable_Char1 VARCHAR (20) NULL, @PS_User_Definable_Char2 VARCHAR (20) NULL, @PS_User_Definable_Char3 VARCHAR (20) NULL, @PS_User_Definable_Char4 VARCHAR (30) NULL, @PS_User_Definable_Char5 VARCHAR (30) NULL, @PS_User_Definable_Char6 VARCHAR (30) NULL, @PS_User_Definable_LongChar1 VARCHAR (100) NULL, @PS_User_Definable_LongChar2 VARCHAR (100) NULL, @PS_User_Definable_Number1 DECIMAL (24, 8) NULL, @PS_User_Definable_Number2 DECIMAL (24, 8) NULL, @PS_User_Definable_Number3 DECIMAL (24, 8) NULL, @PS_User_Definable_Flag1 TINYINT NULL, @PS_User_Definable_Flag2 TINYINT NULL, @PS_User_Definable_Flag3 TINYINT NULL, @PS_User_Definable_Date1 DATETIME NULL, @PS_User_Definable_Date2 DATETIME NULL, @PS_User_Definable_Date3 DATETIME NULL, @PS_User_Security_Level INT NULL, @PS_Source VARCHAR (1) NULL, @PS_Append_Notes TEXT NULL, @PS_Warn_Message VARCHAR (128) NULL OUTPUT, @PS_ErrorHandlingMethod TINYINT NULL, @PS_InstanceID BIGINT NULL OUTPUT, @PS_ObjectGuid UNIQUEIDENTIFIER NULL, @PS_DuplicatePrimary INT NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Beverly.Guppy]
+    AUTHORIZATION [CORPORATE\Beverly.Guppy];
+

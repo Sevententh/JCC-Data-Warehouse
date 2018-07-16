@@ -1,0 +1,19 @@
+﻿create view ARM_CM_CHANGE_LOG_VIEW_N
+
+/*
+** Written     :  16/8/2011 RL
+** Last Amended:  
+*/
+AS
+select
+CHL_TYPE				as CHL_TYPE_N,
+CHL_FIELD_NAME,
+CHL_EVENT_ID		as CHL_EVENT_ID_N,
+CHL_DATETIME,
+CHL_ACTION,
+CHL_USERID,
+CHL_VALUE			as CHL_VALUE_N,
+CHL_TABLE_NAME
+from ARM_CM_CHANGE_LOG
+where CHL_TYPE = 'NT'
+and CHL_ACTION = 'UPDATE'

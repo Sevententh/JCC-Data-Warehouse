@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\John.Desmond]
+    AUTHORIZATION [CORPORATE\John.Desmond];
+

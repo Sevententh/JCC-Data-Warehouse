@@ -1,0 +1,28 @@
+﻿CREATE VIEW AA_REP_WO_NOT_YET_PRINTED_VIEW
+
+/*
+** Written     :  06/03/2006 RV
+** Last Amended:
+**
+** Used by     :  Not Yet Printed Report.rpt
+*/
+AS
+
+select
+
+WO_END_DATE,
+WO_ORDER_NUMBER,
+WO_TOP_LEVEL_ORDER_NUMBER,
+WO_QUANTITY,
+WO_QUANTITY_ISSUED,
+STKCODE,
+
+'ENGLISH   ' As LANGUAGE_LINK
+
+From WO_ORDERS
+
+   LEFT OUTER JOIN STK_STOCK
+   ON STK_PRIMARY = WO_STOCK_LINK
+
+where  WO_ORDER_NUMBER > (select SDN_NUMBER from SYS_DATA_NUMBERS
+           where SDN_CODE = 'WO_PRINTED_AUD')

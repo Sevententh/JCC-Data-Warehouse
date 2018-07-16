@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_GET_STOCK_DETAILS_S]
+@PS_Stock_Code VARCHAR (25) NULL, @PS_Serial_Number VARCHAR (40) NULL, @PS_Sub_Analysis_Code VARCHAR (25) NULL OUTPUT, @PS_Movement_Direction CHAR (1) NULL, @PS_Insert_Flag TINYINT NULL, @PS_Stock_Negative TINYINT NULL, @PS_Transaction_Type VARCHAR (3) NULL, @PS_Type CHAR (1) NULL, @PS_Default_String CHAR (1) NULL, @PS_Price_Line_Code VARCHAR (3) NULL OUTPUT, @PS_Currency_Code VARCHAR (4) NULL OUTPUT, @PS_Stock_Serialtracked TINYINT NULL OUTPUT, @PS_Stock_Multi_Location TINYINT NULL OUTPUT, @PS_Stock_Price DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Currency_Price DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Cost_Price DECIMAL (24, 8) NULL OUTPUT, @PS_Movement_Quantity_Unit DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Physical DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Qty_Printed DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Average_Value DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Standard_Cost DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Wapu_Quantity DECIMAL (24, 8) NULL OUTPUT, @PS_Stock_Wapu_Value DECIMAL (24, 8) NULL OUTPUT, @PS_Location_Cost_Price DECIMAL (24, 8) NULL OUTPUT, @PS_Location_Physical DECIMAL (24, 8) NULL OUTPUT, @PS_Location_Qty_Printed DECIMAL (24, 8) NULL OUTPUT, @PS_Location_Average_Value DECIMAL (24, 8) NULL OUTPUT, @PS_Location_Standard_Cost DECIMAL (24, 8) NULL OUTPUT, @PS_Location_Wapu_Quantity DECIMAL (24, 8) NULL OUTPUT, @PS_Location_Wapu_Value DECIMAL (24, 8) NULL OUTPUT, @PS_Location_Primary INT NULL OUTPUT, @PS_Landed_Cost DECIMAL (24, 8) NULL OUTPUT, @PS_POP_Analysis VARCHAR (25) NULL OUTPUT, @PS_SOP_Analysis VARCHAR (25) NULL OUTPUT, @PS_Stock_In_Analysis VARCHAR (25) NULL OUTPUT, @PS_Stock_Out_Analysis VARCHAR (25) NULL OUTPUT, @PS_Select_First_Sub_Analysis BIT NULL, @PS_Location_Level INT NULL OUTPUT, @PS_Stock_Level INT NULL OUTPUT, @PS_StockName VARCHAR (80) NULL OUTPUT, @PS_UserID VARCHAR (4) NULL, @PS_Cost_Unit DECIMAL (24, 8) NULL OUTPUT
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

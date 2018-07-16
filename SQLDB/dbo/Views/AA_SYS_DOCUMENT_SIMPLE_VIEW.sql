@@ -1,0 +1,18 @@
+﻿CREATE VIEW AA_SYS_DOCUMENT_SIMPLE_VIEW
+/*
+** Returns a table to be used specifically with AA_SYS_DIARY_LIST_S
+** Written:      22/04/04 NC
+** Last Amended: 
+**
+*/
+AS
+
+SELECT
+
+ DOC_PRIMARY as [PRIMARY]
+,DOC_DESCRIPTION
+,DOC_FILENAME
+,DOC_USER_PUTIN
+,DOC_DATE_PUTIN
+
+FROM SYS_DOCUMENTS

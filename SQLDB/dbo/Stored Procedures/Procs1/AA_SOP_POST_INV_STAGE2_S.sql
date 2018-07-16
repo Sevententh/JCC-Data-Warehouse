@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_SOP_POST_INV_STAGE2_S]
+@PS_Source VARCHAR (1) NULL, @PS_UserId VARCHAR (4) NULL, @PS_ST_PRIMARY INT NULL, @PS_ST_SRV_STATUS TINYINT NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

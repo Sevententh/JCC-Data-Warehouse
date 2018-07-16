@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Liz.Rapley]
+    AUTHORIZATION [CORPORATE\Liz.Rapley];
+

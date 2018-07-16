@@ -1,0 +1,32 @@
+﻿create view AA_SLPL_MULTIPLE_DUE_DATE_VIEW
+
+/*
+**
+** SP PL Contas
+** Date data
+**
+** Written     :  Plug-Ins Team
+** Last Amended:  19/07/2010 SM, 19/1/11 NC
+**
+*/
+
+as
+select
+   SDK_SLPL_DATE_HEADER.SLPLDTE_START_DATE            as SLPLDTED_DATE
+,  SDK_SLPL_DATE_HEADER.SLPLDTE_PRIMARY               as SLPLDTED_PARENT
+,  isnull(SDK_SLPL_DATE_HEADER.SLPLDTE_EXCL_VALU,0)   as SLPLDTED_VALUE
+,  isnull(SDK_SLPL_DATE_HEADER.SLPLDTE_EXCL_OS,0)     as SLPLDTED_REMAIN
+   from
+      SDK_SLPL_DATE_HEADER with (nolock)
+
+union all
+
+select
+   SDK_SLPL_DATE_DETAIL.SLPLDTED_DATE                 as SLPLDTED_DATE
+,  SDK_SLPL_DATE_DETAIL.SLPLDTED_PARENT               as SLPLDTED_PARENT
+,  isnull(SDK_SLPL_DATE_DETAIL.SLPLDTED_VALUE,0)      as SLPLDTED_VALUE
+,  isnull(SDK_SLPL_DATE_DETAIL.SLPLDTED_REMAIN,0)     as SLPLDTED_REMAIN
+   from
+      SDK_SLPL_DATE_DETAIL with (nolock)
+      inner join SDK_SLPL_DATE_HEADER with (nolock)
+         on SDK_SLPL_DATE_HEADER.SLPLDTE_PRIMARY = SDK_SLPL_DATE_DETAIL.SLPLDTED_PARENT

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Joshua.Liddle]
+    AUTHORIZATION [CORPORATE\Joshua.Liddle];
+

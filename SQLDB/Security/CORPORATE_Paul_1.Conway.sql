@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Paul.Conway]
+    AUTHORIZATION [CORPORATE\Paul.Conway];
+

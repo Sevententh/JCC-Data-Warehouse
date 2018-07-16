@@ -1,0 +1,3 @@
+﻿CREATE USER [Henry LiA]
+    WITH DEFAULT_SCHEMA = [Henry LiA];
+

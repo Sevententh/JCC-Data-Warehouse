@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Linda.Thomas]
+    AUTHORIZATION [CORPORATE\Linda.Thomas];
+

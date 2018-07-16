@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Graham.Excell]
+    AUTHORIZATION [CORPORATE\Graham.Excell];
+

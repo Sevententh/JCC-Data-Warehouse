@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_SYS_CONFIG_CST_RESOURCE_RATES_TEMP_INSERT_S]
+@PS_UserId VARCHAR (4) NULL, @PS_BatchGuid UNIQUEIDENTIFIER NULL, @PS_RateNumber TINYINT NULL, @PS_Description VARCHAR (40) NULL, @PS_InUse BIT NULL, @PS_DefaultString VARCHAR (20) NULL, @PS_DeleteFlag BIT NULL, @PS_ErrorInstanceId BIGINT NULL OUTPUT, @PS_ErrorHandlingMethod TINYINT NULL, @PS_ObjectGuid UNIQUEIDENTIFIER NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_SYS_SUB_LEDGER_INSERT_EDIT_S]
+@PS_DefaultString NVARCHAR (100) NULL, @PS_Mode NVARCHAR (1) NULL, @PS_ValidateOnly BIT NULL, @PS_User_Id NVARCHAR (4) NULL, @PS_Code NVARCHAR (10) NULL, @PS_Type NVARCHAR (2) NULL, @PS_Desc NVARCHAR (40) NULL, @PS_AuditNo INT NULL, @PS_InvoiceNo INT NULL, @PS_CreditNo INT NULL, @PS_VoucherRef INT NULL, @PS_BankNominalCode NVARCHAR (25) NULL, @PS_BankAccountNo NVARCHAR (15) NULL, @PS_BankSortCode NVARCHAR (10) NULL, @PS_Primary INT NULL OUTPUT, @PS_Source NVARCHAR (1) NULL, @PS_ErrorHandlingMethod TINYINT NULL, @PS_InstanceID BIGINT NULL OUTPUT, @PS_ObjectGuid UNIQUEIDENTIFIER NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

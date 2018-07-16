@@ -1,0 +1,44 @@
+﻿create view AA_SL_ACCOUNTS_SIMPLE_VIEW
+/*
+** Returns a table to be used specifically with AA_SL_ACCOUNT_LIST_S
+** Written:      28/04/03 SRB
+** Last Amended: 04/07/03 SRB, 11/02/04 DG, 10/05/04 DG, 11/08/04 DG, 29/11/04 PT, 16/12/04 PT, 13/01/05 SR, 13/12/05 NC, 09/03/2006 JC
+**
+*/
+as
+
+select
+ CU_PRIMARY as [PRIMARY]
+,CUCODE 
+,coalesce(CUNAME, '') as CUNAME
+,cast(CU_ON_STOP As bit) As CU_ON_STOP
+,cast((case when (dbo.AA_VALUE_DPS_F(CU_CREDIT_LIMIT) > 0) 
+       and (dbo.AA_VALUE_DPS_F(CUBALANCE) > dbo.AA_VALUE_DPS_F(CU_CREDIT_LIMIT)) then 1
+      else 0 end) as bit) as OVERCREDITLIMIT
+,dbo.AA_VALUE_DPS_F(CUBALANCE) as CUBALANCE
+,dbo.AA_VALUE_DPS_F(CU_CREDIT_LIMIT) as CU_CREDIT_LIMIT 
+,coalesce(CUPHONE, '') as CUPHONE
+,coalesce(CU_ADDRESS_USER1, '') as CU_ADDRESS_USER1
+,coalesce(CUPOSTCODE, '') as CUPOSTCODE
+,coalesce(CU_ADDRESS_USER2, '') as CU_ADDRESS_USER2
+,coalesce(CU_COUNTRY,'') as CU_COUNTRY
+,cast(CU_HEAD_OFFICE as bit) as CU_HEAD_OFFICE
+,coalesce(CU_HEAD_OFFICE_CODE, '') as CU_HEAD_OFFICE_CODE
+,coalesce(CU_CONTACT_SURNAME, '') as CU_CONTACT_SURNAME
+,coalesce(CUSORT, '') as CUSORT
+,coalesce(CUUSER1, '') as CUUSER1
+,coalesce(CUUSER2, '') as CUUSER2
+,coalesce(CUUSER3, '') as CUUSER3
+,coalesce(CUCURRENCYCODE, '') as CUCURRENCYCODE
+,coalesce(CURR_SYMBOL, '') as CURR_SYMBOL
+,CU_DATE_PUTIN
+,CU_DATE_EDITED
+,CU_ANALYSIS
+,CU_BANK_ANALYS
+,CU_LEVEL as PROFILELEVEL
+,CU_DO_NOT_USE as EXCLUDED
+from SL_ACCOUNTS
+left join SL_ACCOUNTS2 on CU_PRIMARY = CU_PRIMARY_2
+left join SYS_CURRENCY on CUCURRENCYCODE = CURR_CODE
+where CUCODE is not null and CUCODE != '' 
+

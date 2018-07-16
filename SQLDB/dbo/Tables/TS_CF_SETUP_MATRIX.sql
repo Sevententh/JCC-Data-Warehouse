@@ -1,0 +1,24 @@
+﻿CREATE TABLE [dbo].[TS_CF_SETUP_MATRIX] (
+    [CFSM_PRIMARY]                   FLOAT (53)   NOT NULL,
+    [CFSM_CFSH_PRIMARY]              FLOAT (53)   DEFAULT ((0)) NOT NULL,
+    [CFSM_TSU_USERID]                VARCHAR (4)  DEFAULT ('') NOT NULL,
+    [CFSM_VALUE]                     FLOAT (53)   DEFAULT ((0)) NOT NULL,
+    [CFSM_ACCESS]                    TINYINT      DEFAULT ((0)) NOT NULL,
+    [CFSM_OVER_BUDGET_VALUE]         FLOAT (53)   DEFAULT ((0)) NOT NULL,
+    [CFSM_NEW]                       TINYINT      DEFAULT ((0)) NOT NULL,
+    [CFSM_EDIT]                      TINYINT      DEFAULT ((0)) NOT NULL,
+    [CFSM_DELETE]                    TINYINT      DEFAULT ((0)) NOT NULL,
+    [CFSM_APPROVE]                   TINYINT      DEFAULT ((0)) NOT NULL,
+    [CFSM_FILTER_TYPE]               TINYINT      DEFAULT ((0)) NOT NULL,
+    [CFSM_FILTER_OPERATOR_TYPE]      TINYINT      DEFAULT ((0)) NOT NULL,
+    [CFSM_FILTER_RECORD_VIEW_COLUMN] VARCHAR (50) DEFAULT ('') NOT NULL,
+    [CFSM_FILTER_VALUE]              VARCHAR (50) DEFAULT ('') NOT NULL,
+    [CFSM_FILTER_USER_VIEW_COLUMN]   VARCHAR (50) DEFAULT ('') NOT NULL,
+    [CFSM_VIEW]                      TINYINT      DEFAULT ((0)) NOT NULL,
+    [CFSM_DUPLICATE]                 TINYINT      DEFAULT ((0)) NOT NULL,
+    [CFSM_REOPEN]                    TINYINT      DEFAULT ((0)) NOT NULL,
+    [CFSM_FILTER_APPLY_TO_TYPE]      TINYINT      DEFAULT ((0)) NOT NULL,
+    [CFSM_HIDE_NEXT_PREVIOUS]        TINYINT      DEFAULT ((0)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([CFSM_PRIMARY] ASC) WITH (FILLFACTOR = 70)
+);
+

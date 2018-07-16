@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Jillian.LeMasurier]
+    AUTHORIZATION [CORPORATE\Jillian.LeMasurier];
+

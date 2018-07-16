@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Sarah.Chitty]
+    AUTHORIZATION [CORPORATE\Sarah.Chitty];
+

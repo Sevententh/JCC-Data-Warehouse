@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Lisa.Sutherland]
+    AUTHORIZATION [CORPORATE\Lisa.Sutherland];
+

@@ -1,0 +1,18 @@
+﻿create view AA_SYS_LANGUAGE_TEXT_HEADER_VIEW
+/*
+** Returns a table to be used specifically with AA_SYS_LANGUAGE_TEXT_HEADER_LIST_S
+** Written:      05/09/05 NC
+** Last Amended: 10/10/05 SR
+**
+*/
+as
+
+select
+     max(T.LANGUAGE_LABEL_TEXT_PRIMARY) as [PRIMARY]
+   , max(LK.LANGUAGE_FK) as LANGUAGE_PRIMARY -- needed for search
+   , T.LANGUAGE_LABEL_TEXT_PRIMARY as [TEXT_PRIMARY] -- Link to Text
+   , T.LANGUAGE_TEXT as LANGUAGE_TEXT
+   , max(LK.MODIFIED_DATE) as MODIFIED_DATE
+   from SYS_LANGUAGE_LABEL_TEXT as T
+      join SYS_LANGUAGE_LABEL_TEXT_LINK as LK on LK.LANGUAGE_TEXT_FK = T.LANGUAGE_LABEL_TEXT_PRIMARY
+   group by T.LANGUAGE_LABEL_TEXT_PRIMARY, T.LANGUAGE_TEXT

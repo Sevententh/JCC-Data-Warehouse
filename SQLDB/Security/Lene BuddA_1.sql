@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [Lene BuddA]
+    AUTHORIZATION [Lene BuddA];
+

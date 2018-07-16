@@ -1,0 +1,47 @@
+﻿
+
+
+
+
+
+
+
+CREATE VIEW [dbo].[JCC_STOCK_First_SO_WO_Transaction]
+
+/*
+** Written     :  08/07/2016 AKT
+** Last Amended:  08/07/2016 AKT	
+**
+*/
+
+AS
+
+SELECT MIN([SM_STOCK_CODE]) as 'Stock Code'
+	  ,MIN([SM_DATE]) as 'Stock Movement Date'
+	  ,CASE WHEN MIN([SM_ORDER_REF]) IS NULL AND MIN([SM_WO_NUMBER]) IS NOT NULL THEN MIN([SM_WO_NUMBER])
+	  WHEN MIN([SM_WO_NUMBER]) IS NULL AND MIN([SM_ORDER_REF]) IS NOT NULL THEN MIN([SM_ORDER_REF])
+	  END as 'Order Reference A'
+	  ,CASE WHEN MIN([SM_ORDER_REF]) IS NULL AND MIN([SM_WO_NUMBER]) IS NOT NULL THEN 'Works Order'
+	  WHEN MIN([SM_WO_NUMBER]) IS NULL AND MIN([SM_ORDER_REF]) IS NOT NULL THEN 'Sales Order'
+	  END as 'Order Type A'
+	  ,CASE WHEN [SM_TYPE] = 'S' and MIN([SM_ORDER_REF]) IS NOT NULL and MIN([SM_ORDER_REF]) > 0 THEN MIN([SM_ORDER_REF])
+	  WHEN [SM_TYPE] = 'A' and MIN([SM_WO_NUMBER]) IS NOT NULL and MIN([SM_WO_NUMBER]) > 0 THEN MIN([SM_WO_NUMBER])
+	  END as 'Order Reference B'
+	  ,CASE WHEN [SM_TYPE] = 'S' and MIN([SM_ORDER_REF]) IS NOT NULL and MIN([SM_ORDER_REF]) > 0 THEN 'Sales Order'
+	  WHEN [SM_TYPE] = 'A' and MIN([SM_WO_NUMBER]) IS NOT NULL and MIN([SM_WO_NUMBER]) > 0 THEN 'Works Order'
+	  END as 'Order Type B'
+	  ,MIN([SM_ORDER_REF]) as 'Sales Order No.'
+	  ,MIN([SM_WO_NUMBER]) as 'Works Order No.'
+  FROM [JCC_PROD_LIVE].[dbo].[STK_MOVEMENTS] WITH (NOLOCK)
+  LEFT OUTER JOIN [JCC_PROD_LIVE].[dbo].[STK_STOCK] WITH (NOLOCK)
+  ON [SM_STOCK_CODE] = [STKCODE]
+  WHERE [SM_STATUS] = 'O'
+  and
+  [STK_DO_NOT_USE] = 0
+  and
+  (([SM_TYPE] = 'S' and [SM_ORDER_REF] IS NOT NULL and [SM_ORDER_REF] > 0)
+  OR ([SM_TYPE] = 'A' and [SM_WO_NUMBER] IS NOT NULL and [SM_WO_NUMBER] > 0))
+  GROUP BY [SM_STOCK_CODE], [SM_TYPE]
+  --, [SM_ORDER_REF], [SM_WO_NUMBER]
+
+

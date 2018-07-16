@@ -1,0 +1,3 @@
+﻿CREATE USER [CORPORATE\Liz.Rapley]
+    WITH DEFAULT_SCHEMA = [CORPORATE\Liz.Rapley];
+

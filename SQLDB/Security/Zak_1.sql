@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [Zak]
+    AUTHORIZATION [Zak];
+

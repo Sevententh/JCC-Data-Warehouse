@@ -1,0 +1,10 @@
+﻿CREATE FUNCTION [dbo].[AA_CST_PROJECT_EDITABLE_F]
+(@PF_CH_CODE VARCHAR (10) NULL)
+RETURNS TINYINT
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN NULL
+END
+

@@ -1,0 +1,7 @@
+﻿CREATE ROLE [MSReplPAL_7_1]
+    AUTHORIZATION [dbo];
+
+
+GO
+ALTER ROLE [MSReplPAL_7_1] ADD MEMBER [CORPORATE\Steven.Lundlarsen];
+

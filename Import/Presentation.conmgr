@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Presentation"
+  DTS:DTSID="{79D4C6B0-FA7C-445C-9C85-8B4167C1887B}"
+  DTS:CreationName="ADO.NET:SQL">
+  <DTS:PropertyExpression
+    DTS:Name="InitialCatalog">@[$Project::DatabaseName]</DTS:PropertyExpression>
+  <DTS:PropertyExpression
+    DTS:Name="ServerName">@[$Project::ServerName]</DTS:PropertyExpression>
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=dbserver;Initial Catalog=JCC_DW_UAT_Presentation;Integrated Security=True;Connect Timeout=0;Application Name=SSIS-Process_ProductAttribute-{79D4C6B0-FA7C-445C-9C85-8B4167C1887B}dbserver.JCC_DW_PRD_Presentation1;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

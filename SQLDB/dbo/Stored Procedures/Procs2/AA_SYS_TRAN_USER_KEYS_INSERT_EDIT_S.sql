@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_SYS_TRAN_USER_KEYS_INSERT_EDIT_S]
+@PS_ValidateOnly BIT NULL, @PS_UserID VARCHAR (4) NULL, @PS_Primary_Key INT NULL OUTPUT, @PS_KeyDescription VARCHAR (20) NULL, @PS_CalledFrom INT NULL, @PS_RemoveKey BIT NULL, @PS_Sort_Order INT NULL, @PS_Source VARCHAR (1) NULL, @PS_ErrorHandlingMethod TINYINT NULL, @PS_ErrorInstanceID BIGINT NULL OUTPUT, @PS_ObjectGuid UNIQUEIDENTIFIER NULL, @PS_UserKey1 BIT NULL, @PS_UserKey2 BIT NULL, @PS_UserKey3 BIT NULL, @PS_UseInSL BIT NULL, @PS_UseInPL BIT NULL, @PS_UseInNL BIT NULL, @PS_UseInSOP BIT NULL, @PS_UseInPOP BIT NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

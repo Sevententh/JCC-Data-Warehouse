@@ -1,0 +1,37 @@
+﻿CREATE VIEW AA_REP_PL_DUP_TRANS_VIEW
+/*
+** Written:     10/01/2006 RV   
+** Last Amended: 
+** Comments: returns duplicated posted purchase transaction headers for self audit crystal reports
+*/
+AS
+SELECT  
+
+T.PT_YEAR, 
+T.PT_PERIODNUMBER, 
+T.PT_VAT, 
+T.PT_NETT, 
+T.PT_HEADER_REF, 
+T.PT_COPYSUPP, 
+T.PT_PRIMARY, 
+T.PT_DATE, 
+T.PT_DESCRIPTION, 
+Cast (PT_BATCH_FLAG As BIT) AS PT_BATCH_FLAG,                    
+PT_TRANTYPE,
+'ENGLISH   ' As LANGUAGE_LINK
+
+FROM PL_TRANSACTIONS T
+
+Inner Join (Select TOP 100 PERCENT P.PT_COPYSUPP, P.PT_HEADER_REF, P.PT_VAT, Count(P.PT_VAT) As VAT_Dup_Count
+	From PL_TRANSACTIONS P
+	Where P.PT_TRANTYPE = 'INV'
+
+	GROUP BY P.PT_COPYSUPP, P.PT_HEADER_REF, P.PT_VAT
+having Count(P.PT_VAT) > 1
+order by P.PT_COPYSUPP, P.PT_HEADER_REF, P.PT_VAT
+	) 
+	P On P.PT_COPYSUPP = T.PT_COPYSUPP 
+	And P.PT_HEADER_REF = T.PT_HEADER_REF 
+	And P.PT_VAT = T.PT_VAT
+ 
+WHERE T.PT_TRANTYPE = 'INV' And T.PT_BATCH_FLAG <> 1 And VAT_Dup_Count > 1

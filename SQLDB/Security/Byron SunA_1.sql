@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [Byron SunA]
+    AUTHORIZATION [Byron SunA];
+

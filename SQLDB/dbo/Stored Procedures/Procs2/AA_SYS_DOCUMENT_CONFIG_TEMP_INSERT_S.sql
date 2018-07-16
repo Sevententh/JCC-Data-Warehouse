@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_SYS_DOCUMENT_CONFIG_TEMP_INSERT_S]
+@PS_UserId VARCHAR (4) NULL, @PS_BatchGuid UNIQUEIDENTIFIER NULL OUTPUT, @PS_DocumentType INT NULL, @PS_StationaryLink INT NULL, @PS_NoCopies TINYINT NULL, @PS_Copy1Destn TINYINT NULL, @PS_Copy1Recipient NVARCHAR (255) NULL, @PS_Copy2Destn TINYINT NULL, @PS_Copy2Recipient NVARCHAR (255) NULL, @PS_Copy3Destn TINYINT NULL, @PS_Copy3Recipient NVARCHAR (255) NULL, @PS_AttachPdf BIT NULL, @PS_EmailSubject1 NVARCHAR (100) NULL, @PS_EmailMessage1 NVARCHAR (2000) NULL, @PS_EmailSubject2 NVARCHAR (100) NULL, @PS_EmailMessage2 NVARCHAR (2000) NULL, @PS_EmailSubject3 NVARCHAR (100) NULL, @PS_EmailMessage3 NVARCHAR (2000) NULL, @PS_DeleteFlag BIT NULL, @PS_ErrorInstanceId BIGINT NULL OUTPUT, @PS_ErrorHandlingMethod TINYINT NULL, @PS_ObjectGuid UNIQUEIDENTIFIER NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

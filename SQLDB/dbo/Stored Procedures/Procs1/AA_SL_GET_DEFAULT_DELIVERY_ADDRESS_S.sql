@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_SL_GET_DEFAULT_DELIVERY_ADDRESS_S]
+@PS_Defs VARCHAR (50) NULL, @PS_Delivery_Account VARCHAR (10) NULL OUTPUT, @PS_Order_Account VARCHAR (10) NULL, @PS_Address_Num_Delivery INT NULL OUTPUT, @PS_Country_Code VARCHAR (4) NULL OUTPUT, @PS_Export_Code VARCHAR (1) NULL OUTPUT, @PS_Vat_Reg_No VARCHAR (21) NULL OUTPUT, @PS_EC_Delivery_Terms VARCHAR (3) NULL OUTPUT, @PS_EC_Transaction_Nature VARCHAR (2) NULL OUTPUT, @PS_EC_Transport_Method VARCHAR (1) NULL OUTPUT, @PS_ErrorHandlingMethod TINYINT NULL, @PS_ErrorInstanceID BIGINT NULL OUTPUT, @PS_ObjectGuid UNIQUEIDENTIFIER NULL, @PS_UserId VARCHAR (4) NULL, @PS_Vat_Code VARCHAR (4) NULL OUTPUT, @PS_Transaction_Type VARCHAR (3) NULL, @PS_Analysis VARCHAR (25) NULL OUTPUT
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

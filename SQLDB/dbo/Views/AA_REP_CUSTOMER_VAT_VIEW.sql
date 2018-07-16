@@ -1,0 +1,25 @@
+﻿CREATE VIEW AA_REP_CUSTOMER_VAT_VIEW
+/*
+** Written:     29/04/2005 RV   
+** Last Amended: 
+** Comments: returns selected customers with missing vat numbers for crystal reports
+*/
+AS
+SELECT     
+
+CUCODE, 
+CUNAME, 
+CU_VAT_REG_NO, 
+CU_COUNTRY_CODE, 
+CU_EXPORT_CODE, 
+CUSORT, 
+CUUSER1, 
+CUUSER2, 
+CUUSER3, 
+CUCURRENCYCODE, 
+CU_TAX_CODE, 
+CU_COUNTRY
+
+FROM SL_ACCOUNTS
+
+WHERE  (CU_VAT_REG_NO IS NULL OR CU_VAT_REG_NO = '') AND (CUCODE IS NOT NULL AND CUCODE <> '')

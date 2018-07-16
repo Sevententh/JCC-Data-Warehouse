@@ -1,0 +1,10 @@
+﻿CREATE FUNCTION [DASHBOARD].[AA_ARSDB_CREDITOR_DAYS_PERIOD_BASED_F]
+(@PF_Date DATETIME NULL, @PF_ExcludeUnallocatedPAYandCRNs BIT NULL)
+RETURNS DECIMAL (10, 1)
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN NULL
+END
+

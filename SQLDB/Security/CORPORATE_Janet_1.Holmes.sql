@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Janet.Holmes]
+    AUTHORIZATION [CORPORATE\Janet.Holmes];
+

@@ -1,0 +1,5 @@
+﻿CREATE ASYMMETRIC KEY [AA_EMAIL_AK]
+    AUTHORIZATION [dbo]
+    WITH ALGORITHM = RSA_2048
+    ENCRYPTION BY PASSWORD = N'mgCqlXsrwir^FjC{xswQqapbmsFT7_&#$!~<1EVhv|asqahQ';
+

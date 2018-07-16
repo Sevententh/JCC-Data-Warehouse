@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Kieran.Obrien]
+    AUTHORIZATION [CORPORATE\Kieran.Obrien];
+

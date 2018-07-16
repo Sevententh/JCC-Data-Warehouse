@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Brett.Stanley]
+    AUTHORIZATION [CORPORATE\Brett.Stanley];
+

@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[STK_PRICE_LISTS] (
+    [STH_PRIMARY]               FLOAT (53)    NOT NULL,
+    [STH_NAME]                  VARCHAR (50)  NULL,
+    [STH_EFFECTIVE]             DATETIME      NULL,
+    [STH_NOTES]                 TEXT          NULL,
+    [STH_ACTIVE]                TINYINT       NULL,
+    [STH_PRIORITY]              INT           NULL,
+    [STH_CURRENCY]              VARCHAR (5)   NULL,
+    [STH_EFFECTIVE_TO]          DATETIME      NULL,
+    [STH_CRYSTAL_REP]           VARCHAR (200) NULL,
+    [STH_TYPE]                  VARCHAR (10)  NULL,
+    [STH_SUB_FILTER]            TINYINT       DEFAULT ((0)) NULL,
+    [STH_OVERRIDE]              TINYINT       NULL,
+    [STH_SHOW_PROMPT]           TINYINT       DEFAULT ((0)) NULL,
+    [STH_USE_SUB_METHODS]       TINYINT       NULL,
+    [STH_MATCH_ALL_CUST]        TINYINT       NULL,
+    [STH_MATCH_ALL_PROD]        TINYINT       NULL,
+    [STH_APPLY_TO_SALES_ORDERS] TINYINT       DEFAULT ((1)) NULL,
+    [STH_APPLY_TO_CREDIT_NOTES] TINYINT       DEFAULT ((1)) NULL,
+    [STH_GROSS_PRICES]          TINYINT       DEFAULT ((0)) NULL,
+    [STH_APPLY_TO_ALL_CUST]     TINYINT       DEFAULT ((0)) NULL,
+    [STH_APPLY_TO_ALL_PROD]     TINYINT       DEFAULT ((0)) NULL,
+    CONSTRAINT [STH_PRIMARY_PK] PRIMARY KEY CLUSTERED ([STH_PRIMARY] ASC) WITH (FILLFACTOR = 70)
+);
+

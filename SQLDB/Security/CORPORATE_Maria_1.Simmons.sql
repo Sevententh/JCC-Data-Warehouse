@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Maria.Simmons]
+    AUTHORIZATION [CORPORATE\Maria.Simmons];
+

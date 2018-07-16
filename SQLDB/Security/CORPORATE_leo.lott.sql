@@ -1,0 +1,3 @@
+﻿CREATE USER [CORPORATE\leo.lott] FOR LOGIN [CORPORATE\leo.lott]
+    WITH DEFAULT_SCHEMA = [CORPORATE\leo.lott];
+

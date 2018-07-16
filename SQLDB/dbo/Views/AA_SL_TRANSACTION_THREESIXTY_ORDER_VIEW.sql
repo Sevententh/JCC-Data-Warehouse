@@ -1,0 +1,36 @@
+﻿create view AA_SL_TRANSACTION_THREESIXTY_ORDER_VIEW
+/*
+** Returns order header line information to be used by the Three Sixty enquiry.
+**
+** Written:      22/09/2005 SH
+** Last Amended: 
+*/
+as
+
+select O.OH_ORDER_NUMBER as ORDER_NUMBER,
+   O.OH_DATE,
+   O.OH_GROSS,
+   O.OH_GROSS_C,
+   O.OH_CURRENCYCODE,
+   O.OH_ACCOUNT_ORDER,
+   C.CUNAME as ORDER_ACCOUNT_NAME,
+   A.AD_ADDRESS as ORDER_ADDRESS,
+   O.OH_ACCOUNT_DELIVERY,
+   C1.CUNAME as DELIVERY_ACCOUNT_NAME,
+   A1.AD_ADDRESS as DELIVERY_ADDRESS,
+   O.OH_ACCOUNT,
+   C2.CUNAME as INVOICE_ACCOUNT_NAME,
+   A2.AD_ADDRESS as INVOICE_ADDRESS,
+   isnull(O.OH_USER1,'') as OH_USER1,
+   isnull(O.OH_USER2,'') as OH_USER2,
+   isnull(O.OH_USER3,'') as OH_USER3
+from ORD_HEADER O
+   inner join SL_ACCOUNTS C on C.CUCODE = O.OH_ACCOUNT_ORDER
+   inner join SL_ACCOUNTS C1 on C1.CUCODE = O.OH_ACCOUNT_DELIVERY
+   inner join SL_ACCOUNTS C2 on C2.CUCODE = O.OH_ACCOUNT
+   inner join SL_ADDRESSES A on A.AD_ACC_CODE = O.OH_ACCOUNT_ORDER
+      and A.AD_DEL_ADDRESS = 1
+   inner join SL_ADDRESSES A1 on A1.AD_ACC_CODE = O.OH_ACCOUNT_DELIVERY
+      and A1.AD_CODE = O.OH_DEL_ADD
+   inner join SL_ADDRESSES A2 on A2.AD_ACC_CODE = O.OH_ACCOUNT
+      and A1.AD_CODE = O.OH_INV_ADD

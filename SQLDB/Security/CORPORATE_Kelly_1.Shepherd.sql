@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Kelly.Shepherd]
+    AUTHORIZATION [CORPORATE\Kelly.Shepherd];
+

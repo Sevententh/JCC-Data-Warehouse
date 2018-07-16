@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Tom.Winter]
+    AUTHORIZATION [CORPORATE\Tom.Winter];
+

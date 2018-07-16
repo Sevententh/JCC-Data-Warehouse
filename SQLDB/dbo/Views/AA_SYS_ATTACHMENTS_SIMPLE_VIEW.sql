@@ -1,0 +1,25 @@
+﻿create view AA_SYS_ATTACHMENTS_SIMPLE_VIEW
+/*
+** Returns a table to be used specifically with AA_SYS_ATTACHMENTS_LIST_S
+**
+** Written     :  01/02/2006 DB
+** Last Amended:  13/02/2006 DB, 08/06/2006 DB
+**
+*/
+as
+
+select
+   ATT_PRIMARY          as [PRIMARY]
+,  ATT_FILENAME
+,  ATT_DESCRIPTION
+,  ATT_MODULE
+,  ATT_RECORD_TYPE
+,  ATT_DOCUMENT_TYPE
+,  ATT_AUDIT_NO
+,  ATT_REC_CODE
+,  ATT_DATE_PUTIN
+,  ATT_USER_PUTIN
+,  ATT_DATE_EDITED
+,  ATT_USER_EDITED
+   from
+      SYS_ATTACHMENTS

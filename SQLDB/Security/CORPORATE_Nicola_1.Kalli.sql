@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Nicola.Kalli]
+    AUTHORIZATION [CORPORATE\Nicola.Kalli];
+

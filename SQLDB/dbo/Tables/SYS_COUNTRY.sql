@@ -1,0 +1,70 @@
+﻿CREATE TABLE [dbo].[SYS_COUNTRY] (
+    [CO_CODE]            VARCHAR (4)   NULL,
+    [CO_SYMBOL]          VARCHAR (4)   NULL,
+    [CO_NAME]            VARCHAR (20)  NULL,
+    [CO_TAX_NAME]        VARCHAR (5)   NULL,
+    [CO_EC_FLAG]         TINYINT       DEFAULT ((0)) NULL,
+    [CO_AGENT_VATNO]     VARCHAR (15)  NULL,
+    [CO_AGENT_BRANCH]    VARCHAR (3)   NULL,
+    [CO_DEL_TERMS]       VARCHAR (3)   NULL,
+    [CO_TRN_NATURE]      VARCHAR (2)   NULL,
+    [CO_TRNSPRT_MODE]    VARCHAR (1)   NULL,
+    [CO_ESL_CODE]        VARCHAR (3)   NULL,
+    [CO_SD_CODE]         VARCHAR (3)   NULL,
+    [CO_NOTES]           TEXT          NULL,
+    [CO_USER_EDITED]     VARCHAR (4)   NULL,
+    [CO_USER_PUTIN]      VARCHAR (4)   NULL,
+    [CO_DATE_PUTIN]      DATETIME      NULL,
+    [CO_DATE_EDITED]     DATETIME      NULL,
+    [CO_USED]            TINYINT       DEFAULT ((0)) NULL,
+    [CO_SALES_AN]        VARCHAR (25)  NULL,
+    [CO_SALES_AN_EX]     VARCHAR (25)  NULL,
+    [CO_PURCH_AN]        VARCHAR (25)  NULL,
+    [CO_PURCH_AN_EX]     VARCHAR (25)  NULL,
+    [CO_YEAR_END]        VARCHAR (25)  NULL,
+    [CO_SALES_AN_BNK]    VARCHAR (25)  NULL,
+    [CO_PURCH_AN_BNK]    VARCHAR (25)  NULL,
+    [CO_SALES_AN_DIS]    VARCHAR (25)  NULL,
+    [CO_PURCH_AN_DIS]    VARCHAR (25)  NULL,
+    [CO_NOM_SALES]       VARCHAR (25)  NULL,
+    [CO_NOM_SALEDIS]     VARCHAR (25)  NULL,
+    [CO_NOM_PURCH]       VARCHAR (25)  NULL,
+    [CO_NOM_PURDIS]      VARCHAR (25)  NULL,
+    [CO_NOM_SALECON]     VARCHAR (25)  NULL,
+    [CO_NOM_PURCHCON]    VARCHAR (25)  NULL,
+    [CO_NOM_BANK]        VARCHAR (25)  NULL,
+    [CO_NOM_XDIFDR]      VARCHAR (25)  NULL,
+    [CO_NOM_XDIFCR]      VARCHAR (25)  NULL,
+    [CO_PRIMARY]         FLOAT (53)    NOT NULL,
+    [CO_LEVEL]           INT           DEFAULT ((0)) NULL,
+    [CO_GROUP]           VARCHAR (10)  NULL,
+    [CO_EMU_MEMBER_DATE] DATETIME      NULL,
+    [CO_NUMBER]          INT           DEFAULT ((0)) NULL,
+    [CO_VAT_REG_PREFIX]  VARCHAR (4)   NULL,
+    [CO_VAT_REG_FORMAT]  VARCHAR (100) NULL,
+    [CO_DO_NOT_USE]      BIT           DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [CO_PRIMARY_PK] PRIMARY KEY CLUSTERED ([CO_PRIMARY] ASC)
+);
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [CO_CODE]
+    ON [dbo].[SYS_COUNTRY]([CO_CODE] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [CO_SYMBOL]
+    ON [dbo].[SYS_COUNTRY]([CO_SYMBOL] ASC);
+
+
+GO
+CREATE TRIGGER [dbo].[aa_country_dt]
+    ON [dbo].[SYS_COUNTRY]
+    WITH ENCRYPTION
+    AFTER DELETE
+    AS 
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+

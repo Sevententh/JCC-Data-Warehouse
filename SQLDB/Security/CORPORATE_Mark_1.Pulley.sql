@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Mark.Pulley]
+    AUTHORIZATION [CORPORATE\Mark.Pulley];
+

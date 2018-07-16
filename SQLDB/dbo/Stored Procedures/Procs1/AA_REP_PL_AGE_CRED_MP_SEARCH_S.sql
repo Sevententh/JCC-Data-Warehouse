@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[AA_REP_PL_AGE_CRED_MP_SEARCH_S]
+@PS_UserID NVARCHAR (4) NULL, @PS_CalledFrom INT NULL, @PS_PrimarySortFieldName [sysname] NULL, @PS_PrimaryOrderByDesc BIT NULL, @PS_TotalRecordCount INT NULL OUTPUT, @PS_ErrorInstanceID BIGINT NULL OUTPUT, @PS_ErrorHandlingMethod INT NULL, @PS_OutputMode TINYINT NULL, @PS_ViewName [sysname] NULL, @PS_Home_Values BIT NULL, @PS_Currency_Values BIT NULL, @PS_Base2_Values BIT NULL, @PS_Transactions BIT NULL, @PS_Period NVARCHAR (3) NULL, @PS_Date DATETIME NULL, @PS_AccountCodeFrom NVARCHAR (10) NULL, @PS_AccountCodeSearch TINYINT NULL, @PS_AccountCodeTo NVARCHAR (10) NULL, @PS_AccountNameFrom NVARCHAR (40) NULL, @PS_AccountNameSearch TINYINT NULL, @PS_AccountNameTo NVARCHAR (40) NULL, @PS_SortKeyFrom NVARCHAR (20) NULL, @PS_SortKeySearch TINYINT NULL, @PS_SortKeyTo NVARCHAR (20) NULL, @PS_UserSort1From NVARCHAR (20) NULL, @PS_UserSort1Search TINYINT NULL, @PS_UserSort1To NVARCHAR (20) NULL, @PS_UserSort2From NVARCHAR (20) NULL, @PS_UserSort2Search TINYINT NULL, @PS_UserSort2To NVARCHAR (20) NULL, @PS_UserSort3From NVARCHAR (20) NULL, @PS_UserSort3Search TINYINT NULL, @PS_UserSort3To NVARCHAR (20) NULL, @PS_SubLedgerFrom NVARCHAR (10) NULL, @PS_SubLedgerSearch TINYINT NULL, @PS_SubLedgerTo NVARCHAR (10) NULL, @PS_IncludeOnStop BIT NULL, @PS_IncludeNonOnStop BIT NULL, @PS_IncludeOverCreditLimit BIT NULL, @PS_IncludeNonOverCreditLimit BIT NULL, @PS_DueDateFrom DATETIME NULL, @PS_DueDateSearch TINYINT NULL, @PS_DueDateTo DATETIME NULL, @PS_LastInvoiceDateFrom DATETIME NULL, @PS_LastInvoiceDateSearch TINYINT NULL, @PS_LastInvoiceDateTo DATETIME NULL, @PS_HomeTurnoverYTDFrom FLOAT (53) NULL, @PS_HomeTurnoverYTDSearch TINYINT NULL, @PS_HomeTurnoverYTDTo FLOAT (53) NULL, @PS_CurrencyCodeFrom NVARCHAR (4) NULL, @PS_CurrencyCodeSearch TINYINT NULL, @PS_CurrencyCodeTo NVARCHAR (4) NULL, @PS_BalanceFrom FLOAT (53) NULL, @PS_BalanceSearch TINYINT NULL, @PS_BalanceTo FLOAT (53) NULL
+WITH ENCRYPTION
+AS
+BEGIN
+--The script body was encrypted and cannot be reproduced here.
+    RETURN
+END
+
+

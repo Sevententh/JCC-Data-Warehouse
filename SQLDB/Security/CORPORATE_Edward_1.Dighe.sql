@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\Edward.Dighe]
+    AUTHORIZATION [CORPORATE\Edward.Dighe];
+

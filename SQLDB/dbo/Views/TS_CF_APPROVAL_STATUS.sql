@@ -1,0 +1,50 @@
+﻿CREATE VIEW [TS_CF_APPROVAL_STATUS] AS
+      SELECT
+      APAL_RECORD_TYPE '__RECORDTYPE',
+      APAL_RECORD_LINK '__RECORDLINK',
+      APAL_STATUS As '__STATUSCODE',
+      APAL_PREV_ACTION '__PREVIOUSACTIONCODE',
+      COALESCE(APAU_USERID, APAL_THIS_ACTION_USERID) '__APPROVERID',
+      APAL_APAS_PRIMARY '__STAGEID',
+      CASE APAL_STATUS
+       WHEN 0 THEN 'Pending'
+       WHEN 1 THEN 'Awaiting Approval'
+       WHEN 2 THEN 'Approved'
+       WHEN 3 THEN 'Posted'
+       WHEN 4 THEN 'Rejected'
+       WHEN 5 THEN 'Cancelled'
+       WHEN 6 THEN 'Deleted'
+       WHEN 7 THEN 'Reopened'
+      END '__STATUSTEXT',
+      CASE APAL_STATUS
+       WHEN 0 THEN 'Pending'
+       WHEN 1 THEN 'Awaiting Approval'
+       WHEN 2 THEN 'Approved'
+       WHEN 3 THEN 'Posted'
+       WHEN 4 THEN 'Rejected'
+       WHEN 5 THEN 'Cancelled'
+       WHEN 6 THEN 'Deleted'
+       WHEN 7 THEN 'Reopened'
+      END 'Status',
+      CASE APAL_PREV_ACTION
+       WHEN 0 THEN 'Waiting'
+       WHEN 1 THEN 'Submitted'
+       WHEN 2 THEN 'Approved'
+       WHEN 3 THEN 'Rejected'
+       WHEN 4 THEN 'Rerouted'
+       WHEN 5 THEN 'Reopened'
+       WHEN 6 THEN 'Unsubmit'
+       WHEN 7 THEN 'Cancelled'
+       WHEN 8 THEN 'Created'
+       WHEN 9 THEN 'Posted'
+       WHEN 19 THEN 'OOO Redirect'
+       ELSE ''
+      END 'Previous Action',
+      (SELECT USER_NAME FROM SYS_USER WHERE USER_ID = COALESCE(APAU_USERID, APAL_THIS_ACTION_USERID)) 'Approver',
+      (SELECT USER_NAME FROM SYS_USER WHERE USER_ID = APAL_PREV_ACTION_USERID) 'Previous User',
+      COALESCE(APAS_NAME,'') 'Stage',
+      COALESCE(APAU_USERID, APAL_THIS_ACTION_USERID) + ' - ' + (SELECT USER_NAME FROM SYS_USER WHERE USER_ID = COALESCE(APAU_USERID, APAL_THIS_ACTION_USERID)) '__SEARCH_APPROVER'
+      FROM TS_APPROVAL_LOG 
+      LEFT JOIN TS_APPROVAL_LOG_USER ON APAU_APAL_PRIMARY = APAL_PRIMARY
+      LEFT JOIN TS_APPROVAL_STAGE ON APAL_APAS_PRIMARY = APAS_PRIMARY
+      WHERE APAL_CURRENT = 1

@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [CORPORATE\lok.bains]
+    AUTHORIZATION [CORPORATE\lok.bains];
+
